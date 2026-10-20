@@ -34,7 +34,11 @@ jobs:
           pip install --quiet "style-bert-vits2>=2.5" huggingface_hub soundfile numpy
           pip install --quiet "kokoro>=0.9.4" "misaki[ja]" || true
       - name: 음성 파일 만들기
-        run: python tools/make_audio.py || echo "음성 만들기 실패 (audio/_status.json 참고)"
+        run: |
+          mkdir -p audio
+          python -X faulthandler tools/make_audio.py > audio/_run.log 2>&1 || echo "exit=$?" >> audio/_run.log
+          pip list 2>/dev/null | grep -i -E "style|torch|kokoro|misaki|openjtalk|numpy|transformers" >> audio/_run.log || true
+          tail -c 6000 audio/_run.log > audio/_run_tail.log; mv audio/_run_tail.log audio/_run.log
       - name: 음성 파일 올리기
         run: |
           git config user.name "github-actions[bot]"
