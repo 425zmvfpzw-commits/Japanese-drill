@@ -1,0 +1,31 @@
+name: 목소리 샘플 만들기
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  samples:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: VOICEVOX 엔진 켜기
+        run: |
+          IMG=voicevox/voicevox_engine:cpu-latest
+          docker pull -q $IMG || { IMG=voicevox/voicevox_engine:cpu-ubuntu20.04-latest; docker pull -q $IMG; }
+          docker run -d --rm -p 50021:50021 $IMG
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: 샘플 만들기
+        run: python3 tools/voice_samples.py > samples_run.log 2>&1 || true; mkdir -p samples; tail -c 4000 samples_run.log > samples/_run.log
+      - name: 샘플 올리기
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add samples
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "목소리 샘플"
+          git pull --rebase origin main
+          git push
