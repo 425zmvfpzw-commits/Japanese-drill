@@ -1,14 +1,14 @@
 """문장마다 리스닝 드릴 음성 파일을 목소리별로 만든다 (VOICEVOX 엔진, 로컬 실행).
 
 cards.json 의 일본어 문장 하나당 audio/<목소리>/<해시>.mp3 하나:
-같은 문장을 보통 속도로 10번 이어 붙인다. (1배/1.5배는 앱에서 재생 속도로 고른다)
+한 번 읽은 짧은 파일을 만들고, 앱이 10번 반복해서 재생한다.
 audio/index.json 에 목소리 목록과, 각 반복이 시작되는 시각(초)을 적는다.
 """
 import hashlib, json, os, subprocess, sys, tempfile, time, urllib.parse, urllib.request
 
 API = "http://127.0.0.1:50021"
 N, GAP, LEAD = 10, 0.7, 0.25
-FORMAT = 4   # 파일 형식이 바뀌면 숫자를 올려서 전부 다시 만든다
+FORMAT = 5   # 파일 형식이 바뀌면 숫자를 올려서 전부 다시 만든다
 VOICES = {   # id: (캐릭터, 스타일, 높이, 억양, 앱 표시 이름)
     "sora":     ("九州そら",  "ノーマル", 0.0,   1.0, "소라 · 또렷한 언니 톤"),
     "ritsu":    ("波音リツ",  "ノーマル", 0.0,   1.0, "리츠 · 쿨하고 담백한 톤"),
@@ -23,7 +23,7 @@ def call(path, data=None):
         return r.read()
 
 def render(t, sid, pitch, inton):
-    """문장 하나 → (10회 반복 mp3 바이트, 반복 시작 시각 정보)"""
+    """문장 하나 → (한 번 읽은 mp3 바이트, 길이 정보)"""
     q = json.loads(call(f"/audio_query?text={urllib.parse.quote(t)}&speaker={sid}", b""))
     q.update({"pitchScale": pitch, "intonationScale": inton, "prePhonemeLength": 0.05, "postPhonemeLength": 0.05})
     wav = call(f"/synthesis?speaker={sid}", json.dumps(q).encode())
@@ -32,13 +32,12 @@ def render(t, sid, pitch, inton):
         open(base, "wb").write(wav)
         d0 = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", base],
                                   capture_output=True, text=True, check=True).stdout.strip())
-        fc = f"[0:a]loudnorm=I=-18:TP=-1.5,asplit={N}" + "".join(f"[s{i}]" for i in range(N)) + ";" \
-             + ";".join(f"[s{i}]apad=pad_dur={GAP}[a{i}]" for i in range(N)) + ";" \
-             + "".join(f"[a{i}]" for i in range(N)) + f"concat=n={N}:v=0:a=1,adelay={int(LEAD*1000)}[out]"
+        # 한 번만 읽은 짧은 파일 (앞 0.1초, 뒤 쉼 GAP초). 10번 반복은 앱이 재생하면서 한다
+        fc = f"[0:a]loudnorm=I=-18:TP=-1.5,adelay=100,apad=pad_dur={GAP}[out]"
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", base, "-filter_complex", fc, "-map", "[out]",
-                        "-ac", "1", "-ar", "24000", "-b:a", "64k", out], check=True)
+                        "-ac", "1", "-ar", "22050", "-b:a", "32k", out], check=True)
         data = open(out, "rb").read()
-    return data, {"starts": [round(LEAD + k * (d0 + GAP), 3) for k in range(N)], "len": round(d0, 3)}
+    return data, {"loop": True, "len": round(d0 + 0.1, 3)}
 
 def key(t):
     return hashlib.sha256(t.strip().encode("utf8")).hexdigest()[:16]

@@ -1020,12 +1020,12 @@ async function audioFor(ja){
   if (!v) return null;
   let h = ""; try { h = await hashJa(ja); } catch(e){ return null; }
   const f = idx.files[v] && idx.files[v][h];
-  if (f) { const src = `audio/${v}/${h}.mp3`; return {getSrc: async () => src, starts:f.starts, len:f.len, voice:v}; }
+  if (f) { const src = `audio/${v}/${h}.mp3?f=${idx.format||0}`; return {getSrc: async () => src, starts:f.starts, len:f.len, loop:!!f.loop, voice:v}; }
   const ks = await keys(); if (!ks) return null;
   const pidx = await privIndex(), p = await pidOf(ja, ks), pf = pidx.files[v] && pidx.files[v][p];
   if (!pf) return null;
-  const url = `paudio/${v}/${p}.bin`;
-  return {getSrc: () => decryptTo(url, ks), starts:pf.starts, len:pf.len, voice:v};
+  const url = `paudio/${v}/${p}.bin?f=${pidx.format||0}`;
+  return {getSrc: () => decryptTo(url, ks), starts:pf.starts, len:pf.len, loop:!!pf.loop, voice:v};
 }
 /* 고른 목소리의 음성 파일을 폰에 미리 저장 (인터넷이 있을 때만) */
 async function warmAudio(){
@@ -1033,17 +1033,15 @@ async function warmAudio(){
   try {
     const idx = await audioIndex(), v = curVoice(idx); if (!v) return;
     const c = await caches.open("drill-audio");
-    for (const h of Object.keys(idx.files[v] || {})) {
-      const u = new URL(`audio/${v}/${h}.mp3`, location.href).href;
-      if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
-    }
+    const want = new Set();
+    for (const h of Object.keys(idx.files[v] || {})) want.add(new URL(`audio/${v}/${h}.mp3?f=${idx.format||0}`, location.href).href);
     if (await keys()) {
       const pidx = await privIndex();
-      for (const h of Object.keys(pidx.files[v] || {})) {
-        const u = new URL(`paudio/${v}/${h}.bin`, location.href).href;
-        if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
-      }
+      for (const h of Object.keys(pidx.files[v] || {})) want.add(new URL(`paudio/${v}/${h}.bin?f=${pidx.format||0}`, location.href).href);
     }
+    // 예전 형식이나 안 쓰는 목소리 파일은 지워서 폰 용량을 비운다
+    for (const r of await c.keys()) if (!want.has(r.url)) await c.delete(r);
+    for (const u of want) if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
   } catch(e){}
 }
 /* 카드의 '일본어 듣기': 고른 목소리 파일이 있으면 그 목소리로 한 번, 없으면 기기 음성 */
@@ -1055,8 +1053,9 @@ async function speakCard(ja){
     if (!clipAudio) { clipAudio = new Audio(); clipAudio.preload = "auto"; clipAudio.addEventListener("timeupdate", () => { if (clipStop && clipAudio.currentTime >= clipStop) { clipAudio.pause(); clipStop = 0; } }); }
     if (D && !D.closed) return;
     clipAudio.pause(); clipAudio.src = await a.getSrc(); clipAudio.playbackRate = 1;
-    clipStop = a.starts[0] + (a.len || (a.starts[1] - a.starts[0] - 0.7)) + 0.15;
-    clipAudio.currentTime = a.starts[0]; await clipAudio.play();
+    if (a.loop) { clipStop = 0; clipAudio.currentTime = 0; }
+    else { clipStop = a.starts[0] + (a.len || (a.starts[1] - a.starts[0] - 0.7)) + 0.15; clipAudio.currentTime = a.starts[0]; }
+    await clipAudio.play();
   } catch(e) { speak(ja); }
 }
 async function hashJa(t){
@@ -1095,11 +1094,18 @@ async function startDrill(cards){
     else if (!D.paused) { D.tok++; try { speechSynthesis.cancel(); } catch(e){} ttsRep(D.rep); } };
   audio.addEventListener("timeupdate", () => {
     const it = D && D.items[D.i]; if (!it || !it.a) return;
+    const bar = $("#dbar");
+    if (it.a.loop) { if (bar && audio.duration) bar.style.width = (((D.i + (D.rep + audio.currentTime / audio.duration) / DRILL_N) / D.items.length) * 100) + "%"; return; }
     let k = 0; it.a.starts.forEach((t, j) => { if (audio.currentTime + 0.05 >= t) k = j; });
     if (k !== D.rep) { D.rep = k; drawRep(); }
-    const bar = $("#dbar"); if (bar && audio.duration) bar.style.width = (((D.i + audio.currentTime / audio.duration) / D.items.length) * 100) + "%";
+    if (bar && audio.duration) bar.style.width = (((D.i + audio.currentTime / audio.duration) / D.items.length) * 100) + "%";
   });
-  audio.addEventListener("ended", () => nextItem());
+  // 짧은 파일은 끝날 때마다 처음으로 돌려 10번 반복한다 (잠금 화면에서도 같은 소리 줄로 이어진다)
+  audio.addEventListener("ended", () => {
+    const it = D && D.items[D.i];
+    if (it && it.a && it.a.loop && D.rep < DRILL_N - 1) { D.rep++; drawRep(); audio.currentTime = 0; audio.play().catch(() => { D.paused = true; drawPlay(); }); return; }
+    nextItem();
+  });
   audio.addEventListener("pause", () => { if (D && !D.closed && D.items[D.i].a) { D.paused = true; drawPlay(); } });
   audio.addEventListener("play", () => { if (D) { D.paused = false; drawPlay(); } });
   if ("mediaSession" in navigator) {
@@ -1378,10 +1384,10 @@ if ("serviceWorker" in navigator) {
   // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (!hadCtl) return;
-    try { if (sessionStorage.getItem("jd-reloaded") === "d428679087") return; sessionStorage.setItem("jd-reloaded", "d428679087"); } catch(e) {}
+    try { if (sessionStorage.getItem("jd-reloaded") === "3230a04585") return; sessionStorage.setItem("jd-reloaded", "3230a04585"); } catch(e) {}
     location.reload();
   });
-  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=d428679087", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=3230a04585", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
 }
 
