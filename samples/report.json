@@ -128,9 +128,12 @@
   "麒ヶ島宗麟/ノーマル",
   "黒沢冴白/ノーマル"
  ],
- "A_female_announce": "No.7/アナウンス id=30",
- "B_female_normal": "No.7/ノーマル id=29",
- "C_female_calm": "冥鳴ひまり/ノーマル id=14",
- "D_male_calm": "青山龍星/ノーマル id=13",
- "E_male_normal": "玄野武宏/ノーマル id=11"
+ "F1_kyushu_sora": "九州そら/ノーマル id=16",
+ "F2_shikoku_metan_low": "四国めたん/ノーマル id=2",
+ "F3_namine_ritsu": "波音リツ/ノーマル id=9",
+ "F4_whitecul": "WhiteCUL/ノーマル id=23",
+ "F5_no7_low": "No.7/ノーマル id=29",
+ "F6_himari_up": "冥鳴ひまり/ノーマル id=14",
+ "F7_yogatari_tobari": "夜語トバリ/ノーマル id=118",
+ "F8_kurosawa_saeha": "黒沢冴白/ノーマル id=100"
 }
