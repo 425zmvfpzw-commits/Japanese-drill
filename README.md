@@ -4,4 +4,4 @@
 
 ## 음성
 
-드릴 음성은 [Style-Bert-VITS2](https://github.com/litagin02/Style-Bert-VITS2)와 JVNV 코퍼스로 학습된 공개 모델([litagin/style_bert_vits2_jvnv](https://huggingface.co/litagin/style_bert_vits2_jvnv), CC BY-SA 4.0)로 만들었습니다.
+드릴 음성은 [VOICEVOX](https://voicevox.hiroshiba.jp/)로 만들었습니다. VOICEVOX:九州そら, VOICEVOX:波音リツ, VOICEVOX:WhiteCUL, VOICEVOX:夜語トバリ

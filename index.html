@@ -214,13 +214,21 @@ nav.tabs .dot{position:absolute;top:2px;left:calc(50% + 6px);font-family:var(--f
 .ctrls .btn{padding:14px 8px}
 .drill-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
 .drill-bar i{display:block;height:100%;background:var(--indigo);width:0}
+.gear{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;padding:0}
+.gear svg{width:17px;height:17px;fill:none;stroke:var(--muted);stroke-width:1.7}
+.vopt{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.vopt[aria-checked="true"]{border-color:var(--indigo);box-shadow:inset 0 0 0 1px var(--indigo)}
+.vopt .vlbl{flex:1;min-width:0;text-align:left;border:0;background:none;padding:4px 0}
+.vopt .vlbl b{display:block;font-size:15px}
+.vopt .vlbl small{color:var(--muted);font-size:12px}
+.vopt .play{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:6px 12px;font-size:13px;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.card,.pk-head svg,.sw,.sw::after{transition:none}}
 </style>
 
 <div class="app">
   <header class="top">
     <h1>일본어드릴<small>現場で使う必須フレーズ</small></h1>
-    <div class="status-col"><span class="net" id="net">확인 중</span><span class="sync" id="sync"></span></div>
+    <div class="status-col"><div class="row" style="gap:6px;flex-wrap:nowrap"><span class="net" id="net">확인 중</span><button class="gear" id="gear" type="button" aria-label="설정"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div><span class="sync" id="sync"></span></div>
   </header>
   <main id="view"></main>
 </div>
@@ -557,7 +565,7 @@ function cardEl(c, {mode="full", status=false, date=false, check=false, hint=""}
   el.addEventListener("click", e => {
     const b = e.target.closest("[data-act]"); if (!b) return;
     e.stopPropagation();
-    if (b.dataset.act==="speak") speak(c.ja);
+    if (b.dataset.act==="speak") speakCard(c.ja);
     if (b.dataset.act==="fav"){ c.fav=!c.fav; save(); b.classList.toggle("on",c.fav); b.setAttribute("aria-pressed",c.fav); toast(c.fav?"즐겨찾기에 추가했어요":"즐겨찾기에서 뺐어요"); }
     if (b.dataset.act==="check"){ setMastered(c, !c.mastered); save(); b.classList.toggle("on",c.mastered); b.setAttribute("aria-pressed",c.mastered);
       toast(c.mastered?"한 달 복습 완료 · 퀴즈에서 빠져요":"체크를 풀었어요 · 다시 퀴즈에 나와요"); el.dispatchEvent(new CustomEvent("changed")); }
@@ -584,7 +592,7 @@ function fly(el, x, y, cb){ el.style.transform = `translate(${x}px,${y}px)`; el.
 
 /* ---------- 스크롤 토글 선택 ---------- */
 const pkOpen = {};
-function picker({key, title, items, selected, onChange, openDefault=true}){
+function picker({key, title, items, selected, onChange, openDefault=false}){
   if (pkOpen[key] === undefined) pkOpen[key] = openDefault;
   let sel = selected.slice();
   const wrap = document.createElement("div"); wrap.className = "picker";
@@ -909,7 +917,41 @@ async function audioIndex(){
   if (!PHONE) return {};
   if (AIDX) return AIDX;
   try { const r = await fetch("audio/index.json", {cache:"no-cache"}); AIDX = r.ok ? await r.json() : {}; } catch(e){ AIDX = {}; }
+  if (!AIDX.files) AIDX = {voices:{}, files:{}};
   return AIDX;
+}
+const curVoice = idx => (idx.voices && idx.voices[S.voice]) ? S.voice : (idx.default || Object.keys(idx.voices||{})[0] || "");
+async function audioFor(ja){
+  const idx = await audioIndex(), v = curVoice(idx);
+  if (!v) return null;
+  let h = ""; try { h = await hashJa(ja); } catch(e){ return null; }
+  const f = idx.files[v] && idx.files[v][h];
+  return f ? {src:`audio/${v}/${h}.mp3`, starts:f.starts, len:f.len, voice:v} : null;
+}
+/* 고른 목소리의 음성 파일을 폰에 미리 저장 (인터넷이 있을 때만) */
+async function warmAudio(){
+  if (!PHONE || !navigator.onLine || !("caches" in window)) return;
+  try {
+    const idx = await audioIndex(), v = curVoice(idx); if (!v) return;
+    const c = await caches.open("drill-audio");
+    for (const h of Object.keys(idx.files[v] || {})) {
+      const u = new URL(`audio/${v}/${h}.mp3`, location.href).href;
+      if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
+    }
+  } catch(e){}
+}
+/* 카드의 '일본어 듣기': 고른 목소리 파일이 있으면 그 목소리로 한 번, 없으면 기기 음성 */
+let clipAudio = null, clipStop = 0;
+async function speakCard(ja){
+  const a = PHONE ? await audioFor(ja) : null;
+  if (!a) return speak(ja);
+  try {
+    if (!clipAudio) { clipAudio = new Audio(); clipAudio.preload = "auto"; clipAudio.addEventListener("timeupdate", () => { if (clipStop && clipAudio.currentTime >= clipStop) { clipAudio.pause(); clipStop = 0; } }); }
+    if (D && !D.closed) return;
+    clipAudio.pause(); clipAudio.src = a.src; clipAudio.playbackRate = 1;
+    clipStop = a.starts[0] + (a.len || (a.starts[1] - a.starts[0] - 0.7)) + 0.15;
+    clipAudio.currentTime = a.starts[0]; await clipAudio.play();
+  } catch(e) { speak(ja); }
 }
 async function hashJa(t){
   const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(t).trim()));
@@ -922,7 +964,8 @@ async function startDrill(cards){
   const idx = await audioIndex();
   const items = await Promise.all(cards.map(async c => {
     let h = ""; try { h = await hashJa(c.ja); } catch(e){}
-    const a = h && idx[h] ? {src:`audio/${h}.mp3`, starts:idx[h].starts} : null;
+    const v = curVoice(idx), f = h && v && idx.files[v] && idx.files[v][h];
+    const a = f ? {src:`audio/${v}/${h}.mp3`, starts:f.starts} : null;
     return {c, a};
   }));
   const ov = document.createElement("div"); ov.className = "drill"; ov.setAttribute("role","dialog"); ov.setAttribute("aria-label","리스닝 드릴");
@@ -1036,6 +1079,31 @@ addEventListener("keydown", e => { if (e.key === "Escape" && D) closeDrill(); })
 
 /* ---------- 추가 ---------- */
 let busy = null;
+/* ---------- 설정: 목소리·드릴 속도 ---------- */
+async function openSettings(){
+  const idx = await audioIndex();
+  const voices = Object.entries(idx.voices || {});
+  const sh = document.createElement("div"); sh.className = "sheet";
+  const v0 = curVoice(idx);
+  sh.innerHTML = `<div class="sheet-inner" style="display:grid;gap:12px"><div class="row" style="justify-content:space-between"><b>설정</b><button class="btn small" id="sclose">닫기</button></div>
+    <div class="section-title" style="margin:4px 0 0">드릴·듣기 목소리</div>
+    ${PHONE ? (voices.length ? `<div style="display:grid;gap:8px" role="radiogroup" aria-label="목소리">${voices.map(([id, v]) => `<div class="vopt" role="radio" aria-checked="${id===v0}" data-v="${id}"><button class="vlbl" type="button" data-pick="${id}"><b>${esc(v.label.split(" · ")[0])}</b><small>${esc(v.label.split(" · ")[1]||"")}</small></button><button class="play" type="button" data-try="${id}">▶ 들어 보기</button></div>`).join("")}</div>
+      <p class="note">고른 목소리로 리스닝 드릴과 카드의 ‘일본어 듣기’가 나와요. 처음 고른 목소리는 인터넷이 될 때 폰에 저장돼요.</p>`
+      : `<p class="note">아직 음성 파일을 불러오지 못했어요. 인터넷이 연결된 상태에서 다시 열어 주세요.</p>`)
+      : `<p class="note">목소리 선택은 폰 앱에서 할 수 있어요. 작업실에서는 기기 음성으로 들려요.</p>`}
+    <div class="section-title" style="margin:4px 0 0">드릴 속도</div>
+    <div class="seg" id="sspd">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배속" : "1.5배속"}</button>`).join("")}</div>
+    ${voices.length ? `<p class="note" style="font-size:11px">음성: ${voices.map(([,v]) => esc(v.credit)).join(", ")}</p>` : ""}</div>`;
+  const close = () => { sh.remove(); };
+  sh.addEventListener("click", async e => {
+    if (e.target === sh || e.target.id === "sclose") return close();
+    const pick = e.target.closest("[data-pick]"), tryb = e.target.closest("[data-try]"), sp = e.target.closest("[data-r]");
+    if (pick) { S.voice = pick.dataset.pick; save(); sh.querySelectorAll(".vopt").forEach(x => x.setAttribute("aria-checked", x.dataset.v === S.voice)); toast("목소리를 바꿨어요"); warmAudio(); }
+    if (tryb) { const keep = S.voice; S.voice = tryb.dataset.try; const sample = Object.values(S.cards).find(c => c.ja === "いつもお世話になっております。") || Object.values(S.cards)[0]; await speakCard(sample ? sample.ja : "いつもお世話になっております。"); S.voice = keep; }
+    if (sp) { S.drillRate = +sp.dataset.r; save(); sh.querySelectorAll("#sspd button").forEach(x => x.setAttribute("aria-pressed", +x.dataset.r === drillRate())); }
+  });
+  document.body.append(sh);
+}
 function syncPanel(){
   let last = 0; try { last = +localStorage.getItem(KEY+".lastSync") || 0; } catch(e){}
   return PHONE ? `<div class="panel"><h3>1. AI 작업실로 기록 보내기</h3>
@@ -1136,7 +1204,7 @@ function drawPending(){
   const box = $("#pending"); if (!box) return; box.innerHTML = "";
   if (!S.pending || !S.pending.items.length) return;
   const status = document.createElement("div");
-  box.append(picker({key:"pending", title:`추출한 업무 · ${S.pending.src}`, items:S.pending.items, selected:S.pendingSel,
+  box.append(picker({key:"pending", openDefault:true, title:`추출한 업무 · ${S.pending.src}`, items:S.pending.items, selected:S.pendingSel,
     onChange: sel => { S.pendingSel = sel; save(); drawBtn(); }}));
   box.append(status);
   const drawBtn = () => {
@@ -1187,25 +1255,16 @@ async function readFile(f){
 
 if (PHONE) { const b = document.querySelector('nav.tabs [data-tab="add"]'); if (b) b.lastChild.textContent = "AI 작업실"; }
 updateNet(); updateDue();
+$("#gear").onclick = openSettings;
 render();
+if (PHONE) setTimeout(warmAudio, 1500);
 if (DUPS_FIXED) setTimeout(() => toast(`겹친 상황과 카드 ${DUPS_FIXED}개를 하나로 합쳤어요`), 400);
 })();
 </script>
 
 <script>
-if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=bccfade55b").catch(()=>{}));
-// 드릴 음성 파일을 미리 폰에 저장해서, 인터넷 없이 화면을 잠가도 들리게 한다
-addEventListener("load", () => setTimeout(async () => {
-  if (!navigator.onLine || !("caches" in window)) return;
-  try {
-    const idx = await (await fetch("audio/index.json", {cache:"no-cache"})).json();
-    const c = await caches.open("drill-audio");
-    for (const h of Object.keys(idx)) {
-      const u = new URL("audio/" + h + ".mp3", location.href).href;
-      if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e) {} }
-    }
-  } catch(e) {}
-}, 1500));
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=a6f86cecb9").catch(()=>{}));
+
 </script>
 </body>
 </html>

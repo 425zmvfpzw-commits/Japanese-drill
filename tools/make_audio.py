@@ -1,103 +1,82 @@
-"""문장마다 리스닝 드릴 음성 파일을 만든다.
+"""문장마다 리스닝 드릴 음성 파일을 목소리별로 만든다 (VOICEVOX 엔진, 로컬 실행).
 
-cards.json 의 일본어 문장 하나당 audio/<해시>.mp3 하나:
+cards.json 의 일본어 문장 하나당 audio/<목소리>/<해시>.mp3 하나:
 같은 문장을 보통 속도로 10번 이어 붙인다. (1배/1.5배는 앱에서 재생 속도로 고른다)
-audio/index.json 에 각 반복이 시작되는 시각(초)을 적어 앱이 몇 번째인지 표시한다.
-음성: Style-Bert-VITS2 (JVNV 공개 모델, 여성), 실패하면 Kokoro.
+audio/index.json 에 목소리 목록과, 각 반복이 시작되는 시각(초)을 적는다.
 """
-import hashlib, json, os, subprocess, sys, tempfile
+import hashlib, json, os, subprocess, sys, tempfile, time, urllib.parse, urllib.request
 
-import numpy as np
-import soundfile as sf
-
+API = "http://127.0.0.1:50021"
 N, GAP, LEAD = 10, 0.7, 0.25
-RATES = [1.0] * N
-FORMAT = 3   # 파일 형식이 바뀌면 숫자를 올려서 전부 다시 만든다
-os.makedirs("audio", exist_ok=True)
-cards = json.load(open("cards.json", encoding="utf8"))
-texts = sorted({c.strip() for c in cards if c and c.strip()})
-idx_path = "audio/index.json"
-idx = json.load(open(idx_path, encoding="utf8")) if os.path.exists(idx_path) else {}
+FORMAT = 4   # 파일 형식이 바뀌면 숫자를 올려서 전부 다시 만든다
+VOICES = {   # id: (캐릭터, 스타일, 높이, 억양, 앱 표시 이름)
+    "sora":     ("九州そら",  "ノーマル", 0.0,   1.0, "소라 · 또렷한 언니 톤"),
+    "ritsu":    ("波音リツ",  "ノーマル", 0.0,   1.0, "리츠 · 쿨하고 담백한 톤"),
+    "whitecul": ("WhiteCUL", "ノーマル", -0.02, 1.0, "화이트컬 · 부드럽고 차분한 톤"),
+    "tobari":   ("夜語トバリ", "ノーマル", 0.0,   1.0, "토바리 · 차분한 톤"),
+}
+
+def call(path, data=None):
+    req = urllib.request.Request(API + path, data=data, method="GET" if data is None else "POST")
+    if data is not None: req.add_header("Content-Type", "application/json")
+    with urllib.request.urlopen(req, timeout=180) as r:
+        return r.read()
 
 def key(t):
     return hashlib.sha256(t.strip().encode("utf8")).hexdigest()[:16]
 
-ERRORS = []
-def write_status(ok):
-    json.dump({"ok": ok, "engine": _engine[0] if _engine else None, "errors": ERRORS}, open("audio/_status.json", "w", encoding="utf8"), ensure_ascii=False, indent=1)
-_engine = None
-VOICE = os.environ.get("DRILL_VOICE", "jvnv-F1-jp")
-def _sbv2():
-    from huggingface_hub import hf_hub_download, list_repo_files
-    from style_bert_vits2.constants import Languages
-    from style_bert_vits2.nlp import bert_models
-    from style_bert_vits2.tts_model import TTSModel
-    bert = "ku-nlp/deberta-v2-large-japanese-char-wwm"
-    bert_models.load_model(Languages.JP, bert)
-    bert_models.load_tokenizer(Languages.JP, bert)
-    repo = "litagin/style_bert_vits2_jvnv"
-    files = [f for f in list_repo_files(repo) if f.startswith(VOICE + "/")]
-    pick = lambda suf: hf_hub_download(repo, sorted(f for f in files if f.endswith(suf))[-1])
-    model = TTSModel(model_path=pick(".safetensors"), config_path=pick("config.json"), style_vec_path=pick("style_vectors.npy"), device="cpu")
-    def run(t):
-        sr, a = model.infer(text=t, language=Languages.JP, style="Neutral", style_weight=1.0, sdp_ratio=0.2, noise=0.6, noise_w=0.8, length=1.0)
-        a = np.asarray(a)
-        a = a.astype("float32") / (32768.0 if a.dtype == np.int16 else 1.0)
-        return a, sr
-    return run
-def _kokoro():
-    from kokoro import KPipeline
-    pipe = KPipeline(lang_code="j")
-    def run(t):
-        parts = [a.cpu().numpy() if hasattr(a, "cpu") else np.asarray(a) for _, _, a in pipe(t, voice="jf_alpha", speed=1.0)]
-        return np.concatenate(parts).astype("float32"), 24000
-    return run
-def synth(text):
-    """returns (float32 mono samples, sample rate)"""
-    global _engine
-    if _engine is None:
-        for name, make in (("sbv2:" + VOICE, _sbv2), ("kokoro", _kokoro)):
-            try:
-                _engine = (name, make()); break
-            except Exception as e:
-                import traceback
-                ERRORS.append(f"{name}: {e!r}\n" + traceback.format_exc()[-1500:])
-                print(f"{name} unavailable:", repr(e), file=sys.stderr)
-        if _engine is None:
-            write_status(False); sys.exit("no voice engine")
-    return _engine[1](text)
+for _ in range(120):
+    try: call("/version"); break
+    except Exception: time.sleep(2)
+else:
+    sys.exit("VOICEVOX engine did not start")
+ids = {(s["name"], st["name"]): st["id"] for s in json.loads(call("/speakers")) for st in s["styles"]}
 
-made = 0
-for t in texts:
-    h = key(t)
-    out = f"audio/{h}.mp3"
-    if h in idx and os.path.exists(out) and idx[h].get("format") == FORMAT:
-        continue
-    x, sr = synth(t)
-    peak = float(np.max(np.abs(x))) or 1.0
-    x = (x / peak * 0.9).astype("float32")
-    with tempfile.TemporaryDirectory() as td:
-        base = os.path.join(td, "base.wav")
-        sf.write(base, x, sr)
-        d0 = len(x) / sr
-        chains = [f"[0:a]apad=pad_dur={GAP}[a{i}]" for i in range(N)]
-        fc = f"[0:a]asplit={N}" + "".join(f"[s{i}]" for i in range(N)) + ";" + ";".join(c.replace("[0:a]", f"[s{i}]") for i, c in enumerate(chains)) + ";" + "".join(f"[a{i}]" for i in range(N)) + f"concat=n={N}:v=0:a=1,adelay={int(LEAD*1000)}[out]"
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", base, "-filter_complex", fc, "-map", "[out]",
-                        "-ac", "1", "-ar", "24000", "-b:a", "64k", out], check=True)
-    starts, cur = [], LEAD
-    for r in RATES:
-        starts.append(round(cur, 3)); cur += d0 / r + GAP
-    idx[h] = {"starts": starts, "ja": t, "voice": _engine[0], "format": FORMAT}
-    made += 1
-    print("made", h)
+cards = json.load(open("cards.json", encoding="utf8"))
+texts = sorted({c.strip() for c in cards if c and c.strip()})
+idx_path = "audio/index.json"
+old = json.load(open(idx_path, encoding="utf8")) if os.path.exists(idx_path) else {}
+files = old.get("files", {}) if old.get("format") == FORMAT else {}
+idx = {"format": FORMAT, "default": "sora", "voices": {}, "files": {}}
+status = {"ok": True, "made": 0, "errors": []}
 
-keep = {key(t) for t in texts}
-for h in list(idx):
-    if h not in keep:
-        idx.pop(h)
-        try: os.remove(f"audio/{h}.mp3")
-        except FileNotFoundError: pass
+for vid, (who, style, pitch, inton, label) in VOICES.items():
+    sid = ids.get((who, style))
+    if sid is None:
+        status["errors"].append(f"{vid}: {who}/{style} not found"); continue
+    idx["voices"][vid] = {"label": label, "credit": f"VOICEVOX:{who}"}
+    os.makedirs(f"audio/{vid}", exist_ok=True)
+    have = files.get(vid, {})
+    idx["files"][vid] = {}
+    for t in texts:
+        h = key(t); out = f"audio/{vid}/{h}.mp3"
+        if h in have and os.path.exists(out):
+            idx["files"][vid][h] = have[h]; continue
+        try:
+            q = json.loads(call(f"/audio_query?text={urllib.parse.quote(t)}&speaker={sid}", b""))
+            q.update({"pitchScale": pitch, "intonationScale": inton, "prePhonemeLength": 0.05, "postPhonemeLength": 0.05})
+            wav = call(f"/synthesis?speaker={sid}", json.dumps(q).encode())
+        except Exception as e:
+            status["ok"] = False; status["errors"].append(f"{vid}/{h}: {e!r}"); continue
+        with tempfile.TemporaryDirectory() as td:
+            base = os.path.join(td, "base.wav")
+            open(base, "wb").write(wav)
+            d0 = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", base],
+                                      capture_output=True, text=True, check=True).stdout.strip())
+            fc = f"[0:a]loudnorm=I=-18:TP=-1.5,asplit={N}" + "".join(f"[s{i}]" for i in range(N)) + ";" \
+                 + ";".join(f"[s{i}]apad=pad_dur={GAP}[a{i}]" for i in range(N)) + ";" \
+                 + "".join(f"[a{i}]" for i in range(N)) + f"concat=n={N}:v=0:a=1,adelay={int(LEAD*1000)}[out]"
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", base, "-filter_complex", fc, "-map", "[out]",
+                            "-ac", "1", "-ar", "24000", "-b:a", "64k", out], check=True)
+        idx["files"][vid][h] = {"starts": [round(LEAD + k * (d0 + GAP), 3) for k in range(N)], "len": round(d0, 3)}
+        status["made"] += 1
+    keep = set(idx["files"][vid])
+    for f in os.listdir(f"audio/{vid}"):
+        if f.endswith(".mp3") and f[:-4] not in keep: os.remove(f"audio/{vid}/{f}")
 
-json.dump({k: idx[k] for k in sorted(idx)}, open(idx_path, "w", encoding="utf8"), ensure_ascii=False, indent=1)
-write_status(True)
-print(f"done: {made} new, {len(idx)} total")
+# 예전 형식 파일 정리
+for f in os.listdir("audio"):
+    if f.endswith(".mp3"): os.remove(f"audio/{f}")
+json.dump(idx, open(idx_path, "w", encoding="utf8"), ensure_ascii=False, indent=1)
+json.dump(status, open("audio/_status.json", "w", encoding="utf8"), ensure_ascii=False, indent=1)
+print(json.dumps(status, ensure_ascii=False))

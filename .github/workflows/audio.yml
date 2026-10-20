@@ -19,31 +19,22 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-      - name: 음성 모델 저장해 두기
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-sbv2-jvnv-v1
-      - name: 음성 도구 설치
+      - name: VOICEVOX 엔진 켜기
         run: |
+          IMG=voicevox/voicevox_engine:cpu-latest
+          docker pull -q $IMG || { IMG=voicevox/voicevox_engine:cpu-ubuntu20.04-latest; docker pull -q $IMG; }
+          docker run -d --rm -p 50021:50021 $IMG
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
-          pip install --quiet "style-bert-vits2>=2.5" "transformers>=4.40,<4.50" huggingface_hub soundfile "numpy<2.3"
-          pip install --quiet "kokoro>=0.9.4" "misaki[ja]" || true
       - name: 음성 파일 만들기
         run: |
           mkdir -p audio
-          python -X faulthandler tools/make_audio.py > audio/_run.log 2>&1 || echo "exit=$?" >> audio/_run.log
-          pip list 2>/dev/null | grep -i -E "style|torch|kokoro|misaki|openjtalk|numpy|transformers" >> audio/_run.log || true
-          tail -c 6000 audio/_run.log > audio/_run_tail.log; mv audio/_run_tail.log audio/_run.log
+          python3 tools/make_audio.py > audio/_run.log 2>&1 || echo "exit=$?" >> audio/_run.log
+          tail -c 4000 audio/_run.log > audio/_t.log; mv audio/_t.log audio/_run.log
       - name: 음성 파일 올리기
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add audio
+          git add -A audio
           if git diff --cached --quiet; then echo "새 음성 없음"; exit 0; fi
           git commit -m "드릴 음성 파일 업데이트"
           git pull --rebase origin main
