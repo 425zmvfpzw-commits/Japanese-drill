@@ -1,0 +1,54 @@
+/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  44%|████▎     | 174/399 [00:00<00:00, 1695.97it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2037.67it/s]
+[32m10-20 15:41:53[0m |[1m  INFO  [0m| bert_models.py:92 | Loaded the JP BERT model from ku-nlp/deberta-v2-large-japanese-char-wwm
+[32m10-20 15:41:53[0m |[1m  INFO  [0m| bert_models.py:154 | Loaded the JP BERT tokenizer from ku-nlp/deberta-v2-large-japanese-char-wwm
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[32m10-20 15:41:54[0m |[1m  INFO  [0m| tts_model.py:259 | Start generating audio data from text:
+いつもお世話になっております。
+[32m10-20 15:41:54[0m |[1m  INFO  [0m| infer.py:24 | Using JP-Extra model
+/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[32m10-20 15:41:54[0m |[1m  INFO  [0m| safetensors.py:50 | Loaded '/home/runner/.cache/huggingface/hub/models--litagin--style_bert_vits2_jvnv/snapshots/205830ca1d49e666ddfbf2a755f0108e9cade4dd/jvnv-F1-jp/jvnv-F1-jp_e160_s14000.safetensors' (iteration 160)
+Downloading: "https://github.com/r9y9/open_jtalk/releases/download/v1.11.1/open_jtalk_dic_utf_8-1.11.tar.gz"
+  0%|          | 0/23646843 [00:00<?, ?it/s] 55%|█████▌    | 12.5M/22.6M [00:00<00:00, 131MB/s]100%|██████████| 22.6M/22.6M [00:00<00:00, 134MB/s]
+Extracting tar file
+Traceback (most recent call last):
+  File "/home/runner/work/Japanese-drill/Japanese-drill/tools/make_audio.py", line 76, in <module>
+    x, sr = synth(t)
+  File "/home/runner/work/Japanese-drill/Japanese-drill/tools/make_audio.py", line 68, in synth
+    return _engine[1](text)
+  File "/home/runner/work/Japanese-drill/Japanese-drill/tools/make_audio.py", line 43, in run
+    sr, a = model.infer(text=t, language=Languages.JP, style="Neutral", style_weight=1.0, sdp_ratio=0.2, noise=0.6, noise_w=0.8, length=1.0)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/style_bert_vits2/tts_model.py", line 305, in infer
+    infer(
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/style_bert_vits2/models/infer.py", line 257, in infer
+    output = cast(SynthesizerTrnJPExtra, net_g).infer(
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/style_bert_vits2/models/models_jp_extra.py", line 1132, in infer
+    x, m_p, logs_p, x_mask = self.enc_p(
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/style_bert_vits2/models/models_jp_extra.py", line 418, in forward
+    bert_emb = self.bert_proj(bert).transpose(1, 2)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 385, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 380, in _conv_forward
+    return F.conv1d(
+RuntimeError: Input type (c10::Half) and bias type (float) should be the same
+exit=1
+curated-transformers       0.1.1
+kokoro                     0.9.4
+misaki                     0.9.4
+numpy                      2.2.6
+pyopenjtalk                0.4.1
+pyopenjtalk-dict           0.3.4.dev2
+spacy-curated-transformers 0.3.1
+style-bert-vits2           2.5.0
+torch                      2.14.1+cpu
+transformers               5.20.2
