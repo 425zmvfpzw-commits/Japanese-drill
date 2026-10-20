@@ -22,6 +22,9 @@ idx = json.load(open(idx_path, encoding="utf8")) if os.path.exists(idx_path) els
 def key(t):
     return hashlib.sha256(t.strip().encode("utf8")).hexdigest()[:16]
 
+ERRORS = []
+def write_status(ok):
+    json.dump({"ok": ok, "engine": _engine[0] if _engine else None, "errors": ERRORS}, open("audio/_status.json", "w", encoding="utf8"), ensure_ascii=False, indent=1)
 _engine = None
 VOICE = os.environ.get("DRILL_VOICE", "jvnv-F1-jp")
 def _sbv2():
@@ -57,8 +60,11 @@ def synth(text):
             try:
                 _engine = (name, make()); break
             except Exception as e:
+                import traceback
+                ERRORS.append(f"{name}: {e!r}\n" + traceback.format_exc()[-1500:])
                 print(f"{name} unavailable:", repr(e), file=sys.stderr)
-        if _engine is None: sys.exit("no voice engine")
+        if _engine is None:
+            write_status(False); sys.exit("no voice engine")
     return _engine[1](text)
 
 made = 0
@@ -93,4 +99,5 @@ for h in list(idx):
         except FileNotFoundError: pass
 
 json.dump({k: idx[k] for k in sorted(idx)}, open(idx_path, "w", encoding="utf8"), ensure_ascii=False, indent=1)
+write_status(True)
 print(f"done: {made} new, {len(idx)} total")

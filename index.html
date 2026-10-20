@@ -239,6 +239,7 @@ const $ = (s, r=document) => r.querySelector(s);
 const PHONE = !!document.querySelector('link[rel="manifest"]');
 const WORKSHOP = "https://claude.ai/artifact/D6cJmBcYccS8VBSvbZUtQg";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fnv = t => { let h = 0x811c9dc5; for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; } return h.toString(16).padStart(8,"0"); };
 const uid = () => Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4);
 const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>';
 const CHECK = '<svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="11.5"/><path d="M8.5 14.5l3.8 3.8 7.4-8"/></svg>';
@@ -276,8 +277,8 @@ function newCard(id, sid, d, extra={}){
 function seed(){
   const s = {v:2, savedAt:0, sits:{}, cards:{}, studySel:[], pending:null, pendingSel:[]};
   EX.forEach(g => {
-    const sid = uid(); s.sits[sid] = {id:sid, name:g.name, desc:g.desc, source:g.src || SRC, created:Date.now()};
-    g.items.forEach(([ja,pron,ko,w]) => { const id=uid(); s.cards[id] = newCard(id,sid,{ja,pron,ko,words:w.map(([j,k])=>({ja:j,ko:k}))}); });
+    const sid = "s-" + fnv(g.name); s.sits[sid] = {id:sid, name:g.name, desc:g.desc, source:g.src || SRC, created:0};
+    g.items.forEach(([ja,pron,ko,w]) => { const id = "c-" + fnv(ja); s.cards[id] = newCard(id,sid,{ja,pron,ko,words:w.map(([j,k])=>({ja:j,ko:k}))}, {created:0}); });
     s.studySel.push(sid);
   });
   return s;
@@ -313,8 +314,40 @@ function stamp(init){
 stamp(true);
 const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
 function save(){ stamp(false); S.savedAt = Date.now(); saveLocal(); queuePush(); updateDue(); }
+const DUPS_FIXED = dedupe();
+if (DUPS_FIXED) { stamp(false); S.savedAt = Date.now(); }
 saveLocal();
 function forget(kind, id){ S.deleted[id] = Date.now(); delete S[kind][id]; delete snapJ[id]; }
+/* 같은 이름의 상황, 같은 상황 안의 같은 문장은 하나로 합친다 (공부 기록이 더 많은 쪽을 남김) */
+function dedupe(){
+  let n = 0;
+  const score = c => (c.shows||0) + (c.wrong||0)*2 + (c.rv ? 5 + (c.rv.stage||0)*5 : 0) + (c.mastered?50:0) + (c.fav?1:0) + (c.fb?3:0);
+  const byName = {};
+  Object.values(S.sits).forEach(x => { (byName[x.name.trim()] = byName[x.name.trim()] || []).push(x); });
+  Object.values(byName).forEach(group => {
+    if (group.length < 2) return;
+    const total = x => Object.values(S.cards).filter(c => c.sid === x.id).reduce((a,c) => a + score(c), 0);
+    group.sort((a,b) => total(b) - total(a) || (a.id.startsWith("s-") ? -1 : 1));
+    const keep = group[0];
+    group.slice(1).forEach(x => {
+      Object.values(S.cards).forEach(c => { if (c.sid === x.id) { c.sid = keep.id; } });
+      if (S.studySel.includes(x.id) && !S.studySel.includes(keep.id)) S.studySel.push(keep.id);
+      if (S.drillSel && S.drillSel.includes(x.id) && !S.drillSel.includes(keep.id)) S.drillSel.push(keep.id);
+      forget("sits", x.id); n++;
+    });
+  });
+  const byKey = {};
+  Object.values(S.cards).forEach(c => { const k = c.sid + "|" + c.ja.trim(); (byKey[k] = byKey[k] || []).push(c); });
+  Object.values(byKey).forEach(group => {
+    if (group.length < 2) return;
+    group.sort((a,b) => score(b) - score(a) || (b.upd||0) - (a.upd||0));
+    const keep = group[0];
+    group.slice(1).forEach(c => { if (c.fav) keep.fav = true; keep.wrong = Math.max(keep.wrong||0, c.wrong||0); keep.shows = Math.max(keep.shows||0, c.shows||0); forget("cards", c.id); n++; });
+  });
+  S.studySel = [...new Set(S.studySel)].filter(id => S.sits[id]);
+  if (S.drillSel) S.drillSel = [...new Set(S.drillSel)].filter(id => S.sits[id]);
+  return n;
+}
 /* 다른 쪽 기록을 합치기: 카드마다 더 최근에 바뀐 쪽을 남긴다. 반환값: 바뀐 개수 */
 function mergeState(o){
   if (!o || !o.sits || !o.cards) return -1;
@@ -330,7 +363,9 @@ function mergeState(o){
   Object.values(o.cards).forEach(x => take("cards", Object.assign({rv:null, mastered:false}, x)));
   ["sits","cards"].forEach(kind => Object.values(S[kind]).forEach(x => { const dt = S.deleted[x.id]; if (dt && (x.upd||0) <= dt) { delete S[kind][x.id]; n++; } }));
   if ((o.savedAt||0) > (S.savedAt||0)) { S.studySel = (o.studySel||[]).slice(); S.pending = o.pending ? JSON.parse(JSON.stringify(o.pending)) : null; S.pendingSel = (o.pendingSel||[]).slice(); }
+  n += dedupe();
   S.studySel = S.studySel.filter(id => S.sits[id]);
+  stamp(false);
   S.savedAt = Math.max(S.savedAt||0, o.savedAt||0) + 1; saveLocal(); queuePush(); updateDue();
   return n;
 }
@@ -1153,11 +1188,12 @@ async function readFile(f){
 if (PHONE) { const b = document.querySelector('nav.tabs [data-tab="add"]'); if (b) b.lastChild.textContent = "AI 작업실"; }
 updateNet(); updateDue();
 render();
+if (DUPS_FIXED) setTimeout(() => toast(`겹친 상황과 카드 ${DUPS_FIXED}개를 하나로 합쳤어요`), 400);
 })();
 </script>
 
 <script>
-if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=e406040ae4").catch(()=>{}));
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=bccfade55b").catch(()=>{}));
 // 드릴 음성 파일을 미리 폰에 저장해서, 인터넷 없이 화면을 잠가도 들리게 한다
 addEventListener("load", () => setTimeout(async () => {
   if (!navigator.onLine || !("caches" in window)) return;
