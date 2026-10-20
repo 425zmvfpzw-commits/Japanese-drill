@@ -3,12 +3,15 @@ import json, os, subprocess, sys, time, urllib.parse, urllib.request
 
 API = "http://127.0.0.1:50021"
 TEXT = "いつもお世話になっております。ご確認のほど、よろしくお願いいたします。"
-WANT = [  # (파일 이름, 캐릭터, 스타일)
-    ("A_female_announce", "No.7", "アナウンス"),
-    ("B_female_normal", "No.7", "ノーマル"),
-    ("C_female_calm", "冥鳴ひまり", "ノーマル"),
-    ("D_male_calm", "青山龍星", "ノーマル"),
-    ("E_male_normal", "玄野武宏", "ノーマル"),
+WANT = [  # (파일 이름, 캐릭터, 스타일, 높이 조정, 억양)
+    ("F1_kyushu_sora", "九州そら", "ノーマル", 0.0, 1.0),
+    ("F2_shikoku_metan_low", "四国めたん", "ノーマル", -0.05, 1.0),
+    ("F3_namine_ritsu", "波音リツ", "ノーマル", 0.0, 1.0),
+    ("F4_whitecul", "WhiteCUL", "ノーマル", -0.02, 1.0),
+    ("F5_no7_low", "No.7", "ノーマル", -0.03, 1.05),
+    ("F6_himari_up", "冥鳴ひまり", "ノーマル", 0.04, 1.1),
+    ("F7_yogatari_tobari", "夜語トバリ", "ノーマル", 0.0, 1.0),
+    ("F8_kurosawa_saeha", "黒沢冴白", "ノーマル", 0.0, 1.0),
 ]
 
 def call(path, data=None, ctype="application/json"):
@@ -23,13 +26,15 @@ for _ in range(90):
 speakers = json.loads(call("/speakers"))
 ids = {(s["name"], st["name"]): st["id"] for s in speakers for st in s["styles"]}
 os.makedirs("samples", exist_ok=True)
+for f in os.listdir("samples"):
+    if f.endswith(".mp3"): os.remove(os.path.join("samples", f))
 report = {"available": sorted(f"{a}/{b}" for a, b in ids)}
-for fname, who, style in WANT:
+for fname, who, style, pitch, inton in WANT:
     sid = ids.get((who, style))
     if sid is None:
         report[fname] = "missing"; continue
     q = json.loads(call(f"/audio_query?text={urllib.parse.quote(TEXT)}&speaker={sid}", b""))
-    q.update({"intonationScale": 0.9, "prePhonemeLength": 0.1, "postPhonemeLength": 0.1})
+    q.update({"intonationScale": inton, "pitchScale": pitch, "prePhonemeLength": 0.1, "postPhonemeLength": 0.1})
     wav = call(f"/synthesis?speaker={sid}", json.dumps(q).encode())
     open(f"samples/{fname}.wav", "wb").write(wav)
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", f"samples/{fname}.wav", "-ac", "1", "-b:a", "64k", f"samples/{fname}.mp3"], check=True)
