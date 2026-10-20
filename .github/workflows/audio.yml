@@ -1,0 +1,46 @@
+name: 드릴 음성 만들기
+
+on:
+  push:
+    branches: [main]
+    paths: [cards.json, tools/make_audio.py, .github/workflows/audio.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drill-audio
+  cancel-in-progress: false
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 음성 모델 저장해 두기
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-sbv2-jvnv-v1
+      - name: 음성 도구 설치
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet "style-bert-vits2>=2.5" huggingface_hub soundfile numpy
+          pip install --quiet "kokoro>=0.9.4" "misaki[ja]" || true
+      - name: 음성 파일 만들기
+        run: python tools/make_audio.py
+      - name: 음성 파일 올리기
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          if git diff --cached --quiet; then echo "새 음성 없음"; exit 0; fi
+          git commit -m "드릴 음성 파일 업데이트"
+          git pull --rebase origin main
+          git push

@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2B3E73">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="일본어드릴">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>일본어드릴</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=Shippori+Mincho:wght@500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one-column phone app, fixed bottom tab bar, one card in focus at a time */
+:root{
+  --bg:#EEF0F2; --surface:#FFFFFF; --ink:#1B2233; --muted:#6B7284; --faint:#A3A9B6;
+  --line:#D9DDE3; --indigo:#2B3E73; --indigo-soft:#E2E7F3; --shu:#D2372A; --shu-soft:#FBE7E4;
+  --star:#F2B705; --ok:#1E8A5A; --ok-soft:#E1F3EA; --on-accent:#FFFFFF;
+  --f-ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --f-ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151C; --surface:#1C212C; --ink:#E8EAF0; --muted:#9AA1B2; --faint:#6E7586;
+  --line:#2C3342; --indigo:#8EA4E8; --indigo-soft:#253052; --shu:#FF6A5C; --shu-soft:#3A1F1E;
+  --star:#FFC933; --ok:#4FC98D; --ok-soft:#173327; --on-accent:#12151C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151C; --surface:#1C212C; --ink:#E8EAF0; --muted:#9AA1B2; --faint:#6E7586;
+  --line:#2C3342; --indigo:#8EA4E8; --indigo-soft:#253052; --shu:#FF6A5C; --shu-soft:#3A1F1E;
+  --star:#FFC933; --ok:#4FC98D; --ok-soft:#173327; --on-accent:#12151C; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-tap-highlight-color:transparent}
+.app{max-width:520px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px calc(86px + env(safe-area-inset-bottom,0px))}
+header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+header.top h1{font-size:19px;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+header.top h1 small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.02em}
+.status-col{display:grid;justify-items:end;gap:4px}
+.net{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.net.on{color:var(--ok);border-color:var(--ok)}
+.sync{font-size:11px;color:var(--muted);white-space:nowrap}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,label:focus-within{outline:2px solid var(--indigo);outline-offset:2px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 14px;font-weight:500}
+.btn.primary{background:var(--indigo);border-color:var(--indigo);color:var(--on-accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:6px 10px;font-size:13px;border-radius:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.section-title{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:18px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:7px 13px;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:var(--on-accent)}
+.chip .n{font-family:var(--f-num);font-size:11px;opacity:.75}
+.note{font-size:13px;color:var(--muted)}
+.banner{border-radius:12px;padding:10px 12px;font-size:13px;background:var(--indigo-soft);color:var(--ink)}
+.banner.warn{background:var(--shu-soft)}
+
+/* segmented */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.seg button{border:0;background:none;border-radius:10px;padding:9px 6px;font-weight:500;color:var(--muted);display:inline-flex;justify-content:center;gap:6px;align-items:center}
+.seg button[aria-pressed="true"]{background:var(--indigo);color:var(--on-accent)}
+.cnt{font-family:var(--f-num);font-size:11px;border-radius:99px;padding:1px 7px;background:var(--shu);color:var(--on-accent)}
+
+/* toggle picker with scroll */
+.picker{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-top:12px;overflow:hidden}
+.pk-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;background:none;padding:12px 16px;text-align:left}
+.pk-head b{font-size:14px}
+.pk-sum{font-size:13px;color:var(--muted);margin-left:auto}
+.pk-head svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;transition:transform .2s}
+.pk-head[aria-expanded="true"] svg{transform:rotate(180deg)}
+.pk-body{border-top:1px solid var(--line)}
+.pk-list{max-height:236px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--faint) transparent}
+.pk-list::-webkit-scrollbar{width:6px}
+.pk-list::-webkit-scrollbar-thumb{background:var(--faint);border-radius:6px}
+.pk-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;cursor:pointer}
+.pk-row + .pk-row{border-top:1px solid var(--line)}
+.pk-row.all{background:var(--bg);font-weight:700}
+.pk-row .lbl{min-width:0}
+.pk-row .lbl small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.pk-row .n{font-family:var(--f-num);font-size:11px;color:var(--muted);margin-left:6px}
+.sw{appearance:none;-webkit-appearance:none;flex:none;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;margin:0;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+.sw:checked{background:var(--indigo)}
+.sw:checked::after{transform:translateX(18px)}
+.pk-more{font-size:11px;color:var(--muted);text-align:center;padding:4px 0 6px;border-top:1px solid var(--line)}
+
+/* card */
+.stage{position:relative;margin-top:12px;display:flex;flex-direction:column;align-items:stretch}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 20px 18px;box-shadow:0 10px 30px -18px rgba(20,30,60,.35);touch-action:none;user-select:none;transition:transform .25s ease,opacity .25s ease}
+.card.dragging{transition:none}
+.card .count{position:absolute;top:10px;right:14px;font-size:10pt;font-family:var(--f-num);color:var(--muted)}
+.card .date{position:absolute;top:10px;left:16px;font-size:10pt;font-family:var(--f-num);color:var(--indigo);font-weight:500}
+.card.has-date .sit,.card.has-check .sit{margin-top:18px}
+.card .check{position:absolute;top:6px;left:50%;transform:translateX(-50%);border:0;background:none;padding:4px;line-height:0}
+.card .check svg{width:28px;height:28px}
+.card .check circle{fill:none;stroke:var(--faint);stroke-width:1.6}
+.card .check path{fill:none;stroke:var(--faint);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.card .check.on circle{fill:var(--shu);stroke:var(--shu)}
+.card .check.on path{stroke:var(--surface)}
+.card .sit{font-size:12px;color:var(--indigo);font-weight:700;letter-spacing:.03em;padding-right:44px}
+.card .stagelbl{font-size:12px;color:var(--muted);margin-top:2px}
+.card .ja{font-family:var(--f-ja);font-size:25px;line-height:1.5;font-weight:500;margin:16px 0 4px;word-break:break-word;text-wrap:pretty}
+.card .pron{color:var(--faint);font-size:14px;margin:0 0 14px}
+.card .ko{font-size:17px;margin:0;font-weight:500;word-break:keep-all}
+.card.ask .ko{margin-top:16px;font-size:20px}
+.card mark{background:none;color:var(--shu);font-weight:700}
+.card .tools{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.card .speak{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:7px 14px;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.card .star{display:block;margin:14px auto 0;border:0;background:none;padding:4px;line-height:0}
+.card .star svg{width:30px;height:30px}
+.card .star path{fill:none;stroke:var(--faint);stroke-width:1.6}
+.card .star.on path{fill:var(--star);stroke:var(--star)}
+.card .status{font-size:12px;color:var(--muted)}
+.card .hidden-ans{margin-top:14px;padding:18px;border:1px dashed var(--line);border-radius:14px;text-align:center;color:var(--faint);font-size:14px}
+.fb{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px;font-size:14px;user-select:text}
+.fb h4{margin:0;font-size:12px;color:var(--shu);letter-spacing:.03em}
+.fb .said{background:var(--shu-soft);border-radius:10px;padding:8px 10px}
+.fb p{margin:0}
+.fb .lv{font-family:var(--f-num);font-size:11px;color:var(--muted)}
+.swipe-hint{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-top:10px}
+.deck-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:20px;padding:28px 20px;text-align:center;color:var(--muted)}
+.empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.badge{font-size:11px;border-radius:99px;padding:2px 8px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.badge.known{color:var(--ok);border-color:var(--ok)}
+.badge.again{color:var(--shu);border-color:var(--shu)}
+.badge.mine{color:var(--indigo);border-color:var(--indigo)}
+.badge.done{color:var(--surface);background:var(--shu);border-color:var(--shu)}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
+.ladder div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center;font-size:12px;color:var(--muted)}
+.ladder b{display:block;font-family:var(--f-num);font-size:16px;color:var(--ink)}
+
+/* quiz */
+.choice{display:grid;gap:10px}
+.opt{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.opt[aria-pressed="true"]{border-color:var(--indigo);box-shadow:inset 0 0 0 1px var(--indigo)}
+.opt b{display:block;font-size:16px}
+.opt span{font-size:13px;color:var(--muted)}
+.opt:disabled{opacity:.5}
+.timer{width:88px;height:88px;margin:4px auto 0;position:relative}
+.timer .face{position:absolute;inset:0;border-radius:50%;background:var(--surface);border:2px solid var(--line)}
+.timer .disc{position:absolute;inset:8px;border-radius:50%;background:conic-gradient(var(--shu) calc(var(--p,1) * 1turn), transparent 0)}
+.timer .ticks{position:absolute;inset:0}
+.timer .hub{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--ink)}
+.timer .sec{position:absolute;left:0;right:0;bottom:-22px;text-align:center;font-family:var(--f-num);font-size:12px;color:var(--muted)}
+.quizbar{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px}
+.answerbox{display:grid;gap:8px;margin-top:12px}
+.answerbox textarea{width:100%;min-height:70px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 12px;font:inherit;resize:vertical}
+.result{border-radius:12px;padding:10px 12px;font-weight:700;text-align:center;margin-bottom:10px}
+.result.ok{background:var(--ok-soft);color:var(--ok)}
+.result.ng{background:var(--shu-soft);color:var(--shu)}
+
+/* list */
+.search{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:11px 14px;font:inherit}
+details.cat{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-top:10px;overflow:hidden}
+details.cat summary{list-style:none;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;font-weight:700}
+details.cat summary::-webkit-details-marker{display:none}
+details.cat summary .n{font-family:var(--f-num);font-size:12px;color:var(--muted);font-weight:500;white-space:nowrap}
+.li{border-top:1px solid var(--line);padding:12px 16px;display:grid;gap:2px;cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%}
+.li .lja{font-family:var(--f-ja);font-size:17px}
+.li .lko{font-size:13px;color:var(--muted)}
+.li .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;align-items:center}
+.li mark{background:var(--shu-soft);color:inherit}
+.li .lstar{color:var(--star);font-size:14px}
+.cat-actions{padding:8px 16px 12px;border-top:1px solid var(--line);display:flex;justify-content:flex-end}
+.danger{color:var(--shu)}
+
+/* add */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:10px;margin-top:10px}
+.panel h3{margin:0;font-size:15px}
+.panel .picker{margin-top:0;background:var(--bg)}
+.field{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:inherit}
+textarea.field{min-height:90px;resize:vertical}
+.log{font-size:13px;color:var(--muted);white-space:pre-wrap;margin:0}
+.file-pill{font-size:13px;background:var(--bg);border-radius:8px;padding:6px 10px}
+
+/* sheet */
+.sheet{position:fixed;inset:0;background:rgba(10,14,24,.5);display:flex;align-items:flex-end;justify-content:center;z-index:30;padding-top:env(safe-area-inset-top,0px)}
+.sheet-inner{background:var(--bg);width:100%;max-width:520px;max-height:88%;overflow:auto;border-radius:20px 20px 0 0;padding:16px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.confirm{display:grid;gap:10px}
+
+/* tabs */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));z-index:20}
+nav.tabs .wrap{display:grid;grid-template-columns:repeat(4,1fr);width:100%;max-width:520px}
+nav.tabs button{position:relative;border:0;background:none;padding:6px 0;display:grid;justify-items:center;gap:2px;font-size:12px;color:var(--muted)}
+nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs button[aria-current="page"]{color:var(--indigo);font-weight:700}
+nav.tabs .dot{position:absolute;top:2px;left:calc(50% + 6px);font-family:var(--f-num);font-size:10px;min-width:17px;padding:0 4px;border-radius:99px;background:var(--shu);color:var(--on-accent);line-height:16px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:99px;font-size:13px;z-index:40;max-width:90%;text-align:center}
+/* listening drill */
+.drill{position:fixed;inset:0;z-index:50;background:var(--bg);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 20px) max(16px,env(safe-area-inset-left,0px))}
+.drill-in{max-width:520px;margin:0 auto;display:grid;gap:14px}
+.drill .x{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:max(16px,env(safe-area-inset-right,0px));width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;z-index:2}
+.drill .x svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
+.drill-top{padding-right:52px}
+.drill-top b{display:block;font-size:13px;color:var(--indigo)}
+.drill-top span{font-size:12px;color:var(--muted);font-family:var(--f-num)}
+.drill .card{touch-action:auto;user-select:text}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.dots i{height:8px;border-radius:4px;background:var(--line)}
+.dots i.on{background:var(--shu)}
+.dots i.now{background:var(--indigo)}
+.speed{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted)}
+.speed b{font-family:var(--f-num);font-size:22px;color:var(--ink);font-weight:500}
+.ctrls{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:10px}
+.ctrls .btn{padding:14px 8px}
+.drill-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.drill-bar i{display:block;height:100%;background:var(--indigo);width:0}
+@media (prefers-reduced-motion:reduce){.card,.pk-head svg,.sw,.sw::after{transition:none}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <h1>일본어드릴<small>現場で使う必須フレーズ</small></h1>
+    <div class="status-col"><span class="net" id="net">확인 중</span><span class="sync" id="sync"></span></div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<nav class="tabs" aria-label="메뉴"><div class="wrap">
+  <button data-tab="study"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="13" height="16" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/></svg>공부<span class="dot" id="dueDot" hidden></span></button>
+  <button data-tab="quiz"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>퀴즈</button>
+  <button data-tab="list"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>학습목록</button>
+  <button data-tab="add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>추가</button>
+</div></nav>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r=document) => r.querySelector(s);
+const PHONE = !!document.querySelector('link[rel="manifest"]');
+const WORKSHOP = "https://claude.ai/artifact/D6cJmBcYccS8VBSvbZUtQg";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid = () => Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4);
+const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>';
+const CHECK = '<svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="11.5"/><path d="M8.5 14.5l3.8 3.8 7.4-8"/></svg>';
+const CHEV = '<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+
+/* ---------- 망각주기: 퀴즈 후 10분 → 1일 → 1주 → 1달 ---------- */
+const MIN = 6e4, DAY = 864e5;
+const INT = [10*MIN, DAY, 7*DAY, 30*DAY];
+const STAGE = ["10분 복습","1일 복습","1주 복습","1달 복습"];
+const md = t => { const d = new Date(t); return `${d.getMonth()+1}/${d.getDate()}`; };
+const when = t => { const d = new Date(t); return `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,"0")}`; };
+
+/* ---------- 기본 카드 ---------- */
+
+const EX = [
+ {name:"비즈니스 인사", desc:"메일·전화에서 쓰는 기본 인사말", src:"기본 예시", items:[
+  ["いつもお世話になっております。","이츠모 오세와니 낫테 오리마스","항상 신세 지고 있습니다.",[["お世話になって","신세 지고"]]],
+  ["初めてご連絡いたします。","하지메테 고렌라쿠 이타시마스","처음 연락드립니다.",[["初めて","처음"],["ご連絡","연락"]]],
+  ["お忙しいところ恐れ入ります。","오이소가시이 토코로 오소레이리마스","바쁘신 와중에 죄송합니다.",[["お忙しいところ","바쁘신 와중에"],["恐れ入ります","죄송합니다"]]],
+  ["お時間をいただきありがとうございます。","오지칸오 이타다키 아리가토- 고자이마스","시간 내주셔서 감사합니다.",[["お時間","시간"]]],
+  ["今後ともよろしくお願いいたします。","콘고토모 요로시쿠 오네가이 이타시마스","앞으로도 잘 부탁드립니다.",[["今後とも","앞으로도"]]],
+  ["ご確認のほど、よろしくお願いいたします。","고카쿠닌노 호도 요로시쿠 오네가이 이타시마스","확인 부탁드립니다.",[["ご確認のほど","확인"]]],
+  ["取り急ぎ、ご連絡まで。","토리이소기 고렌라쿠마데","우선 급히 연락드립니다.",[["取り急ぎ","우선 급히"]]],
+  ["ご返信が遅くなり、申し訳ございません。","고헨신가 오소쿠나리 모-시와케 고자이마센","답장이 늦어져 죄송합니다.",[["ご返信","답장"],["申し訳ございません","죄송합니다"]]],
+  ["承知いたしました。","쇼-치 이타시마시타","알겠습니다.",[["承知いたしました","알겠습니다"]]],
+  ["引き続きよろしくお願いいたします。","히키츠즈키 요로시쿠 오네가이 이타시마스","계속해서 잘 부탁드립니다.",[["引き続き","계속해서"]]]
+ ]},
+
+];
+function newCard(id, sid, d, extra={}){
+  return Object.assign({id, sid, ja:String(d.ja||""), pron:String(d.pron||""), ko:String(d.ko||""),
+    words:Array.isArray(d.words)?d.words.filter(w=>w&&w.ja).map(w=>({ja:String(w.ja),ko:String(w.ko||"")})).slice(0,4):[],
+    shows:0, status:"new", fav:false, wrong:0, fb:null, mine:false, rv:null, mastered:false, created:Date.now(), order:Math.random()}, extra);
+}
+function seed(){
+  const s = {v:2, savedAt:0, sits:{}, cards:{}, studySel:[], pending:null, pendingSel:[]};
+  EX.forEach(g => {
+    const sid = uid(); s.sits[sid] = {id:sid, name:g.name, desc:g.desc, source:g.src || SRC, created:Date.now()};
+    g.items.forEach(([ja,pron,ko,w]) => { const id=uid(); s.cards[id] = newCard(id,sid,{ja,pron,ko,words:w.map(([j,k])=>({ja:j,ko:k}))}); });
+    s.studySel.push(sid);
+  });
+  return s;
+}
+
+/* ---------- 이 기기 저장 + Claude 계정 자동 백업 ---------- */
+const KEY = "nihongo-cards.v2";
+let S = null;
+try { S = JSON.parse(localStorage.getItem(KEY)); } catch(e) {}
+if (!S || !S.sits) {
+  S = seed();
+  try { // 지난 버전에서 직접 만든 카드는 옮겨 오기
+    const old = JSON.parse(localStorage.getItem("nihongo-cards.v1"));
+    if (old && old.sits) Object.values(old.sits).filter(x=>!x.example).forEach(x => {
+      S.sits[x.id] = x; Object.values(old.cards||{}).filter(c=>c.sid===x.id).forEach(c => S.cards[c.id] = Object.assign({rv:null, mastered:false}, c));
+      S.savedAt = 1;
+    });
+  } catch(e) {}
+}
+Object.values(S.cards).forEach(c => { if (c.rv === undefined) c.rv = null; if (c.mastered === undefined) c.mastered = false; });
+
+if (!S.deleted) S.deleted = {};
+/* 카드·상황마다 마지막으로 바뀐 시각(upd)을 붙여서, 폰 앱과 작업실의 기록을 카드 단위로 합친다 */
+const snapJ = {};
+const bare = o => { const c = Object.assign({}, o); delete c.upd; return JSON.stringify(c); };
+function stamp(init){
+  const now = Date.now();
+  [S.sits, S.cards].forEach(m => Object.values(m).forEach(o => {
+    const j = bare(o);
+    if (snapJ[o.id] !== j) { if (!init || !o.upd) o.upd = init ? (o.upd || o.created || now) : now; snapJ[o.id] = j; }
+  }));
+}
+stamp(true);
+const saveLocal = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+function save(){ stamp(false); S.savedAt = Date.now(); saveLocal(); queuePush(); updateDue(); }
+saveLocal();
+function forget(kind, id){ S.deleted[id] = Date.now(); delete S[kind][id]; delete snapJ[id]; }
+/* 다른 쪽 기록을 합치기: 카드마다 더 최근에 바뀐 쪽을 남긴다. 반환값: 바뀐 개수 */
+function mergeState(o){
+  if (!o || !o.sits || !o.cards) return -1;
+  let n = 0;
+  const del = Object.assign({}, o.deleted||{});
+  Object.entries(del).forEach(([id, t]) => { S.deleted[id] = Math.max(S.deleted[id]||0, t); });
+  const take = (kind, x) => {
+    const mine = S[kind][x.id], dt = S.deleted[x.id] || 0;
+    if ((x.upd||0) <= dt) return;
+    if (!mine || (x.upd||0) > (mine.upd||0)) { S[kind][x.id] = JSON.parse(JSON.stringify(x)); snapJ[x.id] = bare(x); n++; }
+  };
+  Object.values(o.sits).forEach(x => take("sits", x));
+  Object.values(o.cards).forEach(x => take("cards", Object.assign({rv:null, mastered:false}, x)));
+  ["sits","cards"].forEach(kind => Object.values(S[kind]).forEach(x => { const dt = S.deleted[x.id]; if (dt && (x.upd||0) <= dt) { delete S[kind][x.id]; n++; } }));
+  if ((o.savedAt||0) > (S.savedAt||0)) { S.studySel = (o.studySel||[]).slice(); S.pending = o.pending ? JSON.parse(JSON.stringify(o.pending)) : null; S.pendingSel = (o.pendingSel||[]).slice(); }
+  S.studySel = S.studySel.filter(id => S.sits[id]);
+  S.savedAt = Math.max(S.savedAt||0, o.savedAt||0) + 1; saveLocal(); queuePush(); updateDue();
+  return n;
+}
+/* 주고받기 파일 */
+function syncPayload(){ return JSON.stringify({app:"nihongo-cards", kind:"sync", from: PHONE ? "phone" : "workshop", at: Date.now(), state: S}); }
+function syncName(){ const d = new Date(), p = x => String(x).padStart(2,"0"); return `일본어카드_${PHONE?"폰앱":"작업실"}_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}.json`; }
+async function sendSyncFile(){
+  const data = syncPayload(), name = syncName();
+  if (downloads) { try { await downloads.save({filename:name, data}); return "saved"; } catch(e){ if (e && e.code==="declined") return "declined"; } }
+  try {
+    const file = new File([data], name, {type:"application/json"});
+    if (navigator.canShare && navigator.canShare({files:[file]})) { await navigator.share({files:[file], title:"일본어 카드 기록"}); return "saved"; }
+  } catch(e) { if (e && e.name === "AbortError") return "declined"; }
+  try { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data],{type:"application/json"})); a.download = name; document.body.append(a); a.click(); a.remove(); return "saved"; } catch(e) { return "fail"; }
+}
+async function receiveSyncFile(f){
+  const d = JSON.parse(await f.text());
+  const st = d && d.app === "nihongo-cards" ? d.state : d;
+  const n = mergeState(st);
+  if (n < 0) throw 0;
+  try { localStorage.setItem(KEY+".lastSync", String(Date.now())); } catch(e){}
+  return {n, from: d && d.from};
+}
+
+const cloud = {col:null, last:{}, timer:0, busy:false, again:false, ok:false};
+function syncText(t){ const el = $("#sync"); if (el) el.textContent = t; }
+function cloudDocs(){
+  const docs = {meta:{savedAt:S.savedAt, v:2, sits:S.sits, deleted:S.deleted, studySel:S.studySel, pending:S.pending, pendingSel:S.pendingSel}};
+  Object.values(S.cards).forEach(c => { if (!S.sits[c.sid]) return; const k = "c-"+c.sid; (docs[k] = docs[k] || {cards:{}}).cards[c.id] = c; });
+  return docs;
+}
+function queuePush(){ if (!cloud.col) return; clearTimeout(cloud.timer); cloud.timer = setTimeout(push, 1500); }
+async function push(){
+  if (!cloud.col) return;
+  if (cloud.busy) { cloud.again = true; return; }
+  if (!navigator.onLine) { syncText("오프라인 · 연결되면 자동 백업"); return; }
+  cloud.busy = true; syncText("자동 백업 중…");
+  try {
+    const docs = cloudDocs();
+    for (const [id, body] of Object.entries(docs)) {
+      const j = JSON.stringify(body);
+      if (cloud.last[id] !== j) { await cloud.col.doc(id).set(JSON.parse(j)); cloud.last[id] = j; }
+    }
+    for (const id of Object.keys(cloud.last)) if (!docs[id]) { await cloud.col.doc(id).delete(); delete cloud.last[id]; }
+    syncText(`자동 백업됨 ${when(Date.now()).split(" ")[1]}`);
+  } catch(e) {
+    syncText(e && e.code==="quota_exceeded" ? "백업 공간이 가득 찼어요" : "백업 대기 중 · 다시 시도해요");
+  } finally {
+    cloud.busy = false;
+    if (cloud.again) { cloud.again = false; queuePush(); }
+  }
+}
+addEventListener("online", queuePush);
+async function startCloud(db, user){
+  try {
+    const id = user && await user.id(); if (!db || !id) { syncText("이 기기에만 저장돼요"); return; }
+    cloud.col = db.collection("data/users/" + id);
+    syncText("백업 확인 중…");
+    const snap = await cloud.col.get();
+    const got = {}; snap.docs.forEach(d => { if (d.exists) got[d.id] = d.data(); });
+    const meta = got.meta;
+    Object.keys(got).forEach(k => cloud.last[k] = JSON.stringify(got[k]));
+    if (meta) {
+      const cards = {}; Object.keys(got).filter(k=>k.startsWith("c-")).forEach(k => Object.assign(cards, JSON.parse(JSON.stringify(got[k].cards||{}))));
+      const n = mergeState({savedAt:meta.savedAt, sits:JSON.parse(JSON.stringify(meta.sits||{})), cards, deleted:JSON.parse(JSON.stringify(meta.deleted||{})), studySel:(meta.studySel||[]).slice(), pending:meta.pending?JSON.parse(JSON.stringify(meta.pending)):null, pendingSel:(meta.pendingSel||[]).slice()});
+      if (n > 0) { render(); toast("자동 백업의 기록을 합쳤어요"); }
+    }
+    await push();
+  } catch(e) { syncText("이 기기에만 저장 중"); }
+}
+
+/* ---------- AI (이 Claude 계정) ---------- */
+let sample = null, downloads = null;
+(async () => {
+  let db = null, user = null;
+  try { if (window.claude && claude.use) {
+    [sample, downloads, db, user] = await Promise.all(["sample","downloads","db","user"].map(n => claude.use(n).catch(()=>null)));
+  } } catch(e) {}
+  updateNet(); if (tab==="add"||tab==="quiz") render();
+  if (db && user) startCloud(db, user); else syncText(PHONE ? "이 폰에 저장돼요" : "이 기기에만 저장돼요");
+})();
+const online = () => navigator.onLine && !!sample;
+function updateNet(){
+  const el = $("#net");
+  if (PHONE) { el.textContent = "폰 앱 · 오프라인 OK"; el.className = "net on"; return; }
+  if (online()) { el.textContent = "AI 작업실 · AI 연결됨"; el.className = "net on"; }
+  else if (!navigator.onLine) { el.textContent = "오프라인"; el.className = "net"; }
+  else { el.textContent = "AI 없음"; el.className = "net"; }
+}
+addEventListener("online", ()=>{updateNet(); if (tab!=="quiz"||Q.step==="setup") render();});
+addEventListener("offline", ()=>{updateNet(); if (tab!=="quiz"||Q.step==="setup") render();});
+function aiErr(e){
+  const c = e && e.code;
+  return ({not_granted:"Claude 사용을 허용하지 않아 AI 기능을 쓸 수 없어요.", rate_limited:"요청이 많아요. 잠시 뒤 다시 눌러 주세요.",
+    session_expired:"Claude에 다시 로그인해 주세요.", invalid_json:"AI 답을 읽지 못했어요. 다시 눌러 주세요.", prompt_too_large:"자료가 너무 길어요. 일부만 넣어 주세요.",
+    sampling_disabled:"이 계정에서는 AI를 쓸 수 없어요.", refused:"AI가 이 요청을 처리하지 않았어요. 내용을 바꿔 보세요."}[c]) || "AI 연결이 끊겼어요. 다시 시도해 주세요.";
+}
+const GEN_RULES = `너는 일본 현지 비즈니스 일본어 교재 편집자다.
+문장 고르는 기준:
+- 일본 웹사이트(비즈니스 메일 예문집, 영업·구매 담당자 블로그, 고객 응대 매뉴얼, 거래 상담 사례 등)에 실제로 올라와 있는 클라이언트와 업체(거래처) 사이의 실제 대화에서 쓰이는 실생활 문장을 기준으로 고른다. 교과서식으로 지어낸 문장은 피한다.
+- 반드시 표준어(標準語)만 쓴다. 간사이벤 등 방언, 인터넷 속어 금지.
+- 그 업무를 할 때 일본인이 거의 반드시 쓰게 되는 핵심 문장 위주. 비즈니스 경어는 실제 현장 수준으로.
+- 한 문장은 짧고 바로 외워 쓸 수 있는 길이(대략 40자 이내).`;
+const CARD_SHAPE = `각 항목 형식: {"ja":"일본어 문장","pron":"한국어로 적은 일본어 발음(장음은 -로, 예: 오세와니 낫테 오리마스)","ko":"자연스러운 한국어 뜻","words":[{"ja":"ja 문장 안에 그대로 들어있는 필수 단어 표기","ko":"ko 문장 안에 그대로 들어있는 대응 표현"}]}
+words는 1~3개. words의 ja는 반드시 ja 문장의 일부 문자열과 정확히 같아야 하고, ko도 ko 문장의 일부 문자열과 정확히 같아야 한다.`;
+async function genSentences(name, desc, signal){
+  const existing = Object.values(S.cards).filter(c => S.sits[c.sid] && S.sits[c.sid].name===name).map(c=>c.ja);
+  const prompt = `${GEN_RULES}
+
+업무 상황(한국어): ${name}${desc?`\n상황 설명: ${desc}`:""}
+${existing.length?`이미 가진 문장(겹치지 않게): ${existing.join(" / ")}\n`:""}
+이 업무 상황에서 쓰는 필수 문장 10개를 골라라.
+${CARD_SHAPE}
+JSON 배열(10개)만 답하라.`;
+  const arr = await sample.json(prompt, {signal});
+  if (!Array.isArray(arr)) throw {code:"invalid_json"};
+  return arr.filter(x => x && x.ja && x.ko).slice(0,10);
+}
+function addSentences(name, desc, list, src){
+  let sit = Object.values(S.sits).find(s => s.name === name);
+  if (!sit) { const id = uid(); sit = S.sits[id] = {id, name, desc:desc||"", created:Date.now(), source:src||""}; }
+  list.forEach(d => { const id = uid(); S.cards[id] = newCard(id, sit.id, d); });
+  if (!S.studySel.includes(sit.id)) S.studySel.push(sit.id);
+  save(); return sit;
+}
+
+/* ---------- 공통 ---------- */
+function hl(text, words, side){
+  text = String(text||"");
+  const keys = (words||[]).map(w => w[side]).filter(Boolean).sort((a,b)=>b.length-a.length);
+  const marks = new Array(text.length).fill(false);
+  keys.forEach(k => { let i = text.indexOf(k); while (i >= 0) { let free = true; for (let j=i;j<i+k.length;j++) if (marks[j]) free=false; if (free) for (let j=i;j<i+k.length;j++) marks[j]=true; i = text.indexOf(k, i+k.length); } });
+  let out = "", open = false;
+  for (let i=0;i<text.length;i++){ if (marks[i] && !open){out+="<mark>";open=true;} if(!marks[i]&&open){out+="</mark>";open=false;} out+=esc(text[i]); }
+  if (open) out += "</mark>"; return out;
+}
+let jaVoice = null;
+function pickVoice(){ try { const vs = speechSynthesis.getVoices(); jaVoice = vs.find(v=>/ja[-_]JP/i.test(v.lang) && /Kyoko|O-ren|Google|Nanami|Haruka/i.test(v.name)) || vs.find(v=>/^ja/i.test(v.lang)) || null; } catch(e){} }
+try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch(e){}
+function speak(t){
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "ja-JP"; u.rate = .9; if (jaVoice) u.voice = jaVoice; speechSynthesis.speak(u); }
+  catch(e){ toast("이 기기에서는 음성을 재생할 수 없어요"); }
+}
+let toastT;
+function toast(msg){ let t = $(".toast"); if (!t){ t = document.createElement("div"); t.className="toast"; t.setAttribute("role","status"); document.body.append(t); } t.textContent = msg; t.hidden=false; clearTimeout(toastT); toastT = setTimeout(()=>t.hidden=true, 2200); }
+const sitName = c => (S.sits[c.sid]||{}).name || "";
+const dueCards = () => { const now = Date.now(); return Object.values(S.cards).filter(c => c.rv && !c.mastered && S.sits[c.sid] && c.rv.due <= now).sort((a,b)=>a.rv.due-b.rv.due); };
+function updateDue(){ const n = dueCards().length, d = $("#dueDot"); if (!d) return; d.hidden = !n; d.textContent = n; }
+setInterval(() => { const before = $("#dueDot").textContent; updateDue(); if (tab==="study" && studyMode==="review" && $("#dueDot").textContent !== before && !$(".card.revealed")) render(); }, 30000);
+
+function fbHtml(fb){
+  if (!fb) return "";
+  return `<div class="fb">
+    <div class="row" style="justify-content:space-between"><h4>틀린 문장 해설</h4><span class="lv">${fb.level>1?`${fb.level}차 업그레이드`:"1차"}</span></div>
+    <div class="said"><span class="note">내가 말한 답</span><br>${esc(fb.said)}</div>
+    ${fb.where?`<p><b>어디가 틀렸나</b><br>${esc(fb.where)}</p>`:""}
+    ${fb.why?`<p><b>왜 어색한가</b><br>${esc(fb.why)}</p>`:""}
+    ${fb.tip?`<p><b>쉽게 기억하는 법</b><br>${esc(fb.tip)}</p>`:""}
+  </div>`;
+}
+/* 리뷰 진행 */
+function quizMark(c, correct){
+  if (c.mastered) return;
+  if (!c.rv || correct === false) c.rv = {stage:0, last:Date.now(), due:Date.now()+INT[0]};
+}
+function setMastered(c, on){
+  c.mastered = on;
+  if (on) { c.status = "known"; c.rv = c.rv ? Object.assign(c.rv, {done:true}) : {stage:4, last:Date.now(), due:0, done:true}; }
+  else c.rv = null;
+}
+/* mode: full | ask-ko | ask-ja */
+function cardEl(c, {mode="full", status=false, date=false, check=false, hint=""}={}){
+  const el = document.createElement("article");
+  el.className = "card" + (mode!=="full"?" ask":"") + (date&&c.rv?" has-date":"") + (check?" has-check":"");
+  el.dataset.id = c.id;
+  const showJa = mode !== "ask-ko", showKo = mode !== "ask-ja", full = mode === "full";
+  el.innerHTML = `${date&&c.rv?`<div class="date" aria-label="공부한 날">${md(c.rv.last)}</div>`:""}
+    ${check?`<button class="check${c.mastered?" on":""}" type="button" data-act="check" aria-pressed="${c.mastered}" aria-label="한 달 복습 완료">${CHECK}</button>`:""}
+    <div class="count" aria-label="표시 횟수">${c.shows}회</div>
+    <div class="sit">${esc(sitName(c))}${c.mine?' · 내가 말한 문장':''}</div>
+    ${date&&c.rv&&!c.mastered?`<div class="stagelbl">${STAGE[Math.min(c.rv.stage,3)]}</div>`:""}
+    ${showJa?`<p class="ja" lang="ja">${full?hl(c.ja,c.words,"ja"):esc(c.ja)}</p>`:""}
+    ${full?`<p class="pron">${esc(c.pron)}</p>`:""}
+    ${showKo?`<p class="ko">${full?hl(c.ko,c.words,"ko"):esc(c.ko)}</p>`:""}
+    ${!full?`<div class="hidden-ans">${hint || (mode==="ask-ko"?"일본어로 말해 보세요":"한국어 뜻을 말해 보세요")}</div>`:""}
+    ${full?`<div class="tools"><button class="speak" type="button" data-act="speak">▶ 일본어 듣기</button>${status?`<span class="status">${c.mastered?"한 달 복습 완료":{new:"새 카드",again:"다시 외우기",known:"외움"}[c.status]}</span>`:""}</div>`:""}
+    ${full?fbHtml(c.fb):""}
+    <button class="star${c.fav?" on":""}" type="button" data-act="fav" aria-pressed="${c.fav}" aria-label="즐겨찾기">${STAR}</button>`;
+  el.addEventListener("click", e => {
+    const b = e.target.closest("[data-act]"); if (!b) return;
+    e.stopPropagation();
+    if (b.dataset.act==="speak") speak(c.ja);
+    if (b.dataset.act==="fav"){ c.fav=!c.fav; save(); b.classList.toggle("on",c.fav); b.setAttribute("aria-pressed",c.fav); toast(c.fav?"즐겨찾기에 추가했어요":"즐겨찾기에서 뺐어요"); }
+    if (b.dataset.act==="check"){ setMastered(c, !c.mastered); save(); b.classList.toggle("on",c.mastered); b.setAttribute("aria-pressed",c.mastered);
+      toast(c.mastered?"한 달 복습 완료 · 퀴즈에서 빠져요":"체크를 풀었어요 · 다시 퀴즈에 나와요"); el.dispatchEvent(new CustomEvent("changed")); }
+  });
+  el.addEventListener("pointerdown", e => { if (e.target.closest("[data-act]")) e.stopPropagation(); }, true);
+  return el;
+}
+function swipe(el, h){
+  let sx, sy, dx=0, dy=0, on=false, id;
+  el.addEventListener("pointerdown", e => { if (e.target.closest("button,textarea,input")) return; on=true; id=e.pointerId; sx=e.clientX; sy=e.clientY; dx=dy=0; el.classList.add("dragging"); try{el.setPointerCapture(id);}catch(_){} });
+  el.addEventListener("pointermove", e => { if(!on) return; dx=e.clientX-sx; dy=e.clientY-sy;
+    const tx = h.left ? Math.min(dx, 40) : 0, ty = (h.up||h.down) ? dy : 0;
+    el.style.transform = `translate(${tx}px,${ty}px) rotate(${tx/25}deg)`; });
+  const end = () => { if(!on) return; on=false; el.classList.remove("dragging");
+    const T = 70;
+    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) { el.style.transform = ""; h.tap && h.tap(); return; }
+    if (h.up && dy < -T && Math.abs(dy) > Math.abs(dx)) return fly(el, 0, -600, h.up);
+    if (h.down && dy > T && Math.abs(dy) > Math.abs(dx)) return fly(el, 0, 600, h.down);
+    if (h.left && dx < -T && Math.abs(dx) > Math.abs(dy)) return fly(el, -600, 0, h.left);
+    el.style.transform = ""; };
+  el.addEventListener("pointerup", end); el.addEventListener("pointercancel", () => { on=false; el.classList.remove("dragging"); el.style.transform=""; });
+}
+function fly(el, x, y, cb){ el.style.transform = `translate(${x}px,${y}px)`; el.style.opacity = "0"; setTimeout(cb, 220); }
+
+/* ---------- 스크롤 토글 선택 ---------- */
+const pkOpen = {};
+function picker({key, title, items, selected, onChange, openDefault=true}){
+  if (pkOpen[key] === undefined) pkOpen[key] = openDefault;
+  let sel = selected.slice();
+  const wrap = document.createElement("div"); wrap.className = "picker";
+  const bid = "pk-" + key;
+  wrap.innerHTML = `<button class="pk-head" type="button" aria-expanded="${pkOpen[key]}" aria-controls="${bid}"><b>${esc(title)}</b><span class="pk-sum"></span>${CHEV}</button>
+    <div class="pk-body" id="${bid}" ${pkOpen[key]?"":"hidden"}>
+      <label class="pk-row all"><span class="lbl">전체선택</span><input class="sw" type="checkbox" role="switch" id="${bid}-all" data-all></label>
+      <div class="pk-list">${items.map(i => `<label class="pk-row"><span class="lbl">${esc(i.name)}${i.n!=null?`<span class="n">${i.n}</span>`:""}${i.desc?`<small>${esc(i.desc)}</small>`:""}</span><input class="sw" type="checkbox" role="switch" id="${bid}-${esc(i.id)}" data-id="${esc(i.id)}"></label>`).join("")}</div>
+      ${items.length > 5 ? `<div class="pk-more">위아래로 스크롤해서 더 보기 · ${items.length}개</div>` : ""}
+    </div>`;
+  const sync = () => {
+    wrap.querySelectorAll("input[data-id]").forEach(i => i.checked = sel.includes(i.dataset.id));
+    const all = wrap.querySelector("[data-all]"); all.checked = items.length > 0 && sel.length === items.length; all.indeterminate = sel.length > 0 && sel.length < items.length;
+    wrap.querySelector(".pk-sum").textContent = `${sel.length}/${items.length} 선택`;
+  };
+  wrap.querySelector(".pk-head").onclick = e => { pkOpen[key] = !pkOpen[key]; e.currentTarget.setAttribute("aria-expanded", pkOpen[key]); wrap.querySelector(".pk-body").hidden = !pkOpen[key]; };
+  wrap.addEventListener("change", e => {
+    const i = e.target; if (!i.matches("input")) return;
+    if (i.hasAttribute("data-all")) sel = i.checked ? items.map(x=>x.id) : [];
+    else sel = i.checked ? [...new Set(sel.concat(i.dataset.id))] : sel.filter(x => x !== i.dataset.id);
+    sync(); onChange(sel.slice());
+  });
+  sync(); return wrap;
+}
+const sitsSorted = () => Object.values(S.sits).sort((a,b)=>a.name.localeCompare(b.name,"ko"));
+
+/* ---------- 탭 ---------- */
+let tab = "study";
+try { tab = localStorage.getItem(KEY+".tab") || "study"; } catch(e){}
+document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => { tab = b.dataset.tab; try{localStorage.setItem(KEY+".tab",tab);}catch(e){} stopQuiz(); render(); scrollTo(0,0); }));
+function render(){
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab===tab ? "page" : "false"));
+  const v = $("#view"); v.innerHTML = "";
+  ({study:renderStudy, quiz:renderQuiz, list:renderList, add:renderAdd})[tab](v);
+}
+
+/* ---------- 공부 ---------- */
+let studyMode = "new", lastShown = null;
+function renderStudy(v){
+  const due = dueCards();
+  const seg = document.createElement("div"); seg.className = "seg";
+  seg.innerHTML = `<button type="button" data-m="new" aria-pressed="${studyMode==="new"}">새 카드 외우기</button><button type="button" data-m="review" aria-pressed="${studyMode==="review"}">복습 카드${due.length?`<span class="cnt">${due.length}</span>`:""}</button>`;
+  seg.onclick = e => { const b = e.target.closest("button"); if (!b) return; studyMode = b.dataset.m; render(); };
+  v.append(seg);
+  if (studyMode === "review") return renderReview(v, due);
+  const sits = sitsSorted();
+  if (!sits.length){ v.insertAdjacentHTML("beforeend", `<div class="empty" style="margin-top:12px"><strong>아직 공부할 업무가 없어요</strong>추가 메뉴에서 자료를 넣거나 상황을 입력해 주세요.</div>`); return; }
+  const counts = id => Object.values(S.cards).filter(c=>c.sid===id && c.status!=="known").length;
+  const stage = document.createElement("div"); stage.className = "stage";
+  v.append(picker({key:"study", title:"공부할 상황", items:sits.map(s=>({id:s.id,name:s.name,n:counts(s.id)})), selected:S.studySel,
+    onChange: sel => { S.studySel = sel; save(); drawDeck(stage); }}));
+  v.append(stage); drawDeck(stage);
+}
+function drawDeck(stage){
+  stage.innerHTML = "";
+  const deck = Object.values(S.cards).filter(c => S.studySel.includes(c.sid) && c.status !== "known").sort((a,b)=>a.order-b.order);
+  if (!S.studySel.length){ stage.innerHTML = `<div class="empty"><strong>업무 상황을 골라 주세요</strong>위의 토글을 하나 이상 켜면 카드가 나와요.</div>`; return; }
+  if (!deck.length){
+    stage.innerHTML = `<div class="empty"><strong>선택한 상황의 카드를 모두 외웠어요</strong>퀴즈를 풀면 망각주기에 맞춰 복습 카드가 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn" id="reset">외운 카드 다시 공부하기</button></div></div>`;
+    $("#reset",stage).onclick = () => { Object.values(S.cards).forEach(c => { if (S.studySel.includes(c.sid) && !c.mastered) c.status="again"; }); save(); drawDeck(stage); };
+    return;
+  }
+  const c = deck[0];
+  if (lastShown !== c.id + ":" + c.order){ c.shows++; save(); lastShown = c.id + ":" + c.order; }
+  const el = cardEl(c, {status:true}); stage.append(el);
+  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 아래로: 다시 외우기</span><span>남은 카드 ${deck.length}장</span><span>↑ 위로: 외웠어요</span></div>
+    <div class="deck-actions"><button class="btn" id="again">다시 외우기</button><button class="btn primary" id="known">외웠어요</button></div>`);
+  const again = () => { c.status="again"; c.order = Math.max(...deck.map(d=>d.order)) + 1; save(); drawDeck(stage); };
+  const known = () => { c.status="known"; save(); toast("외운 카드 목록에 넣었어요"); drawDeck(stage); };
+  swipe(el, {up:known, down:again});
+  $("#again",stage).onclick = () => fly(el,0,600,again);
+  $("#known",stage).onclick = () => fly(el,0,-600,known);
+}
+function renderReview(v, due){
+  const stage = document.createElement("div"); stage.className = "stage"; v.append(stage);
+  const sched = Object.values(S.cards).filter(c => c.rv && !c.mastered && S.sits[c.sid]);
+  const ladder = `<div class="ladder">${STAGE.map((n,i)=>`<div><b>${sched.filter(c=>Math.min(c.rv.stage,3)===i).length}</b>${n}</div>`).join("")}</div>`;
+  if (!due.length){
+    const next = sched.sort((a,b)=>a.rv.due-b.rv.due)[0];
+    const mastered = Object.values(S.cards).filter(c=>c.mastered).length;
+    stage.innerHTML = `<div class="empty"><strong>지금 복습할 카드가 없어요</strong>${next?`다음 복습은 ${when(next.rv.due)}에 나와요.`:"퀴즈를 풀면 그 카드가 10분 → 1일 → 1주 → 1달 주기로 다시 나와요."}${mastered?`<br>한 달 복습까지 끝난 카드 ${mastered}장`:""}</div>${ladder}`;
+    return;
+  }
+  const c = due[0];
+  c.shows++; save();
+  let el = cardEl(c, {mode:"ask-ko", date:true, hint:"탭해서 일본어 문장 확인"});
+  stage.append(el);
+  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 잊어버렸어요 (10분 뒤 다시)</span><span>남은 ${due.length}장</span><span>↑ 기억났어요</span></div>
+    <div class="deck-actions"><button class="btn" id="forgot">잊어버렸어요</button><button class="btn primary" id="remember">기억났어요</button></div>${ladder}`);
+  const reveal = () => { if (el.classList.contains("revealed")) return; const n = cardEl(c, {date:true}); n.classList.add("revealed"); el.replaceWith(n); el = n; bind(); };
+  const remember = () => {
+    const now = Date.now(); c.rv.stage++; c.rv.last = now;
+    if (c.rv.stage >= 4) { setMastered(c, true); toast("한 달 복습까지 끝났어요 · 퀴즈에서 빠져요"); }
+    else { c.rv.due = now + INT[c.rv.stage]; toast(`${STAGE[c.rv.stage]}로 넘어갔어요 · ${when(c.rv.due)}`); }
+    save(); render();
+  };
+  const forgot = () => { const now = Date.now(); c.rv = {stage:0, last:now, due:now+INT[0]}; c.status = "again"; save(); toast("10분 뒤 다시 나와요"); render(); };
+  const bind = () => { swipe(el, {up:remember, down:forgot, tap:reveal}); el.addEventListener("click", e => { if (!e.target.closest("[data-act]")) reveal(); }); };
+  bind();
+  $("#remember",stage).onclick = () => fly(el,0,-600,remember);
+  $("#forgot",stage).onclick = () => fly(el,0,600,forgot);
+}
+
+/* ---------- 퀴즈 ---------- */
+const Q = {step:"setup", how:null, what:null, scope:"all", list:[], i:0, raf:0, revealed:false, ctl:null};
+function stopQuiz(){ cancelAnimationFrame(Q.raf); if (Q.ctl) Q.ctl.abort(); try{ rec && rec.abort(); }catch(e){} }
+function renderQuiz(v){ if (Q.step === "setup") return quizSetup(v); quizCard(v); }
+function quizPool(scope){ let l = Object.values(S.cards).filter(c => !c.mastered && S.sits[c.sid]); if (scope==="fav") l = l.filter(c=>c.fav); return l; }
+function quizSetup(v){
+  const total = quizPool("all").length, favs = quizPool("fav").length, done = Object.values(S.cards).filter(c=>c.mastered).length;
+  const canVoice = online();
+  if (Q.how==="voice" && !canVoice) Q.how = null;
+  const box = document.createElement("div"); v.append(box);
+  box.innerHTML = `<div class="section-title">1. 푸는 방식</div>
+  <div class="choice">
+    <button class="opt" data-how="eye" aria-pressed="${Q.how==="eye"}"><b>눈으로 풀기</b><span>5초 안에 떠올리면 정답이 공개돼요. 왼쪽으로 넘기면 다음 문제.</span></button>
+    <button class="opt" data-how="voice" aria-pressed="${Q.how==="voice"}" ${canVoice?"":"disabled"}><b>말로 풀기 · AI 채점</b><span>${canVoice?"말한 답을 뜻과 뉘앙스로 채점해요.":PHONE?"AI 작업실에서 풀 수 있어요. 추가 탭에서 기록을 보내고 작업실을 열어 주세요.":"인터넷과 AI 연결이 필요해요."}</span></button>
+  </div>
+  <div class="section-title">2. 문제 방식</div>
+  <div class="choice">
+    <button class="opt" data-what="ko" aria-pressed="${Q.what==="ko"}"><b>한글 뜻만 보기</b><span>뜻을 보고 일본어 문장을 떠올려요.</span></button>
+    <button class="opt" data-what="ja" aria-pressed="${Q.what==="ja"}"><b>일본어 문장만 보기</b><span>문장을 보고 한국어 뜻을 떠올려요.</span></button>
+  </div>
+  <div class="section-title">범위</div>
+  <div class="chips"><button class="chip" data-scope="all" aria-pressed="${Q.scope==="all"}">누적 카드 전체 <span class="n">${total}</span></button><button class="chip" data-scope="fav" aria-pressed="${Q.scope==="fav"}">즐겨찾기만 <span class="n">${favs}</span></button></div>
+  ${done?`<p class="note">한 달 복습까지 끝난 ${done}장은 빠져요. 학습목록에서 빨간 체크를 풀면 다시 들어와요.</p>`:""}
+  <button class="btn primary" id="go" style="width:100%;margin-top:18px" ${Q.how&&Q.what?"":"disabled"}>퀴즈 시작</button>`;
+  box.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b || b.disabled) return;
+    if (b.dataset.how) Q.how = b.dataset.how; if (b.dataset.what) Q.what = b.dataset.what; if (b.dataset.scope) Q.scope = b.dataset.scope;
+    if (b.id === "go"){
+      const list = quizPool(Q.scope);
+      if (!list.length) return toast(Q.scope==="fav"?"즐겨찾기한 카드가 없어요":"퀴즈에 낼 카드가 없어요");
+      Q.list = list.map(c=>c.id).sort(()=>Math.random()-.5); Q.i = 0; Q.step = "play";
+    }
+    render();
+  });
+}
+function quizCard(v){
+  const c = S.cards[Q.list[Q.i]];
+  v.innerHTML = `<div class="quizbar"><button class="btn small" id="quit">설정으로</button><span>${Q.i+1} / ${Q.list.length}</span><span>${Q.how==="eye"?"눈으로":"말로"} · ${Q.what==="ko"?"한글 뜻":"일본어"}</span></div>`;
+  $("#quit").onclick = () => { stopQuiz(); Q.step="setup"; render(); };
+  if (Q.i >= Q.list.length){ v.insertAdjacentHTML("beforeend", `<div class="empty" style="margin-top:14px"><strong>퀴즈를 다 풀었어요</strong>푼 카드는 10분 뒤부터 공부 탭의 복습 카드로 다시 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn primary" id="again">다시 섞어서 풀기</button></div></div>`);
+    $("#again").onclick = () => { Q.list = quizPool(Q.scope).map(c=>c.id).sort(()=>Math.random()-.5); Q.i=0; render(); }; return; }
+  if (!c){ Q.i++; return render(); }
+  c.shows++; save();
+  const stage = document.createElement("div"); stage.className = "stage"; v.append(stage);
+  const next = () => { stopQuiz(); Q.i++; render(); };
+  const ask = Q.what==="ko" ? "ask-ko" : "ask-ja";
+  if (Q.how === "eye"){
+    stage.insertAdjacentHTML("beforeend", `<div class="timer" aria-label="남은 시간"><div class="face"></div><div class="disc" id="disc"></div><svg class="ticks" viewBox="0 0 88 88">${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6, r1=40, r2=i%3?37:34; return `<line x1="${44+r1*Math.sin(a)}" y1="${44-r1*Math.cos(a)}" x2="${44+r2*Math.sin(a)}" y2="${44-r2*Math.cos(a)}" stroke="var(--muted)" stroke-width="1.2"/>`}).join("")}</svg><div class="hub"></div><div class="sec" id="sec">5초</div></div><div style="height:28px"></div>`);
+    let el = cardEl(c, {mode:ask, hint:"5초 안에 떠올려 보세요"}); stage.append(el);
+    stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 왼쪽으로 넘기면 다음 문제</span><span></span></div><div class="deck-actions"><button class="btn" id="show">바로 정답 보기</button><button class="btn primary" id="next">다음 문제</button></div>`);
+    const t0 = performance.now(), D = 5000, disc = $("#disc"), sec = $("#sec");
+    const reveal = () => { if (Q.revealed) return; Q.revealed = true; cancelAnimationFrame(Q.raf); disc.style.setProperty("--p",0); sec.textContent="정답";
+      quizMark(c, null); save();
+      const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next}); };
+    Q.revealed = false;
+    const tick = now => { const p = Math.max(0, 1-(now-t0)/D); disc.style.setProperty("--p", p); sec.textContent = Math.ceil(p*5)+"초"; if (p<=0) return reveal(); Q.raf = requestAnimationFrame(tick); };
+    Q.raf = requestAnimationFrame(tick);
+    swipe(el, {left:() => { quizMark(c, null); save(); next(); }});
+    $("#show").onclick = reveal; $("#next").onclick = () => { quizMark(c, null); save(); fly(el,-600,0,next); };
+    return;
+  }
+  let el = cardEl(c, {mode:ask}); stage.append(el);
+  const lang = Q.what==="ko" ? "ja-JP" : "ko-KR";
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  stage.insertAdjacentHTML("beforeend", `<div class="answerbox" id="ab">
+    <textarea id="ans" lang="${lang.slice(0,2)}" placeholder="${Q.what==="ko"?"일본어로":"한국어로"} 말하거나 입력하세요. 키보드의 마이크 버튼으로 말해도 돼요."></textarea>
+    <div class="row">${SR?`<button class="btn" id="mic" type="button">● 말하기</button>`:""}<button class="btn primary" id="grade" type="button" style="flex:1">채점하기</button></div>
+    <p class="note" id="qmsg">${online()?"":"인터넷이 끊겨 채점할 수 없어요."}</p></div>`);
+  const ans = $("#ans"), msg = $("#qmsg"), gradeBtn = $("#grade");
+  if (SR) $("#mic").onclick = () => listen(SR, lang, ans, msg, $("#mic"));
+  gradeBtn.onclick = async () => {
+    const said = ans.value.trim(); if (!said) { msg.textContent = "답을 먼저 말하거나 입력해 주세요."; return; }
+    if (!online()) { msg.textContent = "인터넷과 AI 연결이 필요해요."; return; }
+    gradeBtn.disabled = true; msg.textContent = "AI가 채점하는 중…";
+    Q.ctl = new AbortController();
+    try {
+      const r = await grade(c, said, Q.what, Q.ctl.signal);
+      $("#ab").remove();
+      if (r.correct){
+        quizMark(c, true); save();
+        stage.insertAdjacentHTML("afterbegin", `<div class="result ok">정답이에요${r.comment?` · ${esc(r.comment)}`:""}</div>`);
+        const n = cardEl(c); el.replaceWith(n); el = n;
+        setTimeout(() => { if (tab==="quiz" && S.cards[Q.list[Q.i]]===c) fly(el,-600,0,next); }, 1400);
+      } else {
+        c.wrong++; const lv = (c.fb && c.fb.level || 0) + 1;
+        c.fb = {said, where:r.where||"", why:r.why||"", tip:r.tip||"", level:lv, at:Date.now()};
+        quizMark(c, false);
+        let added = "";
+        if (c.wrong >= 3 && !c.fav){ c.fav = true; added = " · 3번 틀려서 즐겨찾기에 넣었어요"; }
+        if (Q.what==="ja" && r.myCard && r.myCard.ja){
+          const id = uid(); S.cards[id] = newCard(id, c.sid, r.myCard, {mine:true, status:"again"});
+          added += " · 내가 말한 문장 카드를 학습목록에 추가했어요";
+        }
+        save();
+        stage.insertAdjacentHTML("afterbegin", `<div class="result ng">아쉬워요, 다시 보기${esc(added)}</div>`);
+        const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next});
+        stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 왼쪽으로 넘기면 다음 문제</span></div><div class="deck-actions"><span></span><button class="btn primary" id="nx">다음 문제</button></div>`);
+        $("#nx").onclick = () => fly(el,-600,0,next);
+      }
+    } catch(e){ if (e && e.code==="cancelled") return; gradeBtn.disabled = false; msg.textContent = aiErr(e); }
+  };
+}
+let rec = null;
+function listen(SR, lang, box, msg, btn){
+  try { if (rec) { rec.stop(); return; }
+    rec = new SR(); rec.lang = lang; rec.interimResults = true; rec.continuous = false;
+    btn.textContent = "■ 듣는 중"; msg.textContent = "말해 보세요.";
+    rec.onresult = e => { box.value = Array.from(e.results).map(r=>r[0].transcript).join(""); };
+    rec.onerror = e => { msg.textContent = e.error==="not-allowed"||e.error==="service-not-allowed" ? "이 화면에서는 마이크를 바로 쓸 수 없어요. 키보드의 마이크 버튼으로 말해 주세요." : "음성을 알아듣지 못했어요. 다시 말하거나 입력해 주세요."; };
+    rec.onend = () => { rec = null; btn.textContent = "● 말하기"; if (msg.textContent==="말해 보세요.") msg.textContent = box.value ? "맞으면 채점하기를 눌러 주세요." : ""; };
+    rec.start();
+  } catch(e){ rec = null; msg.textContent = "키보드의 마이크 버튼으로 말해 주세요."; }
+}
+async function grade(c, said, what, signal){
+  const prev = c.fb ? `\n이 카드에서 지난번 틀렸을 때의 해설(${c.fb.level}차): 어디:${c.fb.where} / 왜:${c.fb.why} / 기억법:${c.fb.tip}\n이번에 또 틀렸다면 해설을 한 단계 업그레이드하라: 같은 말 반복 금지, 다른 각도의 설명과 더 강력한 새 암기법을 줘라.` : "";
+  const prompt = `너는 일본어 비즈니스 회화 채점관이다. 학습자는 한국인이다.
+문제(${what==="ko"?"한국어 뜻을 보고 일본어로 말하기":"일본어 문장을 보고 한국어 뜻 말하기"}): ${what==="ko"?c.ko:c.ja}
+모범 답: ${what==="ko"?c.ja:c.ko}
+(참고: 일본어 ${c.ja} / 한국어 ${c.ko})
+학습자가 말한 답(음성 인식 결과라 오타·띄어쓰기·한자/가나 표기 차이는 무시): ${said}
+채점 기준: 모범 답과 완전히 같지 않아도 뜻과 뉘앙스(정중함 수준 포함)가 같으면 정답. 뜻이 달라지거나, 비즈니스 상황에서 어색하거나 실례가 되면 오답. 일본어 표현은 표준어 기준.${prev}
+JSON 객체 하나만 답하라:
+{"correct":true/false,
+ "comment":"정답일 때 한 줄 칭찬 또는 더 자연스러운 표현(짧게, 없으면 빈 문자열)",
+ "where":"오답일 때: 학습자 답의 어느 부분이 틀렸는지(한국어)",
+ "why":"오답일 때: 왜 틀렸거나 어색한지(한국어, 2~3문장)",
+ "tip":"오답일 때: 올바른 문장을 쉽게 기억하는 방법(한국어, 연상법·말장난·구조 분해 등)",
+ "myCard":${what==="ja"?'오답이면 학습자가 말한 한국어 문장을 일본 비즈니스 표준어로 옮긴 카드 {"ja":"","pron":"한국어 발음 표기","ko":"학습자가 말한 한국어 문장 그대로","words":[{"ja":"","ko":""}]}, 정답이면 null':"null"}}`;
+  const r = await sample.json(prompt, {signal, cache:false, effort:"low"});
+  if (!r || typeof r !== "object") throw {code:"invalid_json"};
+  r.correct = r.correct === true || r.correct === "true";
+  return r;
+}
+
+/* ---------- 학습목록 ---------- */
+let listQ = "", openCats = new Set(), favOnly = false;
+function renderList(v){
+  if (!S.drillSel) S.drillSel = [];
+  S.drillSel = S.drillSel.filter(id => S.sits[id]);
+  const dWrap = document.createElement("div");
+  const drillCards = () => sitsSorted().filter(s => S.drillSel.includes(s.id)).flatMap(s => Object.values(S.cards).filter(c => c.sid===s.id).sort((a,b)=>a.ko.localeCompare(b.ko,"ko")));
+  const dBtn = document.createElement("button"); dBtn.className = "btn primary"; dBtn.style.cssText = "width:100%;margin-top:8px"; dBtn.type = "button";
+  const setBtn = () => { const n = drillCards().length; dBtn.disabled = !n; dBtn.textContent = n ? `▶ 리스닝 드릴 시작 · ${n}문장 × 10번` : "드릴할 상황을 켜 주세요"; };
+  const spd = document.createElement("div"); spd.className = "seg"; spd.style.marginTop = "8px";
+  const drawSpd = () => { spd.innerHTML = SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배속" : "1.5배속"}</button>`).join(""); };
+  spd.onclick = e => { const b = e.target.closest("button"); if (!b) return; S.drillRate = +b.dataset.r; save(); drawSpd(); };
+  drawSpd();
+  dWrap.append(picker({key:"drill", title:"리스닝 드릴 · 상황 고르기", openDefault:false,
+    items: sitsSorted().map(s => ({id:s.id, name:s.name, n:Object.values(S.cards).filter(c=>c.sid===s.id).length})), selected:S.drillSel,
+    onChange: sel => { S.drillSel = sel; save(); setBtn(); }}), spd, dBtn);
+  dBtn.onclick = () => startDrill(drillCards());
+  setBtn();
+  v.append(dWrap);
+  const lw = document.createElement("div"); lw.style.marginTop = "14px"; v.append(lw); v = lw;
+  v.innerHTML = `<input class="search" id="q" type="search" placeholder="단어나 문장으로 검색 (일본어·한국어·발음)" value="${esc(listQ)}">
+  <div class="row" style="justify-content:space-between;margin-top:8px"><span class="note" id="cnt"></span><button class="btn small${favOnly?" primary":""}" id="favonly" aria-pressed="${favOnly}">★ 즐겨찾기만</button></div>
+  <div id="cats"></div>`;
+  const draw = () => {
+    const q = listQ.trim().toLowerCase(), cats = $("#cats"); cats.innerHTML = ""; let total = 0;
+    sitsSorted().forEach(s => {
+      let cs = Object.values(S.cards).filter(c => c.sid===s.id);
+      if (favOnly) cs = cs.filter(c=>c.fav);
+      if (q) cs = cs.filter(c => [c.ja,c.ko,c.pron,...c.words.map(w=>w.ja+" "+w.ko)].join(" ").toLowerCase().includes(q));
+      if (!cs.length && (q||favOnly)) return;
+      cs.sort((a,b)=>a.ko.localeCompare(b.ko,"ko"));
+      total += cs.length;
+      const d = document.createElement("details"); d.className = "cat"; d.open = !!q || openCats.has(s.id);
+      d.addEventListener("toggle", () => { d.open ? openCats.add(s.id) : openCats.delete(s.id); });
+      const mark = t => q ? esc(t).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"), m=>`<mark>${m}</mark>`) : esc(t);
+      d.innerHTML = `<summary><span>${esc(s.name)}</span><span class="n">${cs.length}문장</span></summary>` +
+        cs.map(c => `<button class="li" type="button" data-id="${c.id}"><span class="lja" lang="ja">${mark(c.ja)}</span><span class="lko">${mark(c.ko)}</span>
+          <span class="meta">${c.mastered?'<span class="badge done">✓ 한 달 완료</span>':`<span class="badge ${c.status}">${{new:"새 카드",again:"다시 외우기",known:"외움"}[c.status]}</span>`}${c.rv&&!c.mastered?`<span class="badge">${STAGE[Math.min(c.rv.stage,3)]} · ${md(c.rv.due)}</span>`:''}${c.mine?'<span class="badge mine">내가 말한 문장</span>':''}${c.wrong?`<span class="badge">틀림 ${c.wrong}</span>`:''}${c.fav?'<span class="lstar">★</span>':''}</span></button>`).join("") +
+        `<div class="cat-actions"><button class="btn small danger" data-del="${s.id}" type="button">이 상황 지우기</button></div>`;
+      cats.append(d);
+    });
+    if (!cats.children.length) cats.innerHTML = `<div class="empty" style="margin-top:12px"><strong>${q?"검색 결과가 없어요":"카드가 없어요"}</strong>${q?"다른 단어로 찾아보세요.":"추가 메뉴에서 문장을 만들어 보세요."}</div>`;
+    $("#cnt").textContent = `${total}문장 · 가나다순`;
+  };
+  $("#q").addEventListener("input", e => { listQ = e.target.value; draw(); });
+  $("#favonly").onclick = e => { favOnly = !favOnly; e.currentTarget.setAttribute("aria-pressed", favOnly); e.currentTarget.className = favOnly ? "btn small primary" : "btn small"; draw(); };
+  $("#cats").addEventListener("click", e => {
+    const li = e.target.closest(".li"); if (li) return openCard(S.cards[li.dataset.id], draw);
+    const del = e.target.closest("[data-del]"); if (del) confirmDel(del.dataset.del, draw);
+  });
+  draw();
+}
+function openCard(c, after){
+  c.shows++; save();
+  const sh = document.createElement("div"); sh.className = "sheet";
+  sh.innerHTML = `<div class="sheet-inner"><div class="row" style="justify-content:space-between;margin-bottom:10px"><span class="note">카드 보기 · 위쪽 체크는 한 달 복습 완료 표시</span><button class="btn small" id="close">닫기</button></div><div id="slot"></div>
+  <div class="deck-actions"><button class="btn" id="st-again">다시 외우기로</button><button class="btn" id="st-known">외움으로</button></div>
+  <button class="btn small danger" id="delc" style="margin-top:12px">이 카드 지우기</button></div>`;
+  const slot = $("#slot", sh);
+  const put = () => { slot.innerHTML = ""; const el = cardEl(c, {status:true, date:true, check:true}); el.addEventListener("changed", put); slot.append(el); };
+  put();
+  const close = () => { sh.remove(); after && after(); };
+  sh.addEventListener("click", e => { if (e.target === sh) close(); });
+  $("#close", sh).onclick = close;
+  $("#st-again", sh).onclick = () => { c.status="again"; save(); toast("다시 외우기로 옮겼어요"); close(); };
+  $("#st-known", sh).onclick = () => { c.status="known"; save(); toast("외움으로 옮겼어요"); close(); };
+  $("#delc", sh).onclick = e => { if (e.currentTarget.dataset.sure){ forget("cards", c.id); save(); close(); } else { e.currentTarget.dataset.sure = 1; e.currentTarget.textContent = "한 번 더 누르면 지워져요"; } };
+  document.body.append(sh);
+}
+function confirmDel(sid, after){
+  const s = S.sits[sid]; const n = Object.values(S.cards).filter(c=>c.sid===sid).length;
+  const sh = document.createElement("div"); sh.className = "sheet";
+  sh.innerHTML = `<div class="sheet-inner confirm"><b>‘${esc(s.name)}’ 상황과 카드 ${n}장을 지울까요?</b><p class="note">지운 카드는 되돌릴 수 없어요.</p><div class="deck-actions"><button class="btn" id="no">취소</button><button class="btn primary" id="yes">지우기</button></div></div>`;
+  $("#no", sh).onclick = () => sh.remove();
+  $("#yes", sh).onclick = () => { Object.values(S.cards).forEach(c => { if (c.sid===sid) forget("cards", c.id); }); forget("sits", sid); S.studySel = S.studySel.filter(x=>x!==sid); save(); sh.remove(); after(); };
+  document.body.append(sh);
+}
+
+/* ---------- 리스닝 드릴: 문장마다 10번, 고른 속도(1배 / 1.5배)로 ---------- */
+const DRILL_N = 10, SPEEDS = [1, 1.5];
+const drillRate = () => SPEEDS.includes(S.drillRate) ? S.drillRate : 1;
+const RATE = () => drillRate();
+let AIDX = null, D = null;
+async function audioIndex(){
+  if (!PHONE) return {};
+  if (AIDX) return AIDX;
+  try { const r = await fetch("audio/index.json", {cache:"no-cache"}); AIDX = r.ok ? await r.json() : {}; } catch(e){ AIDX = {}; }
+  return AIDX;
+}
+async function hashJa(t){
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(t).trim()));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,"0")).join("").slice(0,16);
+}
+const XICON = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+async function startDrill(cards){
+  if (!cards.length) return;
+  closeDrill();
+  const idx = await audioIndex();
+  const items = await Promise.all(cards.map(async c => {
+    let h = ""; try { h = await hashJa(c.ja); } catch(e){}
+    const a = h && idx[h] ? {src:`audio/${h}.mp3`, starts:idx[h].starts} : null;
+    return {c, a};
+  }));
+  const ov = document.createElement("div"); ov.className = "drill"; ov.setAttribute("role","dialog"); ov.setAttribute("aria-label","리스닝 드릴");
+  ov.innerHTML = `<button class="x" type="button" id="dx" aria-label="드릴 끄기">${XICON}</button>
+    <div class="drill-in"><div class="drill-top"><b id="dsit"></b><span id="dpos"></span></div>
+    <div class="drill-bar"><i id="dbar"></i></div>
+    <div id="dcard"></div>
+    <div class="speed"><span id="drep"></span><div class="seg" id="dspd" style="min-width:150px">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배" : "1.5배"}</button>`).join("")}</div></div>
+    <div class="dots" id="ddots">${"<i></i>".repeat(DRILL_N)}</div>
+    <div class="ctrls"><button class="btn" id="dprev" type="button">◀ 이전</button><button class="btn primary" id="dplay" type="button">일시정지</button><button class="btn" id="dnext" type="button">다음 ▶</button></div>
+    <p class="note" id="dnote"></p></div>`;
+  document.body.append(ov);
+  const audio = document.createElement("audio"); audio.preload = "auto"; audio.setAttribute("playsinline",""); ov.append(audio);
+  D = {items, i:0, rep:0, tok:0, paused:false, ov, audio, wake:null, closed:false};
+  const noAudio = items.filter(x => !x.a).length;
+  $("#dnote").textContent = !PHONE ? "작업실에서는 화면이 켜져 있을 때만 들려요. 잠금 화면에서 들으려면 폰 앱에서 드릴을 켜 주세요."
+    : noAudio === items.length ? "아직 음성 파일이 없는 문장이라 화면이 켜져 있을 때만 들려요. 음성 파일은 앱을 업데이트할 때 만들어져요."
+    : noAudio ? `${noAudio}문장은 아직 음성 파일이 없어서 화면이 켜져 있을 때만 들려요. 나머지는 잠금 화면에서도 계속 들려요.`
+    : "화면을 잠가도 음악처럼 계속 들려요. 잠금 화면에서 일시정지·다음 문장도 할 수 있어요.";
+  $("#dx").onclick = closeDrill;
+  $("#dprev").onclick = () => playItem(Math.max(0, D.i - 1));
+  $("#dnext").onclick = () => nextItem();
+  $("#dplay").onclick = togglePause;
+  $("#dspd").onclick = e => { const b = e.target.closest("button"); if (!b || !D) return; S.drillRate = +b.dataset.r; saveLocal();
+    $("#dspd").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", +x.dataset.r === drillRate()));
+    if (D.items[D.i].a) D.audio.playbackRate = drillRate();
+    else if (!D.paused) { D.tok++; try { speechSynthesis.cancel(); } catch(e){} ttsRep(D.rep); } };
+  audio.addEventListener("timeupdate", () => {
+    const it = D && D.items[D.i]; if (!it || !it.a) return;
+    let k = 0; it.a.starts.forEach((t, j) => { if (audio.currentTime + 0.05 >= t) k = j; });
+    if (k !== D.rep) { D.rep = k; drawRep(); }
+    const bar = $("#dbar"); if (bar && audio.duration) bar.style.width = (((D.i + audio.currentTime / audio.duration) / D.items.length) * 100) + "%";
+  });
+  audio.addEventListener("ended", () => nextItem());
+  audio.addEventListener("pause", () => { if (D && !D.closed && D.items[D.i].a) { D.paused = true; drawPlay(); } });
+  audio.addEventListener("play", () => { if (D) { D.paused = false; drawPlay(); } });
+  if ("mediaSession" in navigator) {
+    try {
+      navigator.mediaSession.setActionHandler("play", () => { if (D && D.paused) togglePause(); });
+      navigator.mediaSession.setActionHandler("pause", () => { if (D && !D.paused) togglePause(); });
+      navigator.mediaSession.setActionHandler("nexttrack", () => nextItem());
+      navigator.mediaSession.setActionHandler("previoustrack", () => playItem(Math.max(0, D.i - 1)));
+    } catch(e){}
+  }
+  if (items.some(x => !x.a) && navigator.wakeLock) { try { D.wake = await navigator.wakeLock.request("screen"); } catch(e){} }
+  playItem(0);
+}
+function drawItem(){
+  const it = D.items[D.i], c = it.c;
+  $("#dsit").textContent = sitName(c);
+  $("#dpos").textContent = `문장 ${D.i + 1} / ${D.items.length}${it.a ? "" : " · 화면 켜짐 필요"}`;
+  const slot = $("#dcard"); slot.innerHTML = ""; slot.append(cardEl(c));
+  const bar = $("#dbar"); if (bar) bar.style.width = ((D.i / D.items.length) * 100) + "%";
+  if ("mediaSession" in navigator) {
+    try { navigator.mediaSession.metadata = new MediaMetadata({title:c.ja, artist:c.ko, album:`일본어드릴 · ${sitName(c)}`,
+      artwork:[{src:"icons/icon-512.png", sizes:"512x512", type:"image/png"}]}); } catch(e){}
+  }
+  drawRep();
+}
+function drawRep(){
+  const dots = D.ov.querySelectorAll("#ddots i");
+  dots.forEach((d, j) => { d.className = j < D.rep ? "on" : j === D.rep ? "now" : ""; });
+  $("#drep").textContent = `${D.rep + 1}번째 / ${DRILL_N}번`;
+}
+function drawPlay(){ const b = $("#dplay"); if (b) b.textContent = D.paused ? "▶ 이어 듣기" : "일시정지"; }
+function playItem(i){
+  if (!D || D.closed) return;
+  D.i = i; D.rep = 0; D.tok++; D.paused = false;
+  try { speechSynthesis.cancel(); } catch(e){}
+  const it = D.items[i]; it.c.shows++; saveLocal();
+  drawItem(); drawPlay();
+  if (it.a) { D.audio.src = it.a.src; D.audio.preservesPitch = true; D.audio.defaultPlaybackRate = drillRate(); D.audio.playbackRate = drillRate(); D.audio.play().catch(() => { D.paused = true; drawPlay(); }); }
+  else { D.audio.pause(); D.audio.removeAttribute("src"); ttsRep(0); }
+}
+function ttsRep(k){
+  if (!D || D.closed || D.paused) return;
+  const tok = D.tok, c = D.items[D.i].c;
+  D.rep = k; drawRep();
+  try {
+    const u = new SpeechSynthesisUtterance(c.ja); u.lang = "ja-JP"; u.rate = RATE(); if (jaVoice) u.voice = jaVoice;
+    u.onend = () => { if (!D || D.tok !== tok || D.paused) return; setTimeout(() => { if (!D || D.tok !== tok || D.paused) return; k < DRILL_N - 1 ? ttsRep(k + 1) : nextItem(); }, 650); };
+    speechSynthesis.speak(u);
+  } catch(e) { $("#dnote").textContent = "이 기기에서는 음성을 재생할 수 없어요."; }
+}
+function nextItem(){
+  if (!D || D.closed) return;
+  if (D.i + 1 < D.items.length) return playItem(D.i + 1);
+  D.tok++; D.paused = true; drawPlay(); save();
+  $("#drep").textContent = "드릴을 다 들었어요";
+  $("#dplay").textContent = "↺ 처음부터 다시"; $("#dplay").onclick = () => { $("#dplay").onclick = togglePause; playItem(0); };
+  const bar = $("#dbar"); if (bar) bar.style.width = "100%";
+}
+function togglePause(){
+  if (!D) return;
+  const it = D.items[D.i];
+  if (it.a) { if (D.audio.paused) D.audio.play().catch(()=>{}); else D.audio.pause(); return; }
+  if (D.paused) { D.paused = false; drawPlay(); D.tok++; ttsRep(D.rep); }
+  else { D.paused = true; D.tok++; try { speechSynthesis.cancel(); } catch(e){} drawPlay(); }
+}
+function closeDrill(){
+  if (!D) return;
+  D.closed = true; D.tok++;
+  try { D.audio.pause(); D.audio.removeAttribute("src"); D.audio.load(); } catch(e){}
+  try { speechSynthesis.cancel(); } catch(e){}
+  try { D.wake && D.wake.release(); } catch(e){}
+  if ("mediaSession" in navigator) { try { navigator.mediaSession.metadata = null; ["play","pause","nexttrack","previoustrack"].forEach(a => navigator.mediaSession.setActionHandler(a, null)); } catch(e){} }
+  D.ov.remove(); D = null; save();
+  if (tab === "list") render();
+}
+addEventListener("keydown", e => { if (e.key === "Escape" && D) closeDrill(); });
+
+/* ---------- 추가 ---------- */
+let busy = null;
+function syncPanel(){
+  let last = 0; try { last = +localStorage.getItem(KEY+".lastSync") || 0; } catch(e){}
+  return PHONE ? `<div class="panel"><h3>1. AI 작업실로 기록 보내기</h3>
+    <p class="note">버튼을 누르면 지금까지의 카드·복습 기록이 파일 하나로 저장되고 AI 작업실이 열려요. 작업실의 ‘폰 앱 기록 받기’에서 그 파일을 열어 주세요.</p>
+    <button class="btn primary" id="syncOut">기록 저장하고 AI 작업실 열기</button>
+    <a class="btn" id="wsLink" href="${WORKSHOP}" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">AI 작업실만 열기</a>
+    <p class="log" id="outLog"></p></div>
+  <div class="panel"><h3>2. 작업실에서 만든 카드 받기</h3>
+    <p class="note">작업실에서 ‘폰 앱으로 보내기’로 저장한 파일을 열면, 카드마다 더 최근 기록으로 합쳐져요. 이 폰에서 공부한 기록은 지워지지 않아요.</p>
+    <label class="btn primary" for="syncIn" style="text-align:center">작업실 파일 열기</label><input id="syncIn" type="file" accept=".json,application/json" hidden>
+    <p class="log" id="inLog">${last?`마지막으로 받은 때: ${when(last)}`:""}</p></div>`
+  : `<div class="panel"><h3>폰 앱과 주고받기</h3>
+    <p class="note">이 작업실의 기록은 Claude 계정에 자동 백업돼요. 폰 앱으로 옮길 때만 아래를 쓰세요.</p>
+    <label class="btn" for="syncIn" style="text-align:center">폰 앱 기록 받기</label><input id="syncIn" type="file" accept=".json,application/json" hidden>
+    <p class="log" id="inLog">${last?`마지막으로 받은 때: ${when(last)}`:""}</p>
+    <button class="btn primary" id="syncOut">폰 앱으로 보내기</button>
+    <p class="log" id="outLog"></p></div>`;
+}
+function bindSync(v){
+  const out = $("#syncOut", v), inp = $("#syncIn", v);
+  if (out) out.onclick = async () => {
+    const log = $("#outLog"); out.disabled = true;
+    const r = await sendSyncFile(); out.disabled = false;
+    if (r === "saved") {
+      log.textContent = PHONE ? "기록을 저장했어요. 열린 AI 작업실에서 ‘폰 앱 기록 받기’로 이 파일을 열어 주세요." : "파일을 저장했어요. 폰 앱의 ‘작업실 파일 열기’로 이 파일을 열어 주세요.";
+      if (PHONE) { try { window.open(WORKSHOP, "_blank", "noopener"); } catch(e){} }
+    } else log.textContent = r === "declined" ? "저장을 취소했어요." : "이 화면에서는 파일을 저장할 수 없어요.";
+  };
+  if (inp) inp.onchange = async e => {
+    const f = e.target.files && e.target.files[0], log = $("#inLog"); if (!f) return;
+    try { const r = await receiveSyncFile(f); log.textContent = r.n ? `카드와 기록 ${r.n}건을 합쳤어요.` : "이미 같은 기록이라 바뀐 게 없어요."; updateDue(); }
+    catch(_){ log.textContent = "이 앱의 기록 파일이 아니에요."; }
+    e.target.value = "";
+  };
+}
+function renderPhoneAdd(v){
+  v.innerHTML = `<div class="banner">문장 만들기, 자료에서 업무 뽑기, 말로 푸는 퀴즈는 AI가 필요해서 Claude의 AI 작업실에서 해요. 추가 비용은 없어요.</div>${syncPanel()}`;
+  bindSync(v);
+}
+function renderAdd(v){
+  if (PHONE) return renderPhoneAdd(v);
+  const on = online();
+  const srcs = [...new Set(Object.values(S.sits).map(s=>s.source).filter(Boolean))];
+  v.innerHTML = `${on?"":`<div class="banner warn">${navigator.onLine?"AI에 연결되지 않았어요. claude.ai 또는 Claude 앱에서 이 앱을 열면 문장 만들기를 쓸 수 있어요.":"오프라인이에요. 문장 만들기는 인터넷이 연결되면 할 수 있어요. 이미 만든 카드는 계속 공부할 수 있어요."}</div>`}
+  <div class="panel"><h3>공부하고 싶은 상황 직접 입력</h3>
+    <input class="field" id="sitIn" placeholder="예: 거래처 미팅 일정 잡기" maxlength="80">
+    <button class="btn primary" id="sitGo" ${on?"":"disabled"}>필수 문장 10개 만들기</button>
+    <p class="log" id="sitLog"></p></div>
+  <div class="panel"><h3>업무 자료 넣기</h3>
+    <p class="note">엑셀, 워드, PDF, 텍스트 파일을 올리면 업무를 먼저 뽑아 드려요. 홈페이지는 이 화면에서 직접 열 수 없어서, 주소와 함께 페이지 내용을 복사해 붙여 넣어 주세요.</p>
+    ${srcs.length?`<p class="note">넣은 자료: ${srcs.map(esc).join(", ")}</p>`:""}
+    <input class="field" id="file" type="file" multiple accept=".xlsx,.xls,.csv,.docx,.pdf,.txt,.md">
+    <div class="row" id="files"></div>
+    <input class="field" id="url" type="url" placeholder="홈페이지 주소 (선택)">
+    <textarea class="field" id="paste" placeholder="업무 내용, 메일, 홈페이지 내용을 붙여 넣기 (선택)"></textarea>
+    <button class="btn primary" id="extract" ${on?"":"disabled"}>업무 추출하기</button>
+    <p class="log" id="exLog"></p>
+    <div id="pending"></div></div>
+  ${syncPanel()}`;
+  $("#sitGo").onclick = async () => {
+    const name = $("#sitIn").value.trim(), log = $("#sitLog"); if (!name) { log.textContent = "상황을 입력해 주세요."; return; }
+    if (busy) return; busy = new AbortController(); $("#sitGo").disabled = true; log.textContent = "일본 현지 거래 대화에서 쓰는 문장을 고르는 중… (최대 1분 정도)";
+    try { const list = await genSentences(name, "", busy.signal); const s = addSentences(name, "", list, "직접 입력");
+      log.textContent = `‘${s.name}’에 ${list.length}문장을 추가했어요. 공부 탭에서 바로 볼 수 있어요.`; $("#sitIn").value = ""; }
+    catch(e){ log.textContent = aiErr(e); } finally { busy = null; const b = $("#sitGo"); if (b) b.disabled = !online(); }
+  };
+  let picked = [];
+  $("#file").onchange = e => { picked = Array.from(e.target.files||[]); $("#files").innerHTML = picked.map(f=>`<span class="file-pill">${esc(f.name)}</span>`).join(""); };
+  $("#extract").onclick = async () => {
+    const log = $("#exLog"); if (busy) return;
+    const url = $("#url").value.trim(), paste = $("#paste").value.trim();
+    if (!picked.length && !paste) { log.textContent = url ? "홈페이지 내용은 직접 읽을 수 없어요. 페이지 내용을 복사해 붙여 넣어 주세요." : "파일을 올리거나 내용을 붙여 넣어 주세요."; return; }
+    busy = new AbortController(); $("#extract").disabled = true;
+    try {
+      let text = ""; const names = [];
+      for (const f of picked){ log.textContent = `${f.name} 읽는 중…`; text += `\n\n[파일: ${f.name}]\n` + await readFile(f); names.push(f.name); }
+      if (paste) text += `\n\n[붙여 넣은 내용${url?` · ${url}`:""}]\n` + paste;
+      text = text.trim().slice(0, 40000);
+      if (!text) throw {code:"empty", msg:"파일에서 글자를 찾지 못했어요. 스캔한 PDF라면 내용을 붙여 넣어 주세요."};
+      log.textContent = "자료에서 업무를 뽑는 중…";
+      const arr = await sample.json(`다음은 한국인 직장인이 올린 업무 자료다. 이 사람이 일본인 클라이언트·거래처와 일본어로 소통해야 할 구체적인 업무 상황을 뽑아라.
+- 각 상황은 짧은 한국어 이름(예: "거래처 미팅 일정 조율", "납기 지연 사과", "제품 문의 응대")과 한 줄 설명.
+- 자료에 근거한 것만, 겹치지 않게, 최대 20개.
+JSON 배열만 답하라: [{"name":"","desc":""}]
+
+자료:
+${text}`, {signal:busy.signal});
+      if (!Array.isArray(arr) || !arr.length) throw {code:"invalid_json"};
+      S.pending = {src:names.join(", ")||url||"붙여 넣은 내용", items:arr.filter(x=>x&&x.name).slice(0,20).map(x=>({id:uid(), name:String(x.name).trim(), desc:String(x.desc||"")}))};
+      S.pendingSel = []; save(); log.textContent = `업무 ${S.pending.items.length}개를 찾았어요. 공부하고 싶은 업무를 켜 주세요.`; drawPending();
+    } catch(e){ log.textContent = e && e.msg ? e.msg : aiErr(e); }
+    finally { busy = null; const b = $("#extract"); if (b) b.disabled = !online(); }
+  };
+  drawPending();
+  bindSync(v);
+}
+function drawPending(){
+  const box = $("#pending"); if (!box) return; box.innerHTML = "";
+  if (!S.pending || !S.pending.items.length) return;
+  const status = document.createElement("div");
+  box.append(picker({key:"pending", title:`추출한 업무 · ${S.pending.src}`, items:S.pending.items, selected:S.pendingSel,
+    onChange: sel => { S.pendingSel = sel; save(); drawBtn(); }}));
+  box.append(status);
+  const drawBtn = () => {
+    const n = S.pendingSel.length;
+    status.innerHTML = `<div class="row" style="margin-top:10px"><button class="btn primary" id="mk" style="flex:1" ${n&&online()?"":"disabled"}>켠 업무 ${n}개로 문장 만들기</button><button class="btn" id="clr">목록 닫기</button></div><p class="log" id="mkLog"></p>`;
+    $("#clr").onclick = () => { S.pending = null; S.pendingSel = []; save(); drawPending(); };
+    $("#mk").onclick = make;
+  };
+  const make = async () => {
+    if (busy) return; busy = new AbortController(); const log = $("#mkLog"); $("#mk").disabled = true;
+    const todo = S.pending.items.filter(i => S.pendingSel.includes(i.id)); let done = 0, fail = [];
+    for (const it of todo){
+      log.textContent = `${done+1}/${todo.length} ‘${it.name}’ 필수 문장 고르는 중…`;
+      try { const list = await genSentences(it.name, it.desc, busy.signal); addSentences(it.name, it.desc, list, S.pending.src);
+        S.pending.items = S.pending.items.filter(x=>x.id!==it.id); S.pendingSel = S.pendingSel.filter(x=>x!==it.id); save(); done++; }
+      catch(e){ if (e && e.code==="cancelled") break; fail.push(it.name); if (e && (e.code==="not_granted"||e.code==="rate_limited"||e.code==="sampling_disabled")) { break; } }
+    }
+    busy = null;
+    drawPending();
+    const l2 = $("#mkLog") || $("#exLog");
+    l2.textContent = `${done}개 업무의 카드를 만들었어요. 공부 탭에서 확인하세요.${fail.length?`\n만들지 못한 업무: ${fail.join(", ")} (다시 눌러 주세요)`:""}`;
+  };
+  drawBtn();
+}
+const libs = {};
+function loadLib(src){ return libs[src] || (libs[src] = new Promise((ok, no) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = () => { delete libs[src]; no({code:"lib", msg:"파일을 읽는 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요."}); }; document.head.append(s); })); }
+async function readFile(f){
+  const ext = (f.name.split(".").pop()||"").toLowerCase();
+  if (["txt","md"].includes(ext)) return await f.text();
+  if (["xlsx","xls","csv"].includes(ext)){
+    await loadLib("https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js");
+    const wb = XLSX.read(await f.arrayBuffer(), {type:"array"});
+    return wb.SheetNames.map(n => `# ${n}\n` + XLSX.utils.sheet_to_csv(wb.Sheets[n])).join("\n");
+  }
+  if (ext === "docx"){
+    await loadLib("https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js");
+    return (await mammoth.extractRawText({arrayBuffer: await f.arrayBuffer()})).value;
+  }
+  if (ext === "pdf"){
+    await loadLib("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");
+    await loadLib("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js");
+    const doc = await pdfjsLib.getDocument({data: new Uint8Array(await f.arrayBuffer()), isEvalSupported:false, disableFontFace:true}).promise;
+    let out = ""; for (let p=1; p<=Math.min(doc.numPages, 40); p++){ const tc = await (await doc.getPage(p)).getTextContent(); out += tc.items.map(i=>i.str).join(" ") + "\n"; }
+    return out;
+  }
+  throw {code:"type", msg:`${f.name}: 이 형식은 읽을 수 없어요.`};
+}
+
+if (PHONE) { const b = document.querySelector('nav.tabs [data-tab="add"]'); if (b) b.lastChild.textContent = "AI 작업실"; }
+updateNet(); updateDue();
+render();
+})();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=e406040ae4").catch(()=>{}));
+// 드릴 음성 파일을 미리 폰에 저장해서, 인터넷 없이 화면을 잠가도 들리게 한다
+addEventListener("load", () => setTimeout(async () => {
+  if (!navigator.onLine || !("caches" in window)) return;
+  try {
+    const idx = await (await fetch("audio/index.json", {cache:"no-cache"})).json();
+    const c = await caches.open("drill-audio");
+    for (const h of Object.keys(idx)) {
+      const u = new URL("audio/" + h + ".mp3", location.href).href;
+      if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e) {} }
+    }
+  } catch(e) {}
+}, 1500));
+</script>
+</body>
+</html>
