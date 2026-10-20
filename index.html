@@ -1263,7 +1263,17 @@ if (DUPS_FIXED) setTimeout(() => toast(`겹친 상황과 카드 ${DUPS_FIXED}개
 </script>
 
 <script>
-if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=a6f86cecb9").catch(()=>{}));
+if ("serviceWorker" in navigator) {
+  const hadCtl = !!navigator.serviceWorker.controller;
+  // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!hadCtl) return;
+    try { if (sessionStorage.getItem("jd-reloaded") === "a6f86cecb9") return; sessionStorage.setItem("jd-reloaded", "a6f86cecb9"); } catch(e) {}
+    location.reload();
+  });
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=a6f86cecb9", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
+}
 
 </script>
 </body>

@@ -30,6 +30,19 @@ self.addEventListener("fetch", e => {
   const isFont = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
   const isLib = url.hostname === "cdnjs.cloudflare.com";
   if (url.origin !== location.origin && !isFont && !isLib) return;
+  // 앱 화면 자체는 인터넷이 되면 항상 최신 것을 받고, 안 되면 저장해 둔 것을 쓴다
+  if (req.mode === "navigate" || (url.origin === location.origin && /\/(index\.html)?$/.test(url.pathname))) {
+    e.respondWith(caches.open(CACHE).then(async c => {
+      try {
+        const r = await Promise.race([fetch(req, {cache: "no-store"}), new Promise((_, no) => setTimeout(() => no("slow"), 4000))]);
+        if (r && r.ok) { c.put("./", r.clone()); return r; }
+        throw 0;
+      } catch (_) {
+        return (await c.match("./")) || (await c.match("index.html")) || new Response("오프라인이에요", {status: 503, headers: {"Content-Type": "text/plain; charset=utf-8"}});
+      }
+    }));
+    return;
+  }
   e.respondWith(caches.open(CACHE).then(async c => {
     const hit = await c.match(req, {ignoreSearch: url.origin === location.origin});
     const net = fetch(req).then(r => { if (r && (r.ok || r.type === "opaque")) c.put(req, r.clone()); return r; }).catch(() => hit || new Response("", {status: 504}));
