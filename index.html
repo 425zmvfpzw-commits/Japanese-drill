@@ -203,7 +203,7 @@ nav.tabs .dot{position:absolute;top:2px;left:calc(50% + 6px);font-family:var(--f
 .drill-top{padding-right:52px}
 .drill-top b{display:block;font-size:13px;color:var(--indigo)}
 .drill-top span{font-size:12px;color:var(--muted);font-family:var(--f-num)}
-.drill .card{touch-action:auto;user-select:text}
+.drill .card{touch-action:pan-y;user-select:text}
 .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
 .dots i{height:8px;border-radius:4px;background:var(--line)}
 .dots i.on{background:var(--shu)}
@@ -578,7 +578,7 @@ function swipe(el, h){
   let sx, sy, dx=0, dy=0, on=false, id;
   el.addEventListener("pointerdown", e => { if (e.target.closest("button,textarea,input")) return; on=true; id=e.pointerId; sx=e.clientX; sy=e.clientY; dx=dy=0; el.classList.add("dragging"); try{el.setPointerCapture(id);}catch(_){} });
   el.addEventListener("pointermove", e => { if(!on) return; dx=e.clientX-sx; dy=e.clientY-sy;
-    const tx = h.left ? Math.min(dx, 40) : 0, ty = (h.up||h.down) ? dy : 0;
+    const tx = (h.left && h.right) ? dx : h.left ? Math.min(dx, 40) : h.right ? Math.max(dx, -40) : 0, ty = (h.up||h.down) ? dy : 0;
     el.style.transform = `translate(${tx}px,${ty}px) rotate(${tx/25}deg)`; });
   const end = () => { if(!on) return; on=false; el.classList.remove("dragging");
     const T = 70;
@@ -586,6 +586,7 @@ function swipe(el, h){
     if (h.up && dy < -T && Math.abs(dy) > Math.abs(dx)) return fly(el, 0, -600, h.up);
     if (h.down && dy > T && Math.abs(dy) > Math.abs(dx)) return fly(el, 0, 600, h.down);
     if (h.left && dx < -T && Math.abs(dx) > Math.abs(dy)) return fly(el, -600, 0, h.left);
+    if (h.right && dx > T && Math.abs(dx) > Math.abs(dy)) { if (!h.rightOk || h.rightOk()) return fly(el, 600, 0, h.right); h.rightNo && h.rightNo(); }
     el.style.transform = ""; };
   el.addEventListener("pointerup", end); el.addEventListener("pointercancel", () => { on=false; el.classList.remove("dragging"); el.style.transform=""; });
 }
@@ -644,7 +645,7 @@ function popUndo(kind){
   }
   return null;
 }
-const undoBtn = kind => undo[kind].length ? `<button class="btn small" id="undo" type="button" style="width:100%;margin-top:8px">↶ 방금 넘긴 카드 다시 보기</button>` : "";
+
 let studyMode = "new", lastShown = null;
 function renderStudy(v){
   const due = dueCards();
@@ -666,33 +667,34 @@ function drawDeck(stage){
   const deck = Object.values(S.cards).filter(c => S.studySel.includes(c.sid) && c.status !== "known").sort((a,b)=>a.order-b.order);
   if (!S.studySel.length){ stage.innerHTML = `<div class="empty"><strong>업무 상황을 골라 주세요</strong>위의 토글을 하나 이상 켜면 카드가 나와요.</div>`; return; }
   if (!deck.length){
-    stage.innerHTML = `<div class="empty"><strong>선택한 상황의 카드를 모두 외웠어요</strong>퀴즈를 풀면 망각주기에 맞춰 복습 카드가 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn" id="reset">외운 카드 다시 공부하기</button></div></div>${undoBtn("study")}`;
-    bindStudyUndo(stage);
+    stage.innerHTML = `<div class="empty"><strong>선택한 상황의 카드를 모두 외웠어요</strong>퀴즈를 풀면 망각주기에 맞춰 복습 카드가 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn" id="reset">외운 카드 다시 공부하기</button></div>${undo.study.length ? '<p class="note" style="margin-top:10px">→ 오른쪽으로 밀면 방금 넘긴 카드가 다시 나와요</p>' : ""}</div>`;
+    const box = stage.firstElementChild; box.style.touchAction = "pan-y";
+    swipe(box, {right: () => studyBack(stage), rightOk: () => undo.study.length > 0, rightNo: () => {}});
     $("#reset",stage).onclick = () => { Object.values(S.cards).forEach(c => { if (S.studySel.includes(c.sid) && !c.mastered) c.status="again"; }); save(); drawDeck(stage); };
     return;
   }
   const c = deck[0];
   if (lastShown !== c.id + ":" + c.order){ c.shows++; save(); lastShown = c.id + ":" + c.order; }
   const el = cardEl(c, {status:true}); stage.append(el);
-  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 아래로: 다시 외우기</span><span>남은 카드 ${deck.length}장</span><span>↑ 위로: 외웠어요</span></div>
-    <div class="deck-actions"><button class="btn" id="again">다시 외우기</button><button class="btn primary" id="known">외웠어요</button></div>${undoBtn("study")}`);
-  bindStudyUndo(stage);
+  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 다음 카드</span><span>남은 카드 ${deck.length}장</span><span>이전 카드 →</span></div>
+    <div class="swipe-hint" style="margin-top:2px"><span>↓ 다시 외우기</span><span>↑ 외웠어요</span></div>
+    <div class="deck-actions"><button class="btn" id="again">다시 외우기</button><button class="btn primary" id="known">외웠어요</button></div>`);
   const again = () => { pushUndo("study", c); c.status="again"; c.order = Math.max(...deck.map(d=>d.order)) + 1; save(); drawDeck(stage); };
   const known = () => { pushUndo("study", c); c.status="known"; save(); toast("외운 카드 목록에 넣었어요"); drawDeck(stage); };
-  swipe(el, {up:known, down:again});
+  const skip = () => { pushUndo("study", c); c.order = Math.max(...deck.map(d=>d.order)) + 1; save(); drawDeck(stage); };
+  swipe(el, {up:known, down:again, left:skip, right:() => studyBack(stage), rightOk:() => undo.study.length > 0, rightNo:() => toast("처음 카드예요")});
   $("#again",stage).onclick = () => fly(el,0,600,again);
   $("#known",stage).onclick = () => fly(el,0,-600,known);
 }
-function bindStudyUndo(stage){
-  const b = $("#undo", stage); if (!b) return;
-  b.onclick = () => {
-    const c = popUndo("study"); if (!c) return;
-    c.order = Math.min(...Object.values(S.cards).map(x => x.order || 0)) - 1;
-    if (!S.studySel.includes(c.sid)) S.studySel.push(c.sid);
-    save(); drawDeck(stage);
-  };
+function studyBack(stage){
+  const c = popUndo("study"); if (!c) return drawDeck(stage);
+  c.order = Math.min(...Object.values(S.cards).map(x => x.order || 0)) - 1;
+  if (!S.studySel.includes(c.sid)) S.studySel.push(c.sid);
+  save(); drawDeck(stage);
 }
+const reviewSkip = [];
 function renderReview(v, due){
+  due = [...due.filter(c => !reviewSkip.includes(c.id)), ...reviewSkip.map(id => due.find(c => c.id === id)).filter(Boolean)];
   if (reviewPin && S.cards[reviewPin] && !due.some(c => c.id === reviewPin)) due = [S.cards[reviewPin], ...due];
   else if (reviewPin) due = [...due.filter(c => c.id === reviewPin), ...due.filter(c => c.id !== reviewPin)];
   reviewPin = null;
@@ -702,17 +704,17 @@ function renderReview(v, due){
   if (!due.length){
     const next = sched.sort((a,b)=>a.rv.due-b.rv.due)[0];
     const mastered = Object.values(S.cards).filter(c=>c.mastered).length;
-    stage.innerHTML = `<div class="empty"><strong>지금 복습할 카드가 없어요</strong>${next?`다음 복습은 ${when(next.rv.due)}에 나와요.`:"퀴즈를 풀면 그 카드가 10분 → 1일 → 1주 → 1달 주기로 다시 나와요."}${mastered?`<br>한 달 복습까지 끝난 카드 ${mastered}장`:""}</div>${undoBtn("review")}${ladder}`;
-    bindReviewUndo(stage);
+    stage.innerHTML = `<div class="empty"><strong>지금 복습할 카드가 없어요</strong>${next?`다음 복습은 ${when(next.rv.due)}에 나와요.`:"퀴즈를 풀면 그 카드가 10분 → 1일 → 1주 → 1달 주기로 다시 나와요."}${mastered?`<br>한 달 복습까지 끝난 카드 ${mastered}장`:""}</div>${ladder}`;
+    if (undo.review.length) { const box = stage.firstElementChild; box.style.touchAction = "pan-y"; box.insertAdjacentHTML("beforeend", '<p class="note" style="margin-top:10px">→ 오른쪽으로 밀면 방금 넘긴 카드가 다시 나와요</p>'); swipe(box, {right: reviewBack}); }
     return;
   }
   const c = due[0];
   c.shows++; save();
   let el = cardEl(c, {mode:"ask-ko", date:true, hint:"탭해서 일본어 문장 확인"});
   stage.append(el);
-  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 잊어버렸어요 (10분 뒤 다시)</span><span>남은 ${due.length}장</span><span>↑ 기억났어요</span></div>
-    <div class="deck-actions"><button class="btn" id="forgot">잊어버렸어요</button><button class="btn primary" id="remember">기억났어요</button></div>${undoBtn("review")}${ladder}`);
-  bindReviewUndo(stage);
+  stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 다음 카드</span><span>남은 ${due.length}장</span><span>이전 카드 →</span></div>
+    <div class="swipe-hint" style="margin-top:2px"><span>↓ 잊어버렸어요 (10분 뒤 다시)</span><span>↑ 기억났어요</span></div>
+    <div class="deck-actions"><button class="btn" id="forgot">잊어버렸어요</button><button class="btn primary" id="remember">기억났어요</button></div>${ladder}`);
   const reveal = () => { if (el.classList.contains("revealed")) return; const n = cardEl(c, {date:true}); n.classList.add("revealed"); el.replaceWith(n); el = n; bind(); };
   const remember = () => {
     pushUndo("review", c);
@@ -722,15 +724,17 @@ function renderReview(v, due){
     save(); render();
   };
   const forgot = () => { pushUndo("review", c); const now = Date.now(); c.rv = {stage:0, last:now, due:now+INT[0]}; c.status = "again"; save(); toast("10분 뒤 다시 나와요"); render(); };
-  const bind = () => { swipe(el, {up:remember, down:forgot, tap:reveal}); el.addEventListener("click", e => { if (!e.target.closest("[data-act]")) reveal(); }); };
+  const skip = () => { pushUndo("review", c); const k = reviewSkip.indexOf(c.id); if (k >= 0) reviewSkip.splice(k, 1); reviewSkip.push(c.id); render(); };
+  const bind = () => { swipe(el, {up:remember, down:forgot, tap:reveal, left:skip, right:reviewBack, rightOk:() => undo.review.length > 0, rightNo:() => toast("처음 카드예요")}); el.addEventListener("click", e => { if (!e.target.closest("[data-act]")) reveal(); }); };
   bind();
   $("#remember",stage).onclick = () => fly(el,0,-600,remember);
   $("#forgot",stage).onclick = () => fly(el,0,600,forgot);
 }
 
-function bindReviewUndo(stage){
-  const b = $("#undo", stage); if (!b) return;
-  b.onclick = () => { const c = popUndo("review"); if (!c) return; reviewPin = c.id; save(); render(); };
+function reviewBack(){
+  const c = popUndo("review"); if (!c) return render();
+  const k = reviewSkip.indexOf(c.id); if (k >= 0) reviewSkip.splice(k, 1);
+  reviewPin = c.id; save(); render();
 }
 
 /* ---------- 퀴즈 ---------- */
@@ -770,11 +774,13 @@ function quizSetup(v){
 }
 function quizCard(v){
   const c = S.cards[Q.list[Q.i]];
-  v.innerHTML = `<div class="quizbar"><div class="row" style="gap:6px"><button class="btn small" id="quit">설정으로</button>${Q.i>0?'<button class="btn small" id="qprev" type="button">◀ 이전 문제</button>':''}</div><span>${Math.min(Q.i+1, Q.list.length)} / ${Q.list.length}</span><span>${Q.how==="eye"?"눈으로":"말로"} · ${Q.what==="ko"?"한글 뜻":"일본어"}</span></div>`;
+  v.innerHTML = `<div class="quizbar"><div class="row" style="gap:6px"><button class="btn small" id="quit">설정으로</button></div><span>${Math.min(Q.i+1, Q.list.length)} / ${Q.list.length}</span><span>${Q.how==="eye"?"눈으로":"말로"} · ${Q.what==="ko"?"한글 뜻":"일본어"}</span></div>`;
   $("#quit").onclick = () => { stopQuiz(); Q.step="setup"; render(); };
-  if ($("#qprev")) $("#qprev").onclick = () => { stopQuiz(); Q.i = Math.max(0, Q.i - 1); while (Q.i > 0 && !S.cards[Q.list[Q.i]]) Q.i--; render(); };
+  const prevQ = () => { stopQuiz(); Q.i = Math.max(0, Q.i - 1); while (Q.i > 0 && !S.cards[Q.list[Q.i]]) Q.i--; render(); };
+  const backOpts = {right: prevQ, rightOk: () => Q.i > 0, rightNo: () => toast("첫 문제예요")};
   if (Q.i >= Q.list.length){ v.insertAdjacentHTML("beforeend", `<div class="empty" style="margin-top:14px"><strong>퀴즈를 다 풀었어요</strong>푼 카드는 10분 뒤부터 공부 탭의 복습 카드로 다시 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn primary" id="again">다시 섞어서 풀기</button></div></div>`);
-    $("#again").onclick = () => { Q.list = quizPool(Q.scope).map(c=>c.id).sort(()=>Math.random()-.5); Q.i=0; render(); }; return; }
+    $("#again").onclick = () => { Q.list = quizPool(Q.scope).map(c=>c.id).sort(()=>Math.random()-.5); Q.i=0; render(); };
+    const box = v.querySelector(".empty"); box.style.touchAction = "pan-y"; box.insertAdjacentHTML("beforeend", '<p class="note" style="margin-top:10px">→ 오른쪽으로 밀면 마지막 문제로 돌아가요</p>'); swipe(box, backOpts); return; }
   if (!c){ Q.i++; return render(); }
   c.shows++; save();
   const stage = document.createElement("div"); stage.className = "stage"; v.append(stage);
@@ -783,19 +789,20 @@ function quizCard(v){
   if (Q.how === "eye"){
     stage.insertAdjacentHTML("beforeend", `<div class="timer" aria-label="남은 시간"><div class="face"></div><div class="disc" id="disc"></div><svg class="ticks" viewBox="0 0 88 88">${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6, r1=40, r2=i%3?37:34; return `<line x1="${44+r1*Math.sin(a)}" y1="${44-r1*Math.cos(a)}" x2="${44+r2*Math.sin(a)}" y2="${44-r2*Math.cos(a)}" stroke="var(--muted)" stroke-width="1.2"/>`}).join("")}</svg><div class="hub"></div><div class="sec" id="sec">5초</div></div><div style="height:28px"></div>`);
     let el = cardEl(c, {mode:ask, hint:"5초 안에 떠올려 보세요"}); stage.append(el);
-    stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 왼쪽으로 넘기면 다음 문제</span><span></span></div><div class="deck-actions"><button class="btn" id="show">바로 정답 보기</button><button class="btn primary" id="next">다음 문제</button></div>`);
+    stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 다음 문제</span><span>이전 문제 →</span></div><div class="deck-actions"><button class="btn" id="show">바로 정답 보기</button><button class="btn primary" id="next">다음 문제</button></div>`);
     const t0 = performance.now(), D = 5000, disc = $("#disc"), sec = $("#sec");
     const reveal = () => { if (Q.revealed) return; Q.revealed = true; cancelAnimationFrame(Q.raf); disc.style.setProperty("--p",0); sec.textContent="정답";
       quizMark(c, null); save();
-      const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next}); };
+      const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next, ...backOpts}); };
     Q.revealed = false;
     const tick = now => { const p = Math.max(0, 1-(now-t0)/D); disc.style.setProperty("--p", p); sec.textContent = Math.ceil(p*5)+"초"; if (p<=0) return reveal(); Q.raf = requestAnimationFrame(tick); };
     Q.raf = requestAnimationFrame(tick);
-    swipe(el, {left:() => { quizMark(c, null); save(); next(); }});
+    swipe(el, {left:() => { quizMark(c, null); save(); next(); }, ...backOpts});
     $("#show").onclick = reveal; $("#next").onclick = () => { quizMark(c, null); save(); fly(el,-600,0,next); };
     return;
   }
   let el = cardEl(c, {mode:ask}); stage.append(el);
+  swipe(el, {left: next, ...backOpts});
   const lang = Q.what==="ko" ? "ja-JP" : "ko-KR";
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   stage.insertAdjacentHTML("beforeend", `<div class="answerbox" id="ab">
@@ -829,8 +836,8 @@ function quizCard(v){
         }
         save();
         stage.insertAdjacentHTML("afterbegin", `<div class="result ng">아쉬워요, 다시 보기${esc(added)}</div>`);
-        const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next});
-        stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 왼쪽으로 넘기면 다음 문제</span></div><div class="deck-actions"><span></span><button class="btn primary" id="nx">다음 문제</button></div>`);
+        const n = cardEl(c); el.replaceWith(n); el = n; swipe(el,{left:next, ...backOpts});
+        stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>← 다음 문제</span><span>이전 문제 →</span></div><div class="deck-actions"><span></span><button class="btn primary" id="nx">다음 문제</button></div>`);
         $("#nx").onclick = () => fly(el,-600,0,next);
       }
     } catch(e){ if (e && e.code==="cancelled") return; gradeBtn.disabled = false; msg.textContent = aiErr(e); }
@@ -870,19 +877,38 @@ JSON 객체 하나만 답하라:
 
 /* ---------- 학습목록 ---------- */
 let listQ = "", openCats = new Set(), favOnly = false;
+const LIST_FILTERS = [["all","전체"],["again","외우는 중"],["known","외운 카드"]];
+const listFilter = () => LIST_FILTERS.some(f => f[0] === S.listFilter) ? S.listFilter : "all";
+function inFilter(c){
+  const f = listFilter();
+  if (f === "again") return c.status === "again" && !c.mastered;
+  if (f === "known") return c.status === "known" || c.mastered;
+  return true;
+}
 function renderList(v){
   if (!S.drillSel) S.drillSel = [];
   S.drillSel = S.drillSel.filter(id => S.sits[id]);
-  const dWrap = document.createElement("div");
-  const drillCards = () => sitsSorted().filter(s => S.drillSel.includes(s.id)).flatMap(s => Object.values(S.cards).filter(c => c.sid===s.id).sort((a,b)=>a.ko.localeCompare(b.ko,"ko")));
+  const fseg = document.createElement("div"); fseg.className = "seg"; fseg.style.gridTemplateColumns = "repeat(3,1fr)";
+  const cnt = k => Object.values(S.cards).filter(c => S.sits[c.sid] && (k === "all" || (k === "again" ? c.status === "again" && !c.mastered : c.status === "known" || c.mastered))).length;
+  fseg.innerHTML = LIST_FILTERS.map(([k, n]) => `<button type="button" data-f="${k}" aria-pressed="${listFilter()===k}">${n} <span class="n" style="font-family:var(--f-num);font-size:11px;opacity:.75">${cnt(k)}</span></button>`).join("");
+  fseg.onclick = e => { const b = e.target.closest("button"); if (!b) return; S.listFilter = b.dataset.f; save(); render(); };
+  v.append(fseg);
+  const dWrap = document.createElement("div"); dWrap.style.marginTop = "4px";
+  const fName = LIST_FILTERS.find(f => f[0] === listFilter())[1];
+  const drillSits = () => S.drillSel.length ? sitsSorted().filter(s => S.drillSel.includes(s.id)) : (listFilter() !== "all" ? sitsSorted() : []);
+  const drillCards = () => drillSits().flatMap(s => Object.values(S.cards).filter(c => c.sid===s.id && inFilter(c)).sort((a,b)=>a.ko.localeCompare(b.ko,"ko")));
   const dBtn = document.createElement("button"); dBtn.className = "btn primary"; dBtn.style.cssText = "width:100%;margin-top:8px"; dBtn.type = "button";
-  const setBtn = () => { const n = drillCards().length; dBtn.disabled = !n; dBtn.textContent = n ? `▶ 리스닝 드릴 시작 · ${n}문장 × 10번` : "드릴할 상황을 켜 주세요"; };
+  const setBtn = () => {
+    const n = drillCards().length; dBtn.disabled = !n;
+    const scope = listFilter() === "all" ? "" : `${fName} `;
+    dBtn.textContent = n ? `▶ ${scope}리스닝 드릴 · ${n}문장 × 10번` : (listFilter() !== "all" ? `${fName} 카드가 없어요` : "드릴할 상황을 켜 주세요");
+  };
   const spd = document.createElement("div"); spd.className = "seg"; spd.style.marginTop = "8px";
   const drawSpd = () => { spd.innerHTML = SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${`${r}배속`}</button>`).join(""); };
   spd.onclick = e => { const b = e.target.closest("button"); if (!b) return; S.drillRate = +b.dataset.r; save(); drawSpd(); };
   drawSpd();
-  dWrap.append(picker({key:"drill", title:"리스닝 드릴 · 상황 고르기", openDefault:false,
-    items: sitsSorted().map(s => ({id:s.id, name:s.name, n:Object.values(S.cards).filter(c=>c.sid===s.id).length})), selected:S.drillSel,
+  dWrap.append(picker({key:"drill", title: listFilter() === "all" ? "리스닝 드릴 · 상황 고르기" : `리스닝 드릴 · 상황 고르기 (안 고르면 ${fName} 전부)`, openDefault:false,
+    items: sitsSorted().map(s => ({id:s.id, name:s.name, n:Object.values(S.cards).filter(c=>c.sid===s.id && inFilter(c)).length})), selected:S.drillSel,
     onChange: sel => { S.drillSel = sel; save(); setBtn(); }}), spd, dBtn);
   dBtn.onclick = () => startDrill(drillCards());
   setBtn();
@@ -894,10 +920,10 @@ function renderList(v){
   const draw = () => {
     const q = listQ.trim().toLowerCase(), cats = $("#cats"); cats.innerHTML = ""; let total = 0;
     sitsSorted().forEach(s => {
-      let cs = Object.values(S.cards).filter(c => c.sid===s.id);
+      let cs = Object.values(S.cards).filter(c => c.sid===s.id && inFilter(c));
       if (favOnly) cs = cs.filter(c=>c.fav);
       if (q) cs = cs.filter(c => [c.ja,c.ko,c.pron,...c.words.map(w=>w.ja+" "+w.ko)].join(" ").toLowerCase().includes(q));
-      if (!cs.length && (q||favOnly)) return;
+      if (!cs.length && (q||favOnly||listFilter()!=="all")) return;
       cs.sort((a,b)=>a.ko.localeCompare(b.ko,"ko"));
       total += cs.length;
       const d = document.createElement("details"); d.className = "cat"; d.open = !!q || openCats.has(s.id);
@@ -909,8 +935,8 @@ function renderList(v){
         `<div class="cat-actions"><button class="btn small danger" data-del="${s.id}" type="button">이 상황 지우기</button></div>`;
       cats.append(d);
     });
-    if (!cats.children.length) cats.innerHTML = `<div class="empty" style="margin-top:12px"><strong>${q?"검색 결과가 없어요":"카드가 없어요"}</strong>${q?"다른 단어로 찾아보세요.":"추가 메뉴에서 문장을 만들어 보세요."}</div>`;
-    $("#cnt").textContent = `${total}문장 · 가나다순`;
+    if (!cats.children.length) cats.innerHTML = `<div class="empty" style="margin-top:12px"><strong>${q?"검색 결과가 없어요":listFilter()!=="all"?`${fName} 카드가 없어요`:"카드가 없어요"}</strong>${q?"다른 단어로 찾아보세요.":listFilter()==="again"?"공부 탭에서 카드를 아래로 넘기면 여기에 모여요.":listFilter()==="known"?"공부 탭에서 카드를 위로 넘기면 여기에 모여요.":"추가 메뉴에서 문장을 만들어 보세요."}</div>`;
+    $("#cnt").textContent = `${listFilter()==="all"?"":fName+" · "}${total}문장 · 가나다순`;
   };
   $("#q").addEventListener("input", e => { listQ = e.target.value; draw(); });
   $("#favonly").onclick = e => { favOnly = !favOnly; e.currentTarget.setAttribute("aria-pressed", favOnly); e.currentTarget.className = favOnly ? "btn small primary" : "btn small"; draw(); };
@@ -1091,7 +1117,8 @@ function drawItem(){
   const it = D.items[D.i], c = it.c;
   $("#dsit").textContent = sitName(c);
   $("#dpos").textContent = `문장 ${D.i + 1} / ${D.items.length}${it.a ? "" : " · 화면 켜짐 필요"}`;
-  const slot = $("#dcard"); slot.innerHTML = ""; slot.append(cardEl(c));
+  const slot = $("#dcard"); slot.innerHTML = ""; const el = cardEl(c); slot.append(el);
+  swipe(el, {left: () => nextItem(), right: () => playItem(D.i - 1), rightOk: () => D.i > 0, rightNo: () => toast("첫 문장이에요")});
   const bar = $("#dbar"); if (bar) bar.style.width = ((D.i / D.items.length) * 100) + "%";
   if ("mediaSession" in navigator) {
     try { navigator.mediaSession.metadata = new MediaMetadata({title:c.ja, artist:c.ko, album:`일본어드릴 · ${sitName(c)}`,
@@ -1351,10 +1378,10 @@ if ("serviceWorker" in navigator) {
   // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (!hadCtl) return;
-    try { if (sessionStorage.getItem("jd-reloaded") === "80ed89800b") return; sessionStorage.setItem("jd-reloaded", "80ed89800b"); } catch(e) {}
+    try { if (sessionStorage.getItem("jd-reloaded") === "d428679087") return; sessionStorage.setItem("jd-reloaded", "d428679087"); } catch(e) {}
     location.reload();
   });
-  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=80ed89800b", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=d428679087", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
 }
 
