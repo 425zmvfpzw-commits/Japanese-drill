@@ -1,5 +1,5 @@
 // 오프라인용: 앱 파일과 드릴 음성은 폰에 저장해 두고, 인터넷이 있으면 조용히 새 버전으로 바꿉니다.
-const CACHE = "nihongo-a6f86cecb9", AUDIO = "drill-audio";
+const CACHE = "nihongo-e16c2d94d3", AUDIO = "drill-audio";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith("nihongo-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

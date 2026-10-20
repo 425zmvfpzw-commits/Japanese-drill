@@ -151,7 +151,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,label:focus-with
 .timer .ticks{position:absolute;inset:0}
 .timer .hub{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--ink)}
 .timer .sec{position:absolute;left:0;right:0;bottom:-22px;text-align:center;font-family:var(--f-num);font-size:12px;color:var(--muted)}
-.quizbar{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px}
+.quizbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px}
 .answerbox{display:grid;gap:8px;margin-top:12px}
 .answerbox textarea{width:100%;min-height:70px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 12px;font:inherit;resize:vertical}
 .result{border-radius:12px;padding:10px 12px;font-weight:700;text-align:center;margin-bottom:10px}
@@ -630,6 +630,20 @@ function render(){
 }
 
 /* ---------- 공부 ---------- */
+/* 넘긴 카드 되돌리기: 넘기기 직전 상태를 기억해 두었다가 그대로 되살린다 (이 화면을 여는 동안만) */
+const undo = {study:[], review:[]};
+let reviewPin = null;
+function pushUndo(kind, c){ undo[kind].push({id:c.id, snap:JSON.parse(JSON.stringify(c))}); if (undo[kind].length > 50) undo[kind].shift(); }
+function popUndo(kind){
+  while (undo[kind].length){
+    const u = undo[kind].pop(), c = S.cards[u.id];
+    if (!c) continue;
+    const shows = c.shows; Object.assign(c, u.snap); c.shows = shows;
+    return c;
+  }
+  return null;
+}
+const undoBtn = kind => undo[kind].length ? `<button class="btn small" id="undo" type="button" style="width:100%;margin-top:8px">↶ 방금 넘긴 카드 다시 보기</button>` : "";
 let studyMode = "new", lastShown = null;
 function renderStudy(v){
   const due = dueCards();
@@ -651,7 +665,8 @@ function drawDeck(stage){
   const deck = Object.values(S.cards).filter(c => S.studySel.includes(c.sid) && c.status !== "known").sort((a,b)=>a.order-b.order);
   if (!S.studySel.length){ stage.innerHTML = `<div class="empty"><strong>업무 상황을 골라 주세요</strong>위의 토글을 하나 이상 켜면 카드가 나와요.</div>`; return; }
   if (!deck.length){
-    stage.innerHTML = `<div class="empty"><strong>선택한 상황의 카드를 모두 외웠어요</strong>퀴즈를 풀면 망각주기에 맞춰 복습 카드가 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn" id="reset">외운 카드 다시 공부하기</button></div></div>`;
+    stage.innerHTML = `<div class="empty"><strong>선택한 상황의 카드를 모두 외웠어요</strong>퀴즈를 풀면 망각주기에 맞춰 복습 카드가 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn" id="reset">외운 카드 다시 공부하기</button></div></div>${undoBtn("study")}`;
+    bindStudyUndo(stage);
     $("#reset",stage).onclick = () => { Object.values(S.cards).forEach(c => { if (S.studySel.includes(c.sid) && !c.mastered) c.status="again"; }); save(); drawDeck(stage); };
     return;
   }
@@ -659,21 +674,35 @@ function drawDeck(stage){
   if (lastShown !== c.id + ":" + c.order){ c.shows++; save(); lastShown = c.id + ":" + c.order; }
   const el = cardEl(c, {status:true}); stage.append(el);
   stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 아래로: 다시 외우기</span><span>남은 카드 ${deck.length}장</span><span>↑ 위로: 외웠어요</span></div>
-    <div class="deck-actions"><button class="btn" id="again">다시 외우기</button><button class="btn primary" id="known">외웠어요</button></div>`);
-  const again = () => { c.status="again"; c.order = Math.max(...deck.map(d=>d.order)) + 1; save(); drawDeck(stage); };
-  const known = () => { c.status="known"; save(); toast("외운 카드 목록에 넣었어요"); drawDeck(stage); };
+    <div class="deck-actions"><button class="btn" id="again">다시 외우기</button><button class="btn primary" id="known">외웠어요</button></div>${undoBtn("study")}`);
+  bindStudyUndo(stage);
+  const again = () => { pushUndo("study", c); c.status="again"; c.order = Math.max(...deck.map(d=>d.order)) + 1; save(); drawDeck(stage); };
+  const known = () => { pushUndo("study", c); c.status="known"; save(); toast("외운 카드 목록에 넣었어요"); drawDeck(stage); };
   swipe(el, {up:known, down:again});
   $("#again",stage).onclick = () => fly(el,0,600,again);
   $("#known",stage).onclick = () => fly(el,0,-600,known);
 }
+function bindStudyUndo(stage){
+  const b = $("#undo", stage); if (!b) return;
+  b.onclick = () => {
+    const c = popUndo("study"); if (!c) return;
+    c.order = Math.min(...Object.values(S.cards).map(x => x.order || 0)) - 1;
+    if (!S.studySel.includes(c.sid)) S.studySel.push(c.sid);
+    save(); drawDeck(stage);
+  };
+}
 function renderReview(v, due){
+  if (reviewPin && S.cards[reviewPin] && !due.some(c => c.id === reviewPin)) due = [S.cards[reviewPin], ...due];
+  else if (reviewPin) due = [...due.filter(c => c.id === reviewPin), ...due.filter(c => c.id !== reviewPin)];
+  reviewPin = null;
   const stage = document.createElement("div"); stage.className = "stage"; v.append(stage);
   const sched = Object.values(S.cards).filter(c => c.rv && !c.mastered && S.sits[c.sid]);
   const ladder = `<div class="ladder">${STAGE.map((n,i)=>`<div><b>${sched.filter(c=>Math.min(c.rv.stage,3)===i).length}</b>${n}</div>`).join("")}</div>`;
   if (!due.length){
     const next = sched.sort((a,b)=>a.rv.due-b.rv.due)[0];
     const mastered = Object.values(S.cards).filter(c=>c.mastered).length;
-    stage.innerHTML = `<div class="empty"><strong>지금 복습할 카드가 없어요</strong>${next?`다음 복습은 ${when(next.rv.due)}에 나와요.`:"퀴즈를 풀면 그 카드가 10분 → 1일 → 1주 → 1달 주기로 다시 나와요."}${mastered?`<br>한 달 복습까지 끝난 카드 ${mastered}장`:""}</div>${ladder}`;
+    stage.innerHTML = `<div class="empty"><strong>지금 복습할 카드가 없어요</strong>${next?`다음 복습은 ${when(next.rv.due)}에 나와요.`:"퀴즈를 풀면 그 카드가 10분 → 1일 → 1주 → 1달 주기로 다시 나와요."}${mastered?`<br>한 달 복습까지 끝난 카드 ${mastered}장`:""}</div>${undoBtn("review")}${ladder}`;
+    bindReviewUndo(stage);
     return;
   }
   const c = due[0];
@@ -681,19 +710,26 @@ function renderReview(v, due){
   let el = cardEl(c, {mode:"ask-ko", date:true, hint:"탭해서 일본어 문장 확인"});
   stage.append(el);
   stage.insertAdjacentHTML("beforeend", `<div class="swipe-hint"><span>↓ 잊어버렸어요 (10분 뒤 다시)</span><span>남은 ${due.length}장</span><span>↑ 기억났어요</span></div>
-    <div class="deck-actions"><button class="btn" id="forgot">잊어버렸어요</button><button class="btn primary" id="remember">기억났어요</button></div>${ladder}`);
+    <div class="deck-actions"><button class="btn" id="forgot">잊어버렸어요</button><button class="btn primary" id="remember">기억났어요</button></div>${undoBtn("review")}${ladder}`);
+  bindReviewUndo(stage);
   const reveal = () => { if (el.classList.contains("revealed")) return; const n = cardEl(c, {date:true}); n.classList.add("revealed"); el.replaceWith(n); el = n; bind(); };
   const remember = () => {
+    pushUndo("review", c);
     const now = Date.now(); c.rv.stage++; c.rv.last = now;
     if (c.rv.stage >= 4) { setMastered(c, true); toast("한 달 복습까지 끝났어요 · 퀴즈에서 빠져요"); }
     else { c.rv.due = now + INT[c.rv.stage]; toast(`${STAGE[c.rv.stage]}로 넘어갔어요 · ${when(c.rv.due)}`); }
     save(); render();
   };
-  const forgot = () => { const now = Date.now(); c.rv = {stage:0, last:now, due:now+INT[0]}; c.status = "again"; save(); toast("10분 뒤 다시 나와요"); render(); };
+  const forgot = () => { pushUndo("review", c); const now = Date.now(); c.rv = {stage:0, last:now, due:now+INT[0]}; c.status = "again"; save(); toast("10분 뒤 다시 나와요"); render(); };
   const bind = () => { swipe(el, {up:remember, down:forgot, tap:reveal}); el.addEventListener("click", e => { if (!e.target.closest("[data-act]")) reveal(); }); };
   bind();
   $("#remember",stage).onclick = () => fly(el,0,-600,remember);
   $("#forgot",stage).onclick = () => fly(el,0,600,forgot);
+}
+
+function bindReviewUndo(stage){
+  const b = $("#undo", stage); if (!b) return;
+  b.onclick = () => { const c = popUndo("review"); if (!c) return; reviewPin = c.id; save(); render(); };
 }
 
 /* ---------- 퀴즈 ---------- */
@@ -733,8 +769,9 @@ function quizSetup(v){
 }
 function quizCard(v){
   const c = S.cards[Q.list[Q.i]];
-  v.innerHTML = `<div class="quizbar"><button class="btn small" id="quit">설정으로</button><span>${Q.i+1} / ${Q.list.length}</span><span>${Q.how==="eye"?"눈으로":"말로"} · ${Q.what==="ko"?"한글 뜻":"일본어"}</span></div>`;
+  v.innerHTML = `<div class="quizbar"><div class="row" style="gap:6px"><button class="btn small" id="quit">설정으로</button>${Q.i>0?'<button class="btn small" id="qprev" type="button">◀ 이전 문제</button>':''}</div><span>${Math.min(Q.i+1, Q.list.length)} / ${Q.list.length}</span><span>${Q.how==="eye"?"눈으로":"말로"} · ${Q.what==="ko"?"한글 뜻":"일본어"}</span></div>`;
   $("#quit").onclick = () => { stopQuiz(); Q.step="setup"; render(); };
+  if ($("#qprev")) $("#qprev").onclick = () => { stopQuiz(); Q.i = Math.max(0, Q.i - 1); while (Q.i > 0 && !S.cards[Q.list[Q.i]]) Q.i--; render(); };
   if (Q.i >= Q.list.length){ v.insertAdjacentHTML("beforeend", `<div class="empty" style="margin-top:14px"><strong>퀴즈를 다 풀었어요</strong>푼 카드는 10분 뒤부터 공부 탭의 복습 카드로 다시 나와요.<div class="row" style="justify-content:center;margin-top:14px"><button class="btn primary" id="again">다시 섞어서 풀기</button></div></div>`);
     $("#again").onclick = () => { Q.list = quizPool(Q.scope).map(c=>c.id).sort(()=>Math.random()-.5); Q.i=0; render(); }; return; }
   if (!c){ Q.i++; return render(); }
@@ -1268,10 +1305,10 @@ if ("serviceWorker" in navigator) {
   // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (!hadCtl) return;
-    try { if (sessionStorage.getItem("jd-reloaded") === "a6f86cecb9") return; sessionStorage.setItem("jd-reloaded", "a6f86cecb9"); } catch(e) {}
+    try { if (sessionStorage.getItem("jd-reloaded") === "e16c2d94d3") return; sessionStorage.setItem("jd-reloaded", "e16c2d94d3"); } catch(e) {}
     location.reload();
   });
-  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=a6f86cecb9", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=e16c2d94d3", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
 }
 
