@@ -378,7 +378,7 @@ function mergeState(o){
   return n;
 }
 /* 주고받기 파일 */
-function syncPayload(){ return JSON.stringify({app:"nihongo-cards", kind:"sync", from: PHONE ? "phone" : "workshop", at: Date.now(), state: S}); }
+function syncPayload(){ return JSON.stringify({app:"nihongo-cards", kind:"sync", from: PHONE ? "phone" : "workshop", at: Date.now(), state: S, key: PHONE ? undefined : (drillKey() || undefined)}); }
 function syncName(){ const d = new Date(), p = x => String(x).padStart(2,"0"); return `일본어카드_${PHONE?"폰앱":"작업실"}_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}.json`; }
 async function sendSyncFile(){
   const data = syncPayload(), name = syncName();
@@ -392,6 +392,7 @@ async function sendSyncFile(){
 async function receiveSyncFile(f){
   const d = JSON.parse(await f.text());
   const st = d && d.app === "nihongo-cards" ? d.state : d;
+  if (PHONE && d && typeof d.key === "string" && d.key.length > 20) { try { localStorage.setItem("jd-key", d.key); } catch(e){} cryptoKeys = null; setTimeout(warmAudio, 500); }
   const n = mergeState(st);
   if (n < 0) throw 0;
   try { localStorage.setItem(KEY+".lastSync", String(Date.now())); } catch(e){}
@@ -877,7 +878,7 @@ function renderList(v){
   const dBtn = document.createElement("button"); dBtn.className = "btn primary"; dBtn.style.cssText = "width:100%;margin-top:8px"; dBtn.type = "button";
   const setBtn = () => { const n = drillCards().length; dBtn.disabled = !n; dBtn.textContent = n ? `▶ 리스닝 드릴 시작 · ${n}문장 × 10번` : "드릴할 상황을 켜 주세요"; };
   const spd = document.createElement("div"); spd.className = "seg"; spd.style.marginTop = "8px";
-  const drawSpd = () => { spd.innerHTML = SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배속" : "1.5배속"}</button>`).join(""); };
+  const drawSpd = () => { spd.innerHTML = SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${`${r}배속`}</button>`).join(""); };
   spd.onclick = e => { const b = e.target.closest("button"); if (!b) return; S.drillRate = +b.dataset.r; save(); drawSpd(); };
   drawSpd();
   dWrap.append(picker({key:"drill", title:"리스닝 드릴 · 상황 고르기", openDefault:false,
@@ -945,8 +946,8 @@ function confirmDel(sid, after){
   document.body.append(sh);
 }
 
-/* ---------- 리스닝 드릴: 문장마다 10번, 고른 속도(1배 / 1.5배)로 ---------- */
-const DRILL_N = 10, SPEEDS = [1, 1.5];
+/* ---------- 리스닝 드릴: 문장마다 10번, 고른 속도(1배 / 1.2배)로 ---------- */
+const DRILL_N = 10, SPEEDS = [1, 1.2];
 const drillRate = () => SPEEDS.includes(S.drillRate) ? S.drillRate : 1;
 const RATE = () => drillRate();
 let AIDX = null, D = null;
@@ -957,13 +958,48 @@ async function audioIndex(){
   if (!AIDX.files) AIDX = {voices:{}, files:{}};
   return AIDX;
 }
+/* 비공개 카드 음성: 암호화된 파일을 받아 이 폰에서 풀어서 재생한다 */
+var WS_KEY = ""; 
+function drillKey(){ if (WS_KEY) return WS_KEY; try { return localStorage.getItem("jd-key") || ""; } catch(e){ return ""; } }
+let PIDX = null, cryptoKeys = null;
+async function keys(){
+  const k = drillKey(); if (!k || !window.crypto || !crypto.subtle) return null;
+  if (cryptoKeys && cryptoKeys.k === k) return cryptoKeys;
+  try {
+    const raw = Uint8Array.from(atob(k), ch => ch.charCodeAt(0));
+    cryptoKeys = {k, aes: await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]),
+      mac: await crypto.subtle.importKey("raw", raw, {name:"HMAC", hash:"SHA-256"}, false, ["sign"])};
+    return cryptoKeys;
+  } catch(e) { return null; }
+}
+async function privIndex(){
+  if (!PHONE) return {files:{}};
+  if (PIDX) return PIDX;
+  try { const r = await fetch("paudio/index.json", {cache:"no-cache"}); PIDX = r.ok ? await r.json() : {files:{}}; } catch(e){ PIDX = {files:{}}; }
+  if (!PIDX.files) PIDX = {files:{}};
+  return PIDX;
+}
+async function pidOf(ja, ks){ const sig = await crypto.subtle.sign("HMAC", ks.mac, new TextEncoder().encode(String(ja).trim())); return [...new Uint8Array(sig)].map(x => x.toString(16).padStart(2,"0")).join("").slice(0,16); }
+const blobUrls = new Map();
+async function decryptTo(url, ks){
+  if (blobUrls.has(url)) return blobUrls.get(url);
+  const r = await fetch(url); if (!r.ok) throw new Error("fetch");
+  const b = new Uint8Array(await r.arrayBuffer());
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv:b.slice(0,12)}, ks.aes, b.slice(12));
+  const u = URL.createObjectURL(new Blob([pt], {type:"audio/mpeg"})); blobUrls.set(url, u); return u;
+}
 const curVoice = idx => (idx.voices && idx.voices[S.voice]) ? S.voice : (idx.default || Object.keys(idx.voices||{})[0] || "");
 async function audioFor(ja){
   const idx = await audioIndex(), v = curVoice(idx);
   if (!v) return null;
   let h = ""; try { h = await hashJa(ja); } catch(e){ return null; }
   const f = idx.files[v] && idx.files[v][h];
-  return f ? {src:`audio/${v}/${h}.mp3`, starts:f.starts, len:f.len, voice:v} : null;
+  if (f) { const src = `audio/${v}/${h}.mp3`; return {getSrc: async () => src, starts:f.starts, len:f.len, voice:v}; }
+  const ks = await keys(); if (!ks) return null;
+  const pidx = await privIndex(), p = await pidOf(ja, ks), pf = pidx.files[v] && pidx.files[v][p];
+  if (!pf) return null;
+  const url = `paudio/${v}/${p}.bin`;
+  return {getSrc: () => decryptTo(url, ks), starts:pf.starts, len:pf.len, voice:v};
 }
 /* 고른 목소리의 음성 파일을 폰에 미리 저장 (인터넷이 있을 때만) */
 async function warmAudio(){
@@ -975,6 +1011,13 @@ async function warmAudio(){
       const u = new URL(`audio/${v}/${h}.mp3`, location.href).href;
       if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
     }
+    if (await keys()) {
+      const pidx = await privIndex();
+      for (const h of Object.keys(pidx.files[v] || {})) {
+        const u = new URL(`paudio/${v}/${h}.bin`, location.href).href;
+        if (!(await c.match(u))) { try { const r = await fetch(u); if (r.ok) await c.put(u, r); } catch(e){} }
+      }
+    }
   } catch(e){}
 }
 /* 카드의 '일본어 듣기': 고른 목소리 파일이 있으면 그 목소리로 한 번, 없으면 기기 음성 */
@@ -985,7 +1028,7 @@ async function speakCard(ja){
   try {
     if (!clipAudio) { clipAudio = new Audio(); clipAudio.preload = "auto"; clipAudio.addEventListener("timeupdate", () => { if (clipStop && clipAudio.currentTime >= clipStop) { clipAudio.pause(); clipStop = 0; } }); }
     if (D && !D.closed) return;
-    clipAudio.pause(); clipAudio.src = a.src; clipAudio.playbackRate = 1;
+    clipAudio.pause(); clipAudio.src = await a.getSrc(); clipAudio.playbackRate = 1;
     clipStop = a.starts[0] + (a.len || (a.starts[1] - a.starts[0] - 0.7)) + 0.15;
     clipAudio.currentTime = a.starts[0]; await clipAudio.play();
   } catch(e) { speak(ja); }
@@ -998,19 +1041,13 @@ const XICON = '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 async function startDrill(cards){
   if (!cards.length) return;
   closeDrill();
-  const idx = await audioIndex();
-  const items = await Promise.all(cards.map(async c => {
-    let h = ""; try { h = await hashJa(c.ja); } catch(e){}
-    const v = curVoice(idx), f = h && v && idx.files[v] && idx.files[v][h];
-    const a = f ? {src:`audio/${v}/${h}.mp3`, starts:f.starts} : null;
-    return {c, a};
-  }));
+  const items = await Promise.all(cards.map(async c => ({c, a: await audioFor(c.ja).catch(() => null)})));
   const ov = document.createElement("div"); ov.className = "drill"; ov.setAttribute("role","dialog"); ov.setAttribute("aria-label","리스닝 드릴");
   ov.innerHTML = `<button class="x" type="button" id="dx" aria-label="드릴 끄기">${XICON}</button>
     <div class="drill-in"><div class="drill-top"><b id="dsit"></b><span id="dpos"></span></div>
     <div class="drill-bar"><i id="dbar"></i></div>
     <div id="dcard"></div>
-    <div class="speed"><span id="drep"></span><div class="seg" id="dspd" style="min-width:150px">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배" : "1.5배"}</button>`).join("")}</div></div>
+    <div class="speed"><span id="drep"></span><div class="seg" id="dspd" style="min-width:150px">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${`${r}배`}</button>`).join("")}</div></div>
     <div class="dots" id="ddots">${"<i></i>".repeat(DRILL_N)}</div>
     <div class="ctrls"><button class="btn" id="dprev" type="button">◀ 이전</button><button class="btn primary" id="dplay" type="button">일시정지</button><button class="btn" id="dnext" type="button">다음 ▶</button></div>
     <p class="note" id="dnote"></p></div>`;
@@ -1074,7 +1111,15 @@ function playItem(i){
   try { speechSynthesis.cancel(); } catch(e){}
   const it = D.items[i]; it.c.shows++; saveLocal();
   drawItem(); drawPlay();
-  if (it.a) { D.audio.src = it.a.src; D.audio.preservesPitch = true; D.audio.defaultPlaybackRate = drillRate(); D.audio.playbackRate = drillRate(); D.audio.play().catch(() => { D.paused = true; drawPlay(); }); }
+  if (it.a) {
+    const tok = D.tok;
+    it.a.getSrc().then(src => {
+      if (!D || D.closed || D.tok !== tok) return;
+      D.audio.src = src; D.audio.preservesPitch = true; D.audio.defaultPlaybackRate = drillRate(); D.audio.playbackRate = drillRate();
+      D.audio.play().catch(() => { D.paused = true; drawPlay(); });
+      const nx = D.items[i + 1]; if (nx && nx.a) nx.a.getSrc().catch(() => {});   // 잠금 화면에서도 끊기지 않게 다음 문장을 미리 풀어 둔다
+    }).catch(() => { if (!D || D.tok !== tok) return; it.a = null; drawItem(); D.audio.pause(); ttsRep(0); });
+  }
   else { D.audio.pause(); D.audio.removeAttribute("src"); ttsRep(0); }
 }
 function ttsRep(k){
@@ -1128,8 +1173,9 @@ async function openSettings(){
       <p class="note">고른 목소리로 리스닝 드릴과 카드의 ‘일본어 듣기’가 나와요. 처음 고른 목소리는 인터넷이 될 때 폰에 저장돼요.</p>`
       : `<p class="note">아직 음성 파일을 불러오지 못했어요. 인터넷이 연결된 상태에서 다시 열어 주세요.</p>`)
       : `<p class="note">목소리 선택은 폰 앱에서 할 수 있어요. 작업실에서는 기기 음성으로 들려요.</p>`}
+    ${PHONE ? `<p class="note">내 자료로 만든 카드 음성: ${drillKey() ? "연결됨" : "아직 연결 안 됨 · 작업실의 ‘폰 앱으로 보내기’ 파일을 한 번 열면 연결돼요"}</p>` : ""}
     <div class="section-title" style="margin:4px 0 0">드릴 속도</div>
-    <div class="seg" id="sspd">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${r === 1 ? "1배속" : "1.5배속"}</button>`).join("")}</div>
+    <div class="seg" id="sspd">${SPEEDS.map(r => `<button type="button" data-r="${r}" aria-pressed="${drillRate()===r}">${`${r}배속`}</button>`).join("")}</div>
     ${voices.length ? `<p class="note" style="font-size:11px">음성: ${voices.map(([,v]) => esc(v.credit)).join(", ")}</p>` : ""}</div>`;
   const close = () => { sh.remove(); };
   sh.addEventListener("click", async e => {
@@ -1305,10 +1351,10 @@ if ("serviceWorker" in navigator) {
   // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (!hadCtl) return;
-    try { if (sessionStorage.getItem("jd-reloaded") === "e16c2d94d3") return; sessionStorage.setItem("jd-reloaded", "e16c2d94d3"); } catch(e) {}
+    try { if (sessionStorage.getItem("jd-reloaded") === "80ed89800b") return; sessionStorage.setItem("jd-reloaded", "80ed89800b"); } catch(e) {}
     location.reload();
   });
-  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=e16c2d94d3", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=80ed89800b", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
 }
 
