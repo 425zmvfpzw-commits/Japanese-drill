@@ -2,25 +2,109 @@
  "format": 5,
  "files": {
   "sora": {
+   "80dc245890a8539a": {
+    "loop": true,
+    "len": 5.487
+   },
+   "3266e152ffd576b6": {
+    "loop": true,
+    "len": 4.953
+   },
+   "088fc332cb42e5f5": {
+    "loop": true,
+    "len": 4.537
+   },
+   "14a55038d1d7f735": {
+    "loop": true,
+    "len": 4.431
+   },
+   "126fa87c68a0d5f3": {
+    "loop": true,
+    "len": 4.868
+   },
+   "8eecb1debbe61cfb": {
+    "loop": true,
+    "len": 1.017
+   },
    "cb81b35975333efc": {
     "loop": true,
     "len": 3.396
+   },
+   "3e71659608a58bf4": {
+    "loop": true,
+    "len": 1.743
+   },
+   "13e484c2ee380cb9": {
+    "loop": true,
+    "len": 0.9
    },
    "fc259ceda521ed7d": {
     "loop": true,
     "len": 3.759
    },
+   "d7a398d646fbdb52": {
+    "loop": true,
+    "len": 0.708
+   },
+   "2096f7bb3255cf9c": {
+    "loop": true,
+    "len": 16.057
+   },
+   "a9d69abbaa7ba5b3": {
+    "loop": true,
+    "len": 1.401
+   },
+   "978592caffd89e1f": {
+    "loop": true,
+    "len": 8.047
+   },
    "b75fe420e5d6d91e": {
     "loop": true,
     "len": 3.535
+   },
+   "8bccc734a11e192b": {
+    "loop": true,
+    "len": 3.055
    },
    "b028a5cb8f4c622d": {
     "loop": true,
     "len": 5.231
    },
+   "d9f257fae0d313ec": {
+    "loop": true,
+    "len": 5.583
+   },
+   "687615e87acc41cc": {
+    "loop": true,
+    "len": 2.873
+   },
+   "bd4ec289e77fc486": {
+    "loop": true,
+    "len": 1.529
+   },
+   "032cad961a85836f": {
+    "loop": true,
+    "len": 2.255
+   },
+   "886569e3a443a656": {
+    "loop": true,
+    "len": 6.713
+   },
+   "ddb0f0a2ca26a312": {
+    "loop": true,
+    "len": 4.26
+   },
+   "940e101683cd27ca": {
+    "loop": true,
+    "len": 2.393
+   },
    "4f3346dba44373ac": {
     "loop": true,
     "len": 3.503
+   },
+   "80be4dc8a6dcb176": {
+    "loop": true,
+    "len": 6.244
    },
    "1abfa7e9b249f76b": {
     "loop": true,
@@ -30,21 +114,125 @@
     "loop": true,
     "len": 4.804
    },
+   "d9bbfa69f00be268": {
+    "loop": true,
+    "len": 4.068
+   },
+   "97e36e29a21af3cc": {
+    "loop": true,
+    "len": 6.169
+   },
+   "80045d7a215aac3b": {
+    "loop": true,
+    "len": 2.575
+   },
+   "c47098fe84eee209": {
+    "loop": true,
+    "len": 3.62
+   },
+   "f0d81a96c5390ff5": {
+    "loop": true,
+    "len": 0.975
+   },
+   "be5c7c51e1167a08": {
+    "loop": true,
+    "len": 10.724
+   },
+   "74aaff11f6e47960": {
+    "loop": true,
+    "len": 2.212
+   },
+   "84ac3841a5ed209f": {
+    "loop": true,
+    "len": 2.244
+   },
    "83f75a1c516f565f": {
     "loop": true,
     "len": 2.489
+   },
+   "6656b70bc34759e8": {
+    "loop": true,
+    "len": 1.017
+   },
+   "a6f1dfba081ff3b6": {
+    "loop": true,
+    "len": 5.103
+   },
+   "306fbc033ea1e44c": {
+    "loop": true,
+    "len": 5.849
+   },
+   "f8f8ba98825c4f6b": {
+    "loop": true,
+    "len": 1.348
+   },
+   "5bade99881dbd224": {
+    "loop": true,
+    "len": 7.289
+   },
+   "fdad89e5bbc16414": {
+    "loop": true,
+    "len": 1.124
+   },
+   "aead3219305700e8": {
+    "loop": true,
+    "len": 0.783
+   },
+   "8f5759a381456c42": {
+    "loop": true,
+    "len": 1.977
    },
    "2dbaabac82887ffc": {
     "loop": true,
     "len": 4.644
    },
+   "4b8dc19933ef9619": {
+    "loop": true,
+    "len": 1.145
+   },
+   "c2123f3e9d994aeb": {
+    "loop": true,
+    "len": 0.889
+   },
+   "e030445414b8ff9a": {
+    "loop": true,
+    "len": 1.519
+   },
+   "5b1fd9dd82e3b696": {
+    "loop": true,
+    "len": 5.743
+   },
+   "2eb39a0729ffc9b9": {
+    "loop": true,
+    "len": 1.177
+   },
+   "61bb501f90e883de": {
+    "loop": true,
+    "len": 1.049
+   },
+   "f9357c879ceaa56b": {
+    "loop": true,
+    "len": 3.087
+   },
+   "25369f52e095b257": {
+    "loop": true,
+    "len": 0.921
+   },
    "6600fb24e9cef5d3": {
     "loop": true,
     "len": 4.228
    },
+   "edf20d00b58f9b63": {
+    "loop": true,
+    "len": 1.348
+   },
    "177107535f734f43": {
     "loop": true,
     "len": 4.217
+   },
+   "3039b9336274c7fc": {
+    "loop": true,
+    "len": 1.209
    },
    "b58b378dff428ceb": {
     "loop": true,
@@ -54,61 +242,677 @@
     "loop": true,
     "len": 3.663
    },
+   "d5cb6872141a0f1f": {
+    "loop": true,
+    "len": 6.191
+   },
+   "fe4ba485d3bc27ce": {
+    "loop": true,
+    "len": 1.06
+   },
+   "8c0f4523bd47ee80": {
+    "loop": true,
+    "len": 2.457
+   },
+   "3c92b79cbde35956": {
+    "loop": true,
+    "len": 2.511
+   },
+   "0aecb1a8fda6c5fb": {
+    "loop": true,
+    "len": 1.209
+   },
    "8039bf840e997735": {
     "loop": true,
     "len": 3.492
+   },
+   "ee7069e0d03e7554": {
+    "loop": true,
+    "len": 1.668
+   },
+   "b96e2291ea334a72": {
+    "loop": true,
+    "len": 0.708
+   },
+   "14b17f077ebf5abc": {
+    "loop": true,
+    "len": 0.559
+   },
+   "787dfead2c24eea5": {
+    "loop": true,
+    "len": 0.911
+   },
+   "e15a39da9422a478": {
+    "loop": true,
+    "len": 0.719
+   },
+   "eb3f6a12822800c4": {
+    "loop": true,
+    "len": 0.932
    },
    "a6ad86ea05239e9a": {
     "loop": true,
     "len": 3.076
    },
+   "b41c0f54f245a010": {
+    "loop": true,
+    "len": 3.225
+   },
    "ade18761423fb3a7": {
     "loop": true,
     "len": 3.961
+   },
+   "421f6d1634c9afdb": {
+    "loop": true,
+    "len": 1.743
+   },
+   "59efbac808d3ed6c": {
+    "loop": true,
+    "len": 1.433
+   },
+   "b87f86cac19a2b45": {
+    "loop": true,
+    "len": 0.633
+   },
+   "d39404e8ab8f610e": {
+    "loop": true,
+    "len": 1.551
+   },
+   "052e1ab80cbf104c": {
+    "loop": true,
+    "len": 0.911
+   },
+   "e56c2ffbea3c0329": {
+    "loop": true,
+    "len": 0.74
+   },
+   "a32b8a3c5a1af14b": {
+    "loop": true,
+    "len": 1.199
    },
    "73f4094a1b2224ee": {
     "loop": true,
     "len": 3.396
    },
+   "10d721e90cb03329": {
+    "loop": true,
+    "len": 1.028
+   },
+   "15bd500a40c363a7": {
+    "loop": true,
+    "len": 0.825
+   },
    "8d2d188cddba78e7": {
     "loop": true,
     "len": 4.463
+   },
+   "f0e334ca9ed06e1e": {
+    "loop": true,
+    "len": 0.943
+   },
+   "d05a8d9b2aaa1024": {
+    "loop": true,
+    "len": 1.316
+   },
+   "3e439fc4b7306e6b": {
+    "loop": true,
+    "len": 5.295
+   },
+   "d6d999ed70ea87c9": {
+    "loop": true,
+    "len": 1.199
+   },
+   "d71f5b5fe773f7a3": {
+    "loop": true,
+    "len": 1.444
+   },
+   "5a6a945c7a62a7da": {
+    "loop": true,
+    "len": 1.124
+   },
+   "eed029f916da5e22": {
+    "loop": true,
+    "len": 9.039
+   },
+   "b01513f76f7c1b22": {
+    "loop": true,
+    "len": 0.964
+   },
+   "825f24565996cce2": {
+    "loop": true,
+    "len": 1.497
+   },
+   "a4c3cd6d27110065": {
+    "loop": true,
+    "len": 3.652
+   },
+   "964acc727056f110": {
+    "loop": true,
+    "len": 1.284
+   },
+   "12a196a6ffcc163b": {
+    "loop": true,
+    "len": 1.241
    },
    "e6b86c5710ec1f96": {
     "loop": true,
     "len": 3.78
    },
+   "80ca2334a4815de0": {
+    "loop": true,
+    "len": 2.255
+   },
+   "4e4723cd6fc73d5e": {
+    "loop": true,
+    "len": 0.953
+   },
+   "fe091daaa3bb87f7": {
+    "loop": true,
+    "len": 2.521
+   },
+   "f6ad19a0fc887cc4": {
+    "loop": true,
+    "len": 6.009
+   },
    "9031e5fc67833b57": {
     "loop": true,
     "len": 3.588
+   },
+   "485a61a1ef712290": {
+    "loop": true,
+    "len": 1.337
    },
    "857beb43d202cc4f": {
     "loop": true,
     "len": 2.767
    },
+   "095e0a714d7208ff": {
+    "loop": true,
+    "len": 1.401
+   },
+   "04024237f4e23a77": {
+    "loop": true,
+    "len": 6.553
+   },
+   "28816f5203f83c28": {
+    "loop": true,
+    "len": 1.103
+   },
+   "58263ebcb25ee018": {
+    "loop": true,
+    "len": 4.271
+   },
+   "664fdf1b308fdf4c": {
+    "loop": true,
+    "len": 3.801
+   },
+   "276fe37fa3aacca3": {
+    "loop": true,
+    "len": 0.868
+   },
    "55918717514f8427": {
     "loop": true,
     "len": 4.068
+   },
+   "8df98773044bff2d": {
+    "loop": true,
+    "len": 0.751
+   },
+   "8cfa36feef56fc79": {
+    "loop": true,
+    "len": 1.391
+   },
+   "30bc3047bbe5de70": {
+    "loop": true,
+    "len": 0.868
+   },
+   "ed162ccc0f4c42c9": {
+    "loop": true,
+    "len": 6.564
+   },
+   "b2a8c70d759fff28": {
+    "loop": true,
+    "len": 5.828
+   },
+   "3bac23650e6ae468": {
+    "loop": true,
+    "len": 1.849
+   },
+   "fe2b2a18d062cd42": {
+    "loop": true,
+    "len": 0.815
+   },
+   "28050bb0024f1aaa": {
+    "loop": true,
+    "len": 0.996
+   },
+   "6ee7cd69f1d4de5f": {
+    "loop": true,
+    "len": 0.911
+   },
+   "39713ff87df1872d": {
+    "loop": true,
+    "len": 1.305
+   },
+   "3b8f8280decb302f": {
+    "loop": true,
+    "len": 0.868
+   },
+   "a9227ac8a7f28a4d": {
+    "loop": true,
+    "len": 1.828
+   },
+   "02738e2030ed294e": {
+    "loop": true,
+    "len": 1.049
+   },
+   "b6a4b333f692bbdc": {
+    "loop": true,
+    "len": 4.377
+   },
+   "a756c35a3383590a": {
+    "loop": true,
+    "len": 1.145
+   },
+   "5fcdcd83a7b0e259": {
+    "loop": true,
+    "len": 0.825
    },
    "a320a290a5a2a058": {
     "loop": true,
     "len": 2.447
    },
+   "bfd975d777920f89": {
+    "loop": true,
+    "len": 6.713
+   },
+   "a37e5cb8e08335b3": {
+    "loop": true,
+    "len": 1.465
+   },
+   "1e8eeaa77c0bf477": {
+    "loop": true,
+    "len": 1.401
+   },
+   "3d91967300088f55": {
+    "loop": true,
+    "len": 2.585
+   },
+   "91501eae4b050089": {
+    "loop": true,
+    "len": 1.145
+   },
+   "af6edfaa4ab755d7": {
+    "loop": true,
+    "len": 3.652
+   },
    "a5b3f02930390f65": {
     "loop": true,
     "len": 4.409
+   },
+   "90296e45326fa54b": {
+    "loop": true,
+    "len": 0.9
+   },
+   "66dfe4d14106d988": {
+    "loop": true,
+    "len": 0.964
+   },
+   "6613274442698883": {
+    "loop": true,
+    "len": 1.049
+   },
+   "a852d85d5c080322": {
+    "loop": true,
+    "len": 1.316
+   },
+   "0b6a5afe60e88749": {
+    "loop": true,
+    "len": 1.743
+   },
+   "afaa604f42ed968f": {
+    "loop": true,
+    "len": 1.167
+   },
+   "e938c3ad21d6b25a": {
+    "loop": true,
+    "len": 1.081
+   },
+   "d098ee928d5b8152": {
+    "loop": true,
+    "len": 0.74
+   },
+   "d4160e29091810fe": {
+    "loop": true,
+    "len": 0.985
+   },
+   "6dbb4cec28643cbb": {
+    "loop": true,
+    "len": 1.039
+   },
+   "872f282f97c374ce": {
+    "loop": true,
+    "len": 6.191
+   },
+   "8fe6a4d944407d86": {
+    "loop": true,
+    "len": 6.969
+   },
+   "5d1047e01bfaf294": {
+    "loop": true,
+    "len": 6.713
+   },
+   "ac982429bef0bc06": {
+    "loop": true,
+    "len": 11.908
+   },
+   "b511163badb638c2": {
+    "loop": true,
+    "len": 1.881
+   },
+   "0cc637015a45f55b": {
+    "loop": true,
+    "len": 1.519
+   },
+   "eae0c94f75f1cdd9": {
+    "loop": true,
+    "len": 0.911
+   },
+   "5fd0971583cc8d5b": {
+    "loop": true,
+    "len": 2.052
+   },
+   "24ca06385b673e28": {
+    "loop": true,
+    "len": 1.263
+   },
+   "3b6c8ac6f00a2835": {
+    "loop": true,
+    "len": 0.857
    },
    "4b9261d74152c8a6": {
     "loop": true,
     "len": 3.577
    },
+   "f3b6097e215d2bb5": {
+    "loop": true,
+    "len": 1.561
+   },
+   "bfd909d62314214a": {
+    "loop": true,
+    "len": 0.964
+   },
+   "f1a62095e124b63c": {
+    "loop": true,
+    "len": 0.569
+   },
+   "f2b11448f97d63ed": {
+    "loop": true,
+    "len": 0.783
+   },
+   "c7ed9e4ee245be97": {
+    "loop": true,
+    "len": 1.412
+   },
+   "97664b2081a6f279": {
+    "loop": true,
+    "len": 0.921
+   },
+   "a6ab15965093ccc8": {
+    "loop": true,
+    "len": 7.14
+   },
+   "038c76211c4b57b6": {
+    "loop": true,
+    "len": 4.985
+   },
+   "2586302b1d605feb": {
+    "loop": true,
+    "len": 0.921
+   },
+   "79e4fd6f027bc177": {
+    "loop": true,
+    "len": 2.937
+   },
+   "56142c492a502a68": {
+    "loop": true,
+    "len": 1.284
+   },
    "2410ff9b3498e38b": {
     "loop": true,
     "len": 3.705
    },
+   "d2af692cb0cc933b": {
+    "loop": true,
+    "len": 1.647
+   },
+   "d338ad9160b6ef69": {
+    "loop": true,
+    "len": 1.252
+   },
+   "b29f0ab9a8db1e19": {
+    "loop": true,
+    "len": 2.671
+   },
+   "a9747e5d601639a5": {
+    "loop": true,
+    "len": 1.497
+   },
+   "8e83ab2d45b087a4": {
+    "loop": true,
+    "len": 0.751
+   },
+   "b0ef86f8b00086b8": {
+    "loop": true,
+    "len": 2.809
+   },
+   "721050b01fb7fcec": {
+    "loop": true,
+    "len": 3.076
+   },
+   "1043d9aa19598451": {
+    "loop": true,
+    "len": 1.263
+   },
+   "98e7019cb5033b13": {
+    "loop": true,
+    "len": 1.391
+   },
+   "6c72020a9abe83f3": {
+    "loop": true,
+    "len": 2.575
+   },
+   "dd06df1bfab9ef3a": {
+    "loop": true,
+    "len": 0.9
+   },
+   "4afb6507e1f28a75": {
+    "loop": true,
+    "len": 0.665
+   },
+   "20bc52d31ffaa362": {
+    "loop": true,
+    "len": 0.868
+   },
+   "bcbf2428e5d0c8f4": {
+    "loop": true,
+    "len": 0.879
+   },
+   "068194bf944bbd64": {
+    "loop": true,
+    "len": 4.409
+   },
+   "eb7e90c622bb8a89": {
+    "loop": true,
+    "len": 5.977
+   },
+   "435733b64c0f996d": {
+    "loop": true,
+    "len": 0.708
+   },
+   "bc4e55e65c0b5958": {
+    "loop": true,
+    "len": 0.857
+   },
+   "fc77f2d5214f2d8d": {
+    "loop": true,
+    "len": 5.999
+   },
+   "c597ca06f32edfff": {
+    "loop": true,
+    "len": 1.753
+   },
+   "38e6dee846516bf1": {
+    "loop": true,
+    "len": 0.9
+   },
+   "e3c0bb3be9aa9f96": {
+    "loop": true,
+    "len": 3.695
+   },
+   "1ecf7aa13bee2fef": {
+    "loop": true,
+    "len": 6.873
+   },
+   "e0278b13ee66b1d4": {
+    "loop": true,
+    "len": 5.508
+   },
+   "29f1c54f8f68897e": {
+    "loop": true,
+    "len": 0.889
+   },
+   "3b825e258a3a31e7": {
+    "loop": true,
+    "len": 1.007
+   },
+   "78d71ee0b66c53bb": {
+    "loop": true,
+    "len": 0.932
+   },
+   "9046cc8b12cbd4a0": {
+    "loop": true,
+    "len": 1.071
+   },
+   "62021e107e88ffa0": {
+    "loop": true,
+    "len": 0.857
+   },
+   "6e45e6661417a551": {
+    "loop": true,
+    "len": 0.943
+   },
+   "2f3376da8731dfb1": {
+    "loop": true,
+    "len": 3.044
+   },
+   "193d37c7471c132c": {
+    "loop": true,
+    "len": 2.969
+   },
+   "7ad6ca661f1ff2c8": {
+    "loop": true,
+    "len": 1.049
+   },
+   "673b03b6223ba366": {
+    "loop": true,
+    "len": 0.985
+   },
+   "c0c013f3f997e894": {
+    "loop": true,
+    "len": 1.871
+   },
+   "2361d05ca1fb13be": {
+    "loop": true,
+    "len": 2.073
+   },
+   "509e150fe69fd272": {
+    "loop": true,
+    "len": 2.244
+   },
+   "f186d3b1d2e4e7e3": {
+    "loop": true,
+    "len": 2.223
+   },
+   "81ec431eb0248028": {
+    "loop": true,
+    "len": 0.932
+   },
+   "d9856c4d6528c20c": {
+    "loop": true,
+    "len": 1.135
+   },
+   "f4744ff6a321f677": {
+    "loop": true,
+    "len": 2.489
+   },
+   "e4f0a46a5f8b9e25": {
+    "loop": true,
+    "len": 0.793
+   },
+   "aef406ca59ce394a": {
+    "loop": true,
+    "len": 3.14
+   },
+   "fbd6d2f8148f75f2": {
+    "loop": true,
+    "len": 3.023
+   },
+   "82caceb922c57538": {
+    "loop": true,
+    "len": 0.932
+   },
+   "2324c24452513aae": {
+    "loop": true,
+    "len": 0.783
+   },
+   "08fb6d5f64d19ac2": {
+    "loop": true,
+    "len": 0.655
+   },
+   "61fb1d2fab6e373f": {
+    "loop": true,
+    "len": 1.604
+   },
+   "bbd2af3f1de22e36": {
+    "loop": true,
+    "len": 1.401
+   },
    "de83f62a2bb45ceb": {
     "loop": true,
     "len": 3.727
+   },
+   "084129782411d3bd": {
+    "loop": true,
+    "len": 0.655
+   },
+   "ab0bd0ff5916430f": {
+    "loop": true,
+    "len": 5.305
+   },
+   "aaaf196457924f49": {
+    "loop": true,
+    "len": 1.508
+   },
+   "95dbb3a62209b624": {
+    "loop": true,
+    "len": 5.785
+   },
+   "34685a1fa4dfae8a": {
+    "loop": true,
+    "len": 8.729
+   },
+   "1302e8b3035c2d62": {
+    "loop": true,
+    "len": 8.943
+   },
+   "6319ff9afdf96e72": {
+    "loop": true,
+    "len": 1.668
+   },
+   "215ee8a4fc972bd8": {
+    "loop": true,
+    "len": 0.815
    },
    "9b90c24e07496b05": {
     "loop": true,
@@ -118,21 +922,165 @@
     "loop": true,
     "len": 4.644
    },
+   "7258383e99071178": {
+    "loop": true,
+    "len": 1.145
+   },
+   "f1891a36f5671f1e": {
+    "loop": true,
+    "len": 2.671
+   },
+   "5878ddf5cbad7b7d": {
+    "loop": true,
+    "len": 0.836
+   },
+   "e05f2c87d571ddb1": {
+    "loop": true,
+    "len": 4.175
+   },
+   "8b01478a657410a6": {
+    "loop": true,
+    "len": 0.644
+   },
+   "25e7582d5571dac4": {
+    "loop": true,
+    "len": 1.7
+   },
+   "094058465091689e": {
+    "loop": true,
+    "len": 6.596
+   },
+   "adb089014fde4031": {
+    "loop": true,
+    "len": 0.793
+   },
+   "399cb93e1cf83579": {
+    "loop": true,
+    "len": 0.921
+   },
+   "f9c0432461886029": {
+    "loop": true,
+    "len": 1.359
+   },
+   "ef810b6abc2b8d45": {
+    "loop": true,
+    "len": 0.687
+   },
    "ef795f36d7d163c8": {
     "loop": true,
     "len": 4.601
+   },
+   "c3a45967d517dafa": {
+    "loop": true,
+    "len": 1.316
+   },
+   "944d31a4e29a20a6": {
+    "loop": true,
+    "len": 2.095
+   },
+   "5cd7d5da9c60ffd7": {
+    "loop": true,
+    "len": 1.092
+   },
+   "6eafaece6897d7e7": {
+    "loop": true,
+    "len": 1.785
+   },
+   "09efe4e6db62675e": {
+    "loop": true,
+    "len": 1.017
    },
    "56355a28a474197d": {
     "loop": true,
     "len": 3.151
    },
+   "22f2fd8e400d0cb3": {
+    "loop": true,
+    "len": 0.975
+   },
+   "9fdcbc961a34cfb5": {
+    "loop": true,
+    "len": 1.103
+   },
+   "be6cea17698efe80": {
+    "loop": true,
+    "len": 2.063
+   },
+   "da5333051f66a08e": {
+    "loop": true,
+    "len": 1.988
+   },
+   "7422678d0ede09c1": {
+    "loop": true,
+    "len": 2.415
+   },
+   "659e09e85de58d31": {
+    "loop": true,
+    "len": 0.932
+   },
+   "0aa96ccd9b2afaef": {
+    "loop": true,
+    "len": 0.857
+   },
+   "4c580ded23034de5": {
+    "loop": true,
+    "len": 0.9
+   },
+   "f0636a88396db649": {
+    "loop": true,
+    "len": 2.681
+   },
+   "d80bc0c120fa15bb": {
+    "loop": true,
+    "len": 0.804
+   },
+   "646174fa62942e37": {
+    "loop": true,
+    "len": 1.369
+   },
    "bfba787f5a093e69": {
     "loop": true,
     "len": 3.588
    },
+   "7985555dc58594f7": {
+    "loop": true,
+    "len": 1.028
+   },
    "749cc8afabf6c22a": {
     "loop": true,
     "len": 3.759
+   },
+   "7fdd0625fafe445d": {
+    "loop": true,
+    "len": 1.071
+   },
+   "88c3745445bf7712": {
+    "loop": true,
+    "len": 4.527
+   },
+   "e3b9a00733318925": {
+    "loop": true,
+    "len": 1.284
+   },
+   "ba90fe280699dc6e": {
+    "loop": true,
+    "len": 3.033
+   },
+   "e6ba32c08ca58bf9": {
+    "loop": true,
+    "len": 1.113
+   },
+   "097cb536a0377784": {
+    "loop": true,
+    "len": 1.529
+   },
+   "1f3463b6523d8f0d": {
+    "loop": true,
+    "len": 0.857
+   },
+   "ed6118f2400390c1": {
+    "loop": true,
+    "len": 0.793
    },
    "706f82297c051ab8": {
     "loop": true,
@@ -146,85 +1094,841 @@
     "loop": true,
     "len": 3.14
    },
+   "adf520b54e4e4f43": {
+    "loop": true,
+    "len": 7.044
+   },
+   "2ab0efc60418ad55": {
+    "loop": true,
+    "len": 5.785
+   },
    "79e5a6c3fd1cf343": {
     "loop": true,
     "len": 3.524
+   },
+   "aff6db4e10bd74cb": {
+    "loop": true,
+    "len": 0.783
+   },
+   "96a83b3cf213580a": {
+    "loop": true,
+    "len": 1.039
+   },
+   "12eab6db04998d89": {
+    "loop": true,
+    "len": 1.839
+   },
+   "49bd8d60b56d2380": {
+    "loop": true,
+    "len": 1.711
+   },
+   "e0e5dcb1870f2b3b": {
+    "loop": true,
+    "len": 2.052
+   },
+   "527efbcb2c5bb973": {
+    "loop": true,
+    "len": 2.244
+   },
+   "c23357fe54e8ba96": {
+    "loop": true,
+    "len": 1.007
+   },
+   "8e238c48e7af0984": {
+    "loop": true,
+    "len": 1.583
+   },
+   "72e47c4f001c25d2": {
+    "loop": true,
+    "len": 0.783
    },
    "6005e6440b1d9178": {
     "loop": true,
     "len": 4.495
    },
+   "a87280fb01295cee": {
+    "loop": true,
+    "len": 1.999
+   },
+   "f5275d314f801ee8": {
+    "loop": true,
+    "len": 4.964
+   },
+   "fc5d69d4cdfea8fd": {
+    "loop": true,
+    "len": 1.263
+   },
    "95f2939a3d6e77ac": {
     "loop": true,
     "len": 3.641
+   },
+   "18a55cda2e0d7cf4": {
+    "loop": true,
+    "len": 0.911
    },
    "2df61096d4cdff2c": {
     "loop": true,
     "len": 3.449
    },
+   "627cb91f9e6962b6": {
+    "loop": true,
+    "len": 1.06
+   },
+   "c9a95c40a6a926b0": {
+    "loop": true,
+    "len": 1.465
+   },
+   "e2d22be9ffa65e32": {
+    "loop": true,
+    "len": 0.665
+   },
+   "a6b6adf14d68fca5": {
+    "loop": true,
+    "len": 1.092
+   },
+   "e7f8af154bb44356": {
+    "loop": true,
+    "len": 2.308
+   },
+   "300cd68feaa6eea1": {
+    "loop": true,
+    "len": 1.391
+   },
+   "b6d42bf8d96af358": {
+    "loop": true,
+    "len": 1.455
+   },
    "ecb5f9253da9c087": {
     "loop": true,
     "len": 3.951
+   },
+   "d64a3972f2452f6b": {
+    "loop": true,
+    "len": 1.455
+   },
+   "440abb681be85738": {
+    "loop": true,
+    "len": 1.38
+   },
+   "69fc9cf229fa1741": {
+    "loop": true,
+    "len": 3.481
+   },
+   "844dfb5f4178e1b4": {
+    "loop": true,
+    "len": 1.007
+   },
+   "3aa4ea635312c672": {
+    "loop": true,
+    "len": 1.647
+   },
+   "d8119b93ac6f968d": {
+    "loop": true,
+    "len": 3.492
+   },
+   "856301c6fafda254": {
+    "loop": true,
+    "len": 0.9
+   },
+   "4e77056b2955668a": {
+    "loop": true,
+    "len": 1.103
+   },
+   "672a7ef9d5c119ed": {
+    "loop": true,
+    "len": 1.071
+   },
+   "fa776c90533660a1": {
+    "loop": true,
+    "len": 3.215
+   },
+   "d08fbf8a51f15851": {
+    "loop": true,
+    "len": 0.911
+   },
+   "a5416510681321d3": {
+    "loop": true,
+    "len": 8.879
+   },
+   "dfd3167ff60d17b0": {
+    "loop": true,
+    "len": 1.38
+   },
+   "f9b5a6302a0dd868": {
+    "loop": true,
+    "len": 4.996
+   },
+   "7a8da3b979257ed9": {
+    "loop": true,
+    "len": 5.241
+   },
+   "1071a7e4bb5be9e2": {
+    "loop": true,
+    "len": 1.369
+   },
+   "ce048c8b6a78b686": {
+    "loop": true,
+    "len": 2.98
+   },
+   "45c1043f498c2c04": {
+    "loop": true,
+    "len": 1.529
+   },
+   "cd5931e55d050af7": {
+    "loop": true,
+    "len": 1.177
+   },
+   "ad94ab829213c6bc": {
+    "loop": true,
+    "len": 2.393
+   },
+   "f2e11de3abc2477f": {
+    "loop": true,
+    "len": 5.081
    },
    "67b3cedba3058e77": {
     "loop": true,
     "len": 4.025
    },
+   "ed29e7879da0983d": {
+    "loop": true,
+    "len": 1.22
+   },
+   "730797dd93683c05": {
+    "loop": true,
+    "len": 0.985
+   },
+   "a2644eca5251eb7a": {
+    "loop": true,
+    "len": 1.252
+   },
+   "0b977ea5c215258c": {
+    "loop": true,
+    "len": 1.359
+   },
    "03521ebbabadf3be": {
     "loop": true,
     "len": 3.439
+   },
+   "e406fe834c827a85": {
+    "loop": true,
+    "len": 1.721
+   },
+   "c266bc8fdbdd492a": {
+    "loop": true,
+    "len": 0.9
+   },
+   "a4d2125dfa4cf494": {
+    "loop": true,
+    "len": 0.9
+   },
+   "0a84685a7658e652": {
+    "loop": true,
+    "len": 0.985
+   },
+   "27df631bcae1b575": {
+    "loop": true,
+    "len": 0.911
+   },
+   "1dd67014d051221f": {
+    "loop": true,
+    "len": 2.052
+   },
+   "bbb175bb4ede618c": {
+    "loop": true,
+    "len": 1.273
    },
    "9129b9e4f833fbaf": {
     "loop": true,
     "len": 3.556
    },
+   "a3b88b8ddcfffaaa": {
+    "loop": true,
+    "len": 1.252
+   },
+   "8c400dead7d46b5f": {
+    "loop": true,
+    "len": 1.081
+   },
+   "5ffb2f46bd8435a1": {
+    "loop": true,
+    "len": 0.964
+   },
+   "e2ac6ab0b70e6dbc": {
+    "loop": true,
+    "len": 0.847
+   },
+   "b225ec56e486e65b": {
+    "loop": true,
+    "len": 1.156
+   },
+   "db8ed27099a7b7d5": {
+    "loop": true,
+    "len": 2.052
+   },
+   "2cdf1aae123bbbe8": {
+    "loop": true,
+    "len": 1.444
+   },
+   "abff8086a7214473": {
+    "loop": true,
+    "len": 1.711
+   },
+   "e5a0e562e254ab59": {
+    "loop": true,
+    "len": 1.305
+   },
+   "aa35c42768ed1b04": {
+    "loop": true,
+    "len": 0.825
+   },
+   "a48ada23e6db426b": {
+    "loop": true,
+    "len": 1.529
+   },
+   "6af853ded028c033": {
+    "loop": true,
+    "len": 0.879
+   },
+   "66163287e4a6bbd4": {
+    "loop": true,
+    "len": 1.785
+   },
+   "5c2326822c42b3fb": {
+    "loop": true,
+    "len": 4.057
+   },
+   "a933ec838c5ee831": {
+    "loop": true,
+    "len": 0.879
+   },
+   "a835d43b0db2405a": {
+    "loop": true,
+    "len": 0.985
+   },
+   "ac691106eb19b2e4": {
+    "loop": true,
+    "len": 1.604
+   },
+   "9e0f40f7d01c611c": {
+    "loop": true,
+    "len": 4.708
+   },
+   "104e0283576752fa": {
+    "loop": true,
+    "len": 1.988
+   },
+   "13c4352fbc2f9ddd": {
+    "loop": true,
+    "len": 1.295
+   },
+   "50dea08695452f5c": {
+    "loop": true,
+    "len": 1.967
+   },
+   "51fe6327fcb8fb6f": {
+    "loop": true,
+    "len": 0.943
+   },
+   "51ff3b7a6e1d54f0": {
+    "loop": true,
+    "len": 0.911
+   },
+   "314f634522af0bfa": {
+    "loop": true,
+    "len": 0.921
+   },
+   "d9f5cb7891f815d6": {
+    "loop": true,
+    "len": 6.265
+   },
+   "a32ac1986db3ca0c": {
+    "loop": true,
+    "len": 1.391
+   },
+   "f4e125f35aca6da2": {
+    "loop": true,
+    "len": 0.921
+   },
+   "3ac99fabb3f4bdb2": {
+    "loop": true,
+    "len": 1.241
+   },
    "9fbb2a04c983d053": {
     "loop": true,
     "len": 3.919
+   },
+   "db0e037ab18c5df1": {
+    "loop": true,
+    "len": 0.633
+   },
+   "bda2edf6967d20fb": {
+    "loop": true,
+    "len": 4.943
+   },
+   "73bde1667d9298b9": {
+    "loop": true,
+    "len": 0.985
+   },
+   "07ffddd9312119b6": {
+    "loop": true,
+    "len": 1.465
+   },
+   "a2fccdbcc49fe08b": {
+    "loop": true,
+    "len": 0.985
+   },
+   "cf4ea84103eac29d": {
+    "loop": true,
+    "len": 1.209
+   },
+   "09f849ea4f79b82c": {
+    "loop": true,
+    "len": 2.063
+   },
+   "ecbcb7bd3bc2ac50": {
+    "loop": true,
+    "len": 6.895
+   },
+   "32a125ed22508c9d": {
+    "loop": true,
+    "len": 6.841
+   },
+   "8a67dec8d1036780": {
+    "loop": true,
+    "len": 1.86
+   },
+   "53e29662930dad2d": {
+    "loop": true,
+    "len": 1.999
+   },
+   "af142242c955c009": {
+    "loop": true,
+    "len": 1.519
+   },
+   "7d1f8a856a6e7562": {
+    "loop": true,
+    "len": 1.604
+   },
+   "237bcdd8a0035bfe": {
+    "loop": true,
+    "len": 0.921
+   },
+   "9a5131b7579af08c": {
+    "loop": true,
+    "len": 1.796
+   },
+   "aa775ff1b67cdc16": {
+    "loop": true,
+    "len": 6.009
    },
    "383ad19c852c84c9": {
     "loop": true,
     "len": 2.937
    },
+   "e9206b406235458c": {
+    "loop": true,
+    "len": 0.772
+   },
+   "76e696bf0104ebde": {
+    "loop": true,
+    "len": 1.241
+   },
+   "5242fa481c8f29dd": {
+    "loop": true,
+    "len": 0.921
+   },
+   "03c9ee7092af47c9": {
+    "loop": true,
+    "len": 3.407
+   },
+   "a4b349768a4542bd": {
+    "loop": true,
+    "len": 1.199
+   },
+   "e23a1004445672ee": {
+    "loop": true,
+    "len": 0.804
+   },
    "c53ec56e1ae42443": {
     "loop": true,
     "len": 3.844
+   },
+   "cd77306e74dbdb8b": {
+    "loop": true,
+    "len": 0.879
+   },
+   "ed1ba279773a7602": {
+    "loop": true,
+    "len": 1.423
+   },
+   "ecdf1d47dc2d831a": {
+    "loop": true,
+    "len": 1.263
+   },
+   "4593b124f3b0a45d": {
+    "loop": true,
+    "len": 1.017
+   },
+   "060e6f170450144d": {
+    "loop": true,
+    "len": 0.836
+   },
+   "29e21eb09484723b": {
+    "loop": true,
+    "len": 1.017
+   },
+   "29422c34a9b4604f": {
+    "loop": true,
+    "len": 1.529
+   },
+   "9c7194bd28e4871f": {
+    "loop": true,
+    "len": 3.097
+   },
+   "e9e4353d78b1393e": {
+    "loop": true,
+    "len": 2.564
+   },
+   "1289e27198b7166b": {
+    "loop": true,
+    "len": 3.908
+   },
+   "f813bf802d876034": {
+    "loop": true,
+    "len": 1.145
+   },
+   "1f9a04639121141d": {
+    "loop": true,
+    "len": 0.921
    },
    "7eae198d2a2deb83": {
     "loop": true,
     "len": 3.364
    },
+   "ec248190579bb692": {
+    "loop": true,
+    "len": 6.34
+   },
+   "f0b6c19937c2014d": {
+    "loop": true,
+    "len": 8.473
+   },
+   "91cd7fe1bff6b64f": {
+    "loop": true,
+    "len": 5.572
+   },
+   "fbdc2c084a14b5c5": {
+    "loop": true,
+    "len": 1.913
+   },
+   "b39411c58e12ff62": {
+    "loop": true,
+    "len": 1.231
+   },
    "6f2dd78b1a6777ac": {
     "loop": true,
     "len": 4.335
+   },
+   "a75c8c16af6cb0c1": {
+    "loop": true,
+    "len": 0.772
+   },
+   "9734cd15f407f7a7": {
+    "loop": true,
+    "len": 1.284
+   },
+   "05e118fda7ee690a": {
+    "loop": true,
+    "len": 0.889
+   },
+   "f91760ebe3c91858": {
+    "loop": true,
+    "len": 0.719
+   },
+   "0d751797c158d2fe": {
+    "loop": true,
+    "len": 0.793
+   },
+   "0caaad0e4b8dc23a": {
+    "loop": true,
+    "len": 2.116
    },
    "2ebc61050aafd361": {
     "loop": true,
     "len": 3.588
    },
+   "ad9f33a66c4bc6be": {
+    "loop": true,
+    "len": 2.116
+   },
+   "a77efd02c98222b2": {
+    "loop": true,
+    "len": 1.231
+   },
+   "fa5256921cf7ccf2": {
+    "loop": true,
+    "len": 1.86
+   },
+   "49ee31a2eb2857f4": {
+    "loop": true,
+    "len": 1.305
+   },
+   "5a1c6724d08515df": {
+    "loop": true,
+    "len": 1.113
+   },
+   "042852bbe3e17a56": {
+    "loop": true,
+    "len": 2.916
+   },
    "2563324d5453edcd": {
     "loop": true,
     "len": 3.492
+   },
+   "ee94680bbd943bb6": {
+    "loop": true,
+    "len": 5.348
+   },
+   "ed48445cc6249f1b": {
+    "loop": true,
+    "len": 0.772
+   },
+   "f9a64995ea6eb972": {
+    "loop": true,
+    "len": 6.948
+   },
+   "ceea23ce932d4099": {
+    "loop": true,
+    "len": 1.124
+   },
+   "a25327fe2da2e113": {
+    "loop": true,
+    "len": 6.18
+   },
+   "41c809f60ad95e8f": {
+    "loop": true,
+    "len": 0.943
+   },
+   "46026419e6811422": {
+    "loop": true,
+    "len": 0.719
+   },
+   "82d6c96bf465d0ce": {
+    "loop": true,
+    "len": 1.327
+   },
+   "3a6a52181e9ecd2d": {
+    "loop": true,
+    "len": 4.249
+   },
+   "426a13a7d93c2979": {
+    "loop": true,
+    "len": 2.191
+   },
+   "37968426d86ea00b": {
+    "loop": true,
+    "len": 4.025
    },
    "14bd34d6b544e7d3": {
     "loop": true,
     "len": 3.193
    },
+   "6ec098b55dacf149": {
+    "loop": true,
+    "len": 3.684
+   },
+   "6111c397c1954a18": {
+    "loop": true,
+    "len": 4.772
+   },
+   "5eede3b0b00ec80c": {
+    "loop": true,
+    "len": 5.743
+   },
    "fb06a792f6c7f5dc": {
     "loop": true,
     "len": 2.991
+   },
+   "fe5fed063f03f8e2": {
+    "loop": true,
+    "len": 1.519
+   },
+   "ed7a048221cca939": {
+    "loop": true,
+    "len": 1.124
+   },
+   "4d4491c81722b46f": {
+    "loop": true,
+    "len": 1.231
+   },
+   "883755a0a311b97e": {
+    "loop": true,
+    "len": 3.588
+   },
+   "b1b559a561cf1441": {
+    "loop": true,
+    "len": 6.884
+   },
+   "285e585eeb371a52": {
+    "loop": true,
+    "len": 1.209
+   },
+   "8a9e07b03bcea1da": {
+    "loop": true,
+    "len": 1.337
    },
    "0156650fce069abe": {
     "loop": true,
     "len": 3.801
    },
+   "415d1c868456c24a": {
+    "loop": true,
+    "len": 1.039
+   },
+   "4adf12f048da845f": {
+    "loop": true,
+    "len": 0.964
+   },
+   "4554974bf84daf51": {
+    "loop": true,
+    "len": 1.945
+   },
+   "d7c12c893eff566b": {
+    "loop": true,
+    "len": 0.847
+   },
+   "a31955d5046142e5": {
+    "loop": true,
+    "len": 1.209
+   },
+   "9afaa8b3cdecc956": {
+    "loop": true,
+    "len": 1.721
+   },
+   "8156c30555d0f4a9": {
+    "loop": true,
+    "len": 2.895
+   },
+   "2c572d80dd049379": {
+    "loop": true,
+    "len": 0.879
+   },
+   "88e97943d5345e1e": {
+    "loop": true,
+    "len": 0.655
+   },
    "37a5d6bd352fe7ed": {
     "loop": true,
     "len": 3.673
    },
+   "1aabbba8d0a9be12": {
+    "loop": true,
+    "len": 2.287
+   },
+   "38ba791730e5e1d1": {
+    "loop": true,
+    "len": 0.889
+   },
+   "317ad5f90e60f169": {
+    "loop": true,
+    "len": 1.295
+   },
+   "4f914723594632d9": {
+    "loop": true,
+    "len": 2.255
+   },
+   "68ea9eb534f7bada": {
+    "loop": true,
+    "len": 1.039
+   },
+   "71a3877bc4d692af": {
+    "loop": true,
+    "len": 0.985
+   },
+   "81991180afd328f7": {
+    "loop": true,
+    "len": 1.199
+   },
+   "a09f60d8f16d7b78": {
+    "loop": true,
+    "len": 0.868
+   },
+   "ae93812e28dfdbca": {
+    "loop": true,
+    "len": 1.615
+   },
+   "b1deee8392477d91": {
+    "loop": true,
+    "len": 4.281
+   },
+   "20e12e898906b026": {
+    "loop": true,
+    "len": 1.668
+   },
+   "79a457ad1abf1086": {
+    "loop": true,
+    "len": 1.86
+   },
+   "efa97d00bc2ab6b6": {
+    "loop": true,
+    "len": 1.305
+   },
+   "a315635436a73969": {
+    "loop": true,
+    "len": 0.943
+   },
+   "0ffcf9e88495435e": {
+    "loop": true,
+    "len": 0.921
+   },
    "ff2ee0fb64aa3aa4": {
     "loop": true,
     "len": 2.959
+   },
+   "4984d125e5c0fbcb": {
+    "loop": true,
+    "len": 0.932
+   },
+   "f17b20ad5faf2eec": {
+    "loop": true,
+    "len": 0.889
+   },
+   "5e0a99dfbd55a6a8": {
+    "loop": true,
+    "len": 0.537
+   },
+   "9a740f01683095a6": {
+    "loop": true,
+    "len": 5.455
+   },
+   "41bfe0286a1b5412": {
+    "loop": true,
+    "len": 1.188
+   },
+   "3067be17c161f50d": {
+    "loop": true,
+    "len": 0.932
+   },
+   "c99c3d9ef6f7a28a": {
+    "loop": true,
+    "len": 3.268
+   },
+   "f03149c7610801ca": {
+    "loop": true,
+    "len": 4.484
+   },
+   "74556bd89a242176": {
+    "loop": true,
+    "len": 3.183
+   },
+   "c0a056524524b254": {
+    "loop": true,
+    "len": 2.724
+   },
+   "017e760fc8a06fdb": {
+    "loop": true,
+    "len": 0.932
    },
    "4f9c109fc14b0926": {
     "loop": true,
@@ -234,35 +1938,227 @@
     "loop": true,
     "len": 4.196
    },
+   "0bb34de188ed2154": {
+    "loop": true,
+    "len": 1.412
+   },
+   "0b59fa0d82d86bbe": {
+    "loop": true,
+    "len": 1.337
+   },
+   "1bb6fc9051f2c5a5": {
+    "loop": true,
+    "len": 1.007
+   },
+   "1fb978f0cc07499b": {
+    "loop": true,
+    "len": 1.444
+   },
+   "f79af455ce8d642c": {
+    "loop": true,
+    "len": 1.647
+   },
+   "b312f266097a35ee": {
+    "loop": true,
+    "len": 0.9
+   },
    "816a231e55b3899b": {
     "loop": true,
     "len": 2.649
    },
+   "9f37e6e927096b84": {
+    "loop": true,
+    "len": 1.497
+   },
+   "6290f4b6e1412354": {
+    "loop": true,
+    "len": 1.273
+   },
    "2874513a4707d3c9": {
     "loop": true,
     "len": 3.897
+   },
+   "499375a390c433fc": {
+    "loop": true,
+    "len": 1.337
+   },
+   "6b34ebe831d2ea92": {
+    "loop": true,
+    "len": 3.289
+   },
+   "5815df5ab4a361a6": {
+    "loop": true,
+    "len": 0.9
+   },
+   "7b9124654fbfed79": {
+    "loop": true,
+    "len": 8.42
+   },
+   "66ea835f728673c3": {
+    "loop": true,
+    "len": 1.476
+   },
+   "f75dcf76f7370aa6": {
+    "loop": true,
+    "len": 4.665
+   },
+   "05b2b46a7ceca96d": {
+    "loop": true,
+    "len": 1.177
+   },
+   "a18acfb17829652a": {
+    "loop": true,
+    "len": 2.468
+   },
+   "89ce4ac7147f494b": {
+    "loop": true,
+    "len": 6.116
+   },
+   "d92e22c64c1ebaaf": {
+    "loop": true,
+    "len": 2.436
+   },
+   "95a0a0b3c5a3ae3d": {
+    "loop": true,
+    "len": 0.687
+   },
+   "031e4b9b5c1118e4": {
+    "loop": true,
+    "len": 1.423
+   },
+   "62c489fedf0678d3": {
+    "loop": true,
+    "len": 1.017
+   },
+   "74356680958194c2": {
+    "loop": true,
+    "len": 2.895
+   },
+   "3e2a43bb87adede5": {
+    "loop": true,
+    "len": 1.433
+   },
+   "46795cfc2d068100": {
+    "loop": true,
+    "len": 0.975
+   },
+   "e2be76f77d32f2e3": {
+    "loop": true,
+    "len": 1.017
+   },
+   "650abc48606a92b4": {
+    "loop": true,
+    "len": 0.548
+   },
+   "6178c91e8d3440d4": {
+    "loop": true,
+    "len": 0.804
    }
   },
   "ritsu": {
+   "80dc245890a8539a": {
+    "loop": true,
+    "len": 3.94
+   },
+   "3266e152ffd576b6": {
+    "loop": true,
+    "len": 3.556
+   },
+   "088fc332cb42e5f5": {
+    "loop": true,
+    "len": 3.225
+   },
+   "14a55038d1d7f735": {
+    "loop": true,
+    "len": 3.119
+   },
+   "126fa87c68a0d5f3": {
+    "loop": true,
+    "len": 3.289
+   },
+   "8eecb1debbe61cfb": {
+    "loop": true,
+    "len": 0.804
+   },
    "cb81b35975333efc": {
     "loop": true,
     "len": 2.351
+   },
+   "3e71659608a58bf4": {
+    "loop": true,
+    "len": 1.177
+   },
+   "13e484c2ee380cb9": {
+    "loop": true,
+    "len": 0.751
    },
    "fc259ceda521ed7d": {
     "loop": true,
     "len": 2.649
    },
+   "d7a398d646fbdb52": {
+    "loop": true,
+    "len": 0.761
+   },
+   "2096f7bb3255cf9c": {
+    "loop": true,
+    "len": 9.369
+   },
+   "a9d69abbaa7ba5b3": {
+    "loop": true,
+    "len": 1.071
+   },
+   "978592caffd89e1f": {
+    "loop": true,
+    "len": 5.327
+   },
    "b75fe420e5d6d91e": {
     "loop": true,
     "len": 2.617
+   },
+   "8bccc734a11e192b": {
+    "loop": true,
+    "len": 2.148
    },
    "b028a5cb8f4c622d": {
     "loop": true,
     "len": 3.343
    },
+   "d9f257fae0d313ec": {
+    "loop": true,
+    "len": 4.089
+   },
+   "687615e87acc41cc": {
+    "loop": true,
+    "len": 2.137
+   },
+   "bd4ec289e77fc486": {
+    "loop": true,
+    "len": 1.231
+   },
+   "032cad961a85836f": {
+    "loop": true,
+    "len": 1.647
+   },
+   "886569e3a443a656": {
+    "loop": true,
+    "len": 4.527
+   },
+   "ddb0f0a2ca26a312": {
+    "loop": true,
+    "len": 2.991
+   },
+   "940e101683cd27ca": {
+    "loop": true,
+    "len": 1.775
+   },
    "4f3346dba44373ac": {
     "loop": true,
     "len": 2.521
+   },
+   "80be4dc8a6dcb176": {
+    "loop": true,
+    "len": 4.153
    },
    "1abfa7e9b249f76b": {
     "loop": true,
@@ -272,21 +2168,125 @@
     "loop": true,
     "len": 3.193
    },
+   "d9bbfa69f00be268": {
+    "loop": true,
+    "len": 2.703
+   },
+   "97e36e29a21af3cc": {
+    "loop": true,
+    "len": 3.972
+   },
+   "80045d7a215aac3b": {
+    "loop": true,
+    "len": 1.871
+   },
+   "c47098fe84eee209": {
+    "loop": true,
+    "len": 2.639
+   },
+   "f0d81a96c5390ff5": {
+    "loop": true,
+    "len": 0.804
+   },
+   "be5c7c51e1167a08": {
+    "loop": true,
+    "len": 6.617
+   },
+   "74aaff11f6e47960": {
+    "loop": true,
+    "len": 1.679
+   },
+   "84ac3841a5ed209f": {
+    "loop": true,
+    "len": 1.775
+   },
    "83f75a1c516f565f": {
     "loop": true,
     "len": 1.785
+   },
+   "6656b70bc34759e8": {
+    "loop": true,
+    "len": 0.857
+   },
+   "a6f1dfba081ff3b6": {
+    "loop": true,
+    "len": 3.652
+   },
+   "306fbc033ea1e44c": {
+    "loop": true,
+    "len": 3.791
+   },
+   "f8f8ba98825c4f6b": {
+    "loop": true,
+    "len": 1.081
+   },
+   "5bade99881dbd224": {
+    "loop": true,
+    "len": 4.324
+   },
+   "fdad89e5bbc16414": {
+    "loop": true,
+    "len": 1.007
+   },
+   "aead3219305700e8": {
+    "loop": true,
+    "len": 0.644
+   },
+   "8f5759a381456c42": {
+    "loop": true,
+    "len": 1.455
    },
    "2dbaabac82887ffc": {
     "loop": true,
     "len": 3.193
    },
+   "4b8dc19933ef9619": {
+    "loop": true,
+    "len": 0.804
+   },
+   "c2123f3e9d994aeb": {
+    "loop": true,
+    "len": 0.719
+   },
+   "e030445414b8ff9a": {
+    "loop": true,
+    "len": 1.156
+   },
+   "5b1fd9dd82e3b696": {
+    "loop": true,
+    "len": 3.919
+   },
+   "2eb39a0729ffc9b9": {
+    "loop": true,
+    "len": 0.911
+   },
+   "61bb501f90e883de": {
+    "loop": true,
+    "len": 0.868
+   },
+   "f9357c879ceaa56b": {
+    "loop": true,
+    "len": 2.159
+   },
+   "25369f52e095b257": {
+    "loop": true,
+    "len": 0.783
+   },
    "6600fb24e9cef5d3": {
     "loop": true,
     "len": 3.001
    },
+   "edf20d00b58f9b63": {
+    "loop": true,
+    "len": 0.975
+   },
    "177107535f734f43": {
     "loop": true,
     "len": 3.023
+   },
+   "3039b9336274c7fc": {
+    "loop": true,
+    "len": 1.007
    },
    "b58b378dff428ceb": {
     "loop": true,
@@ -296,61 +2296,677 @@
     "loop": true,
     "len": 2.596
    },
+   "d5cb6872141a0f1f": {
+    "loop": true,
+    "len": 4.132
+   },
+   "fe4ba485d3bc27ce": {
+    "loop": true,
+    "len": 0.847
+   },
+   "8c0f4523bd47ee80": {
+    "loop": true,
+    "len": 1.839
+   },
+   "3c92b79cbde35956": {
+    "loop": true,
+    "len": 1.796
+   },
+   "0aecb1a8fda6c5fb": {
+    "loop": true,
+    "len": 0.996
+   },
    "8039bf840e997735": {
     "loop": true,
     "len": 2.564
+   },
+   "ee7069e0d03e7554": {
+    "loop": true,
+    "len": 1.252
+   },
+   "b96e2291ea334a72": {
+    "loop": true,
+    "len": 0.697
+   },
+   "14b17f077ebf5abc": {
+    "loop": true,
+    "len": 0.559
+   },
+   "787dfead2c24eea5": {
+    "loop": true,
+    "len": 0.793
+   },
+   "e15a39da9422a478": {
+    "loop": true,
+    "len": 0.708
+   },
+   "eb3f6a12822800c4": {
+    "loop": true,
+    "len": 0.74
    },
    "a6ad86ea05239e9a": {
     "loop": true,
     "len": 2.255
    },
+   "b41c0f54f245a010": {
+    "loop": true,
+    "len": 2.34
+   },
    "ade18761423fb3a7": {
     "loop": true,
     "len": 2.724
+   },
+   "421f6d1634c9afdb": {
+    "loop": true,
+    "len": 1.305
+   },
+   "59efbac808d3ed6c": {
+    "loop": true,
+    "len": 1.145
+   },
+   "b87f86cac19a2b45": {
+    "loop": true,
+    "len": 0.58
+   },
+   "d39404e8ab8f610e": {
+    "loop": true,
+    "len": 1.209
+   },
+   "052e1ab80cbf104c": {
+    "loop": true,
+    "len": 0.708
+   },
+   "e56c2ffbea3c0329": {
+    "loop": true,
+    "len": 0.708
+   },
+   "a32b8a3c5a1af14b": {
+    "loop": true,
+    "len": 0.985
    },
    "73f4094a1b2224ee": {
     "loop": true,
     "len": 2.425
    },
+   "10d721e90cb03329": {
+    "loop": true,
+    "len": 0.815
+   },
+   "15bd500a40c363a7": {
+    "loop": true,
+    "len": 0.697
+   },
    "8d2d188cddba78e7": {
     "loop": true,
     "len": 3.087
+   },
+   "f0e334ca9ed06e1e": {
+    "loop": true,
+    "len": 0.751
+   },
+   "d05a8d9b2aaa1024": {
+    "loop": true,
+    "len": 1.028
+   },
+   "3e439fc4b7306e6b": {
+    "loop": true,
+    "len": 3.663
+   },
+   "d6d999ed70ea87c9": {
+    "loop": true,
+    "len": 0.879
+   },
+   "d71f5b5fe773f7a3": {
+    "loop": true,
+    "len": 1.103
+   },
+   "5a6a945c7a62a7da": {
+    "loop": true,
+    "len": 0.9
+   },
+   "eed029f916da5e22": {
+    "loop": true,
+    "len": 5.881
+   },
+   "b01513f76f7c1b22": {
+    "loop": true,
+    "len": 0.761
+   },
+   "825f24565996cce2": {
+    "loop": true,
+    "len": 1.092
+   },
+   "a4c3cd6d27110065": {
+    "loop": true,
+    "len": 2.543
+   },
+   "964acc727056f110": {
+    "loop": true,
+    "len": 0.932
+   },
+   "12a196a6ffcc163b": {
+    "loop": true,
+    "len": 0.9
    },
    "e6b86c5710ec1f96": {
     "loop": true,
     "len": 2.767
    },
+   "80ca2334a4815de0": {
+    "loop": true,
+    "len": 1.732
+   },
+   "4e4723cd6fc73d5e": {
+    "loop": true,
+    "len": 0.836
+   },
+   "fe091daaa3bb87f7": {
+    "loop": true,
+    "len": 1.945
+   },
+   "f6ad19a0fc887cc4": {
+    "loop": true,
+    "len": 3.876
+   },
    "9031e5fc67833b57": {
     "loop": true,
     "len": 2.628
+   },
+   "485a61a1ef712290": {
+    "loop": true,
+    "len": 1.007
    },
    "857beb43d202cc4f": {
     "loop": true,
     "len": 2.009
    },
+   "095e0a714d7208ff": {
+    "loop": true,
+    "len": 1.124
+   },
+   "04024237f4e23a77": {
+    "loop": true,
+    "len": 4.377
+   },
+   "28816f5203f83c28": {
+    "loop": true,
+    "len": 0.804
+   },
+   "58263ebcb25ee018": {
+    "loop": true,
+    "len": 2.895
+   },
+   "664fdf1b308fdf4c": {
+    "loop": true,
+    "len": 2.564
+   },
+   "276fe37fa3aacca3": {
+    "loop": true,
+    "len": 0.74
+   },
    "55918717514f8427": {
     "loop": true,
     "len": 2.767
+   },
+   "8df98773044bff2d": {
+    "loop": true,
+    "len": 0.708
+   },
+   "8cfa36feef56fc79": {
+    "loop": true,
+    "len": 1.081
+   },
+   "30bc3047bbe5de70": {
+    "loop": true,
+    "len": 0.729
+   },
+   "ed162ccc0f4c42c9": {
+    "loop": true,
+    "len": 4.473
+   },
+   "b2a8c70d759fff28": {
+    "loop": true,
+    "len": 3.876
+   },
+   "3bac23650e6ae468": {
+    "loop": true,
+    "len": 1.369
+   },
+   "fe2b2a18d062cd42": {
+    "loop": true,
+    "len": 0.772
+   },
+   "28050bb0024f1aaa": {
+    "loop": true,
+    "len": 0.74
+   },
+   "6ee7cd69f1d4de5f": {
+    "loop": true,
+    "len": 0.804
+   },
+   "39713ff87df1872d": {
+    "loop": true,
+    "len": 1.028
+   },
+   "3b8f8280decb302f": {
+    "loop": true,
+    "len": 0.719
+   },
+   "a9227ac8a7f28a4d": {
+    "loop": true,
+    "len": 1.423
+   },
+   "02738e2030ed294e": {
+    "loop": true,
+    "len": 0.847
+   },
+   "b6a4b333f692bbdc": {
+    "loop": true,
+    "len": 3.044
+   },
+   "a756c35a3383590a": {
+    "loop": true,
+    "len": 0.879
+   },
+   "5fcdcd83a7b0e259": {
+    "loop": true,
+    "len": 0.74
    },
    "a320a290a5a2a058": {
     "loop": true,
     "len": 1.924
    },
+   "bfd975d777920f89": {
+    "loop": true,
+    "len": 4.431
+   },
+   "a37e5cb8e08335b3": {
+    "loop": true,
+    "len": 1.167
+   },
+   "1e8eeaa77c0bf477": {
+    "loop": true,
+    "len": 1.039
+   },
+   "3d91967300088f55": {
+    "loop": true,
+    "len": 1.913
+   },
+   "91501eae4b050089": {
+    "loop": true,
+    "len": 0.953
+   },
+   "af6edfaa4ab755d7": {
+    "loop": true,
+    "len": 2.735
+   },
    "a5b3f02930390f65": {
     "loop": true,
     "len": 2.948
+   },
+   "90296e45326fa54b": {
+    "loop": true,
+    "len": 0.793
+   },
+   "66dfe4d14106d988": {
+    "loop": true,
+    "len": 0.815
+   },
+   "6613274442698883": {
+    "loop": true,
+    "len": 0.783
+   },
+   "a852d85d5c080322": {
+    "loop": true,
+    "len": 0.985
+   },
+   "0b6a5afe60e88749": {
+    "loop": true,
+    "len": 1.263
+   },
+   "afaa604f42ed968f": {
+    "loop": true,
+    "len": 0.868
+   },
+   "e938c3ad21d6b25a": {
+    "loop": true,
+    "len": 0.889
+   },
+   "d098ee928d5b8152": {
+    "loop": true,
+    "len": 0.591
+   },
+   "d4160e29091810fe": {
+    "loop": true,
+    "len": 0.889
+   },
+   "6dbb4cec28643cbb": {
+    "loop": true,
+    "len": 0.836
+   },
+   "872f282f97c374ce": {
+    "loop": true,
+    "len": 3.961
+   },
+   "8fe6a4d944407d86": {
+    "loop": true,
+    "len": 4.665
+   },
+   "5d1047e01bfaf294": {
+    "loop": true,
+    "len": 4.591
+   },
+   "ac982429bef0bc06": {
+    "loop": true,
+    "len": 7.577
+   },
+   "b511163badb638c2": {
+    "loop": true,
+    "len": 1.391
+   },
+   "0cc637015a45f55b": {
+    "loop": true,
+    "len": 1.167
+   },
+   "eae0c94f75f1cdd9": {
+    "loop": true,
+    "len": 0.665
+   },
+   "5fd0971583cc8d5b": {
+    "loop": true,
+    "len": 1.561
+   },
+   "24ca06385b673e28": {
+    "loop": true,
+    "len": 0.953
+   },
+   "3b6c8ac6f00a2835": {
+    "loop": true,
+    "len": 0.708
    },
    "4b9261d74152c8a6": {
     "loop": true,
     "len": 2.628
    },
+   "f3b6097e215d2bb5": {
+    "loop": true,
+    "len": 1.135
+   },
+   "bfd909d62314214a": {
+    "loop": true,
+    "len": 0.783
+   },
+   "f1a62095e124b63c": {
+    "loop": true,
+    "len": 0.537
+   },
+   "f2b11448f97d63ed": {
+    "loop": true,
+    "len": 0.665
+   },
+   "c7ed9e4ee245be97": {
+    "loop": true,
+    "len": 1.145
+   },
+   "97664b2081a6f279": {
+    "loop": true,
+    "len": 0.74
+   },
+   "a6ab15965093ccc8": {
+    "loop": true,
+    "len": 4.953
+   },
+   "038c76211c4b57b6": {
+    "loop": true,
+    "len": 3.417
+   },
+   "2586302b1d605feb": {
+    "loop": true,
+    "len": 0.783
+   },
+   "79e4fd6f027bc177": {
+    "loop": true,
+    "len": 2.191
+   },
+   "56142c492a502a68": {
+    "loop": true,
+    "len": 0.985
+   },
    "2410ff9b3498e38b": {
     "loop": true,
     "len": 2.649
    },
+   "d2af692cb0cc933b": {
+    "loop": true,
+    "len": 1.241
+   },
+   "d338ad9160b6ef69": {
+    "loop": true,
+    "len": 1.017
+   },
+   "b29f0ab9a8db1e19": {
+    "loop": true,
+    "len": 1.956
+   },
+   "a9747e5d601639a5": {
+    "loop": true,
+    "len": 1.145
+   },
+   "8e83ab2d45b087a4": {
+    "loop": true,
+    "len": 0.612
+   },
+   "b0ef86f8b00086b8": {
+    "loop": true,
+    "len": 2.041
+   },
+   "721050b01fb7fcec": {
+    "loop": true,
+    "len": 2.127
+   },
+   "1043d9aa19598451": {
+    "loop": true,
+    "len": 0.953
+   },
+   "98e7019cb5033b13": {
+    "loop": true,
+    "len": 1.081
+   },
+   "6c72020a9abe83f3": {
+    "loop": true,
+    "len": 1.881
+   },
+   "dd06df1bfab9ef3a": {
+    "loop": true,
+    "len": 0.761
+   },
+   "4afb6507e1f28a75": {
+    "loop": true,
+    "len": 0.559
+   },
+   "20bc52d31ffaa362": {
+    "loop": true,
+    "len": 0.729
+   },
+   "bcbf2428e5d0c8f4": {
+    "loop": true,
+    "len": 0.772
+   },
+   "068194bf944bbd64": {
+    "loop": true,
+    "len": 3.151
+   },
+   "eb7e90c622bb8a89": {
+    "loop": true,
+    "len": 4.079
+   },
+   "435733b64c0f996d": {
+    "loop": true,
+    "len": 0.644
+   },
+   "bc4e55e65c0b5958": {
+    "loop": true,
+    "len": 0.751
+   },
+   "fc77f2d5214f2d8d": {
+    "loop": true,
+    "len": 4.057
+   },
+   "c597ca06f32edfff": {
+    "loop": true,
+    "len": 1.348
+   },
+   "38e6dee846516bf1": {
+    "loop": true,
+    "len": 0.761
+   },
+   "e3c0bb3be9aa9f96": {
+    "loop": true,
+    "len": 2.575
+   },
+   "1ecf7aa13bee2fef": {
+    "loop": true,
+    "len": 4.633
+   },
+   "e0278b13ee66b1d4": {
+    "loop": true,
+    "len": 3.577
+   },
+   "29f1c54f8f68897e": {
+    "loop": true,
+    "len": 0.815
+   },
+   "3b825e258a3a31e7": {
+    "loop": true,
+    "len": 0.793
+   },
+   "78d71ee0b66c53bb": {
+    "loop": true,
+    "len": 0.74
+   },
+   "9046cc8b12cbd4a0": {
+    "loop": true,
+    "len": 0.868
+   },
+   "62021e107e88ffa0": {
+    "loop": true,
+    "len": 0.697
+   },
+   "6e45e6661417a551": {
+    "loop": true,
+    "len": 0.836
+   },
+   "2f3376da8731dfb1": {
+    "loop": true,
+    "len": 2.265
+   },
+   "193d37c7471c132c": {
+    "loop": true,
+    "len": 2.212
+   },
+   "7ad6ca661f1ff2c8": {
+    "loop": true,
+    "len": 0.804
+   },
+   "673b03b6223ba366": {
+    "loop": true,
+    "len": 0.751
+   },
+   "c0c013f3f997e894": {
+    "loop": true,
+    "len": 1.401
+   },
+   "2361d05ca1fb13be": {
+    "loop": true,
+    "len": 1.519
+   },
+   "509e150fe69fd272": {
+    "loop": true,
+    "len": 1.732
+   },
+   "f186d3b1d2e4e7e3": {
+    "loop": true,
+    "len": 1.657
+   },
+   "81ec431eb0248028": {
+    "loop": true,
+    "len": 0.74
+   },
+   "d9856c4d6528c20c": {
+    "loop": true,
+    "len": 0.943
+   },
+   "f4744ff6a321f677": {
+    "loop": true,
+    "len": 1.913
+   },
+   "e4f0a46a5f8b9e25": {
+    "loop": true,
+    "len": 0.665
+   },
+   "aef406ca59ce394a": {
+    "loop": true,
+    "len": 2.276
+   },
+   "fbd6d2f8148f75f2": {
+    "loop": true,
+    "len": 2.212
+   },
+   "82caceb922c57538": {
+    "loop": true,
+    "len": 0.697
+   },
+   "2324c24452513aae": {
+    "loop": true,
+    "len": 0.676
+   },
+   "08fb6d5f64d19ac2": {
+    "loop": true,
+    "len": 0.591
+   },
+   "61fb1d2fab6e373f": {
+    "loop": true,
+    "len": 1.156
+   },
+   "bbd2af3f1de22e36": {
+    "loop": true,
+    "len": 1.145
+   },
    "de83f62a2bb45ceb": {
     "loop": true,
     "len": 2.564
+   },
+   "084129782411d3bd": {
+    "loop": true,
+    "len": 0.612
+   },
+   "ab0bd0ff5916430f": {
+    "loop": true,
+    "len": 3.599
+   },
+   "aaaf196457924f49": {
+    "loop": true,
+    "len": 1.188
+   },
+   "95dbb3a62209b624": {
+    "loop": true,
+    "len": 3.791
+   },
+   "34685a1fa4dfae8a": {
+    "loop": true,
+    "len": 5.796
+   },
+   "1302e8b3035c2d62": {
+    "loop": true,
+    "len": 5.956
+   },
+   "6319ff9afdf96e72": {
+    "loop": true,
+    "len": 1.284
+   },
+   "215ee8a4fc972bd8": {
+    "loop": true,
+    "len": 0.74
    },
    "9b90c24e07496b05": {
     "loop": true,
@@ -360,21 +2976,165 @@
     "loop": true,
     "len": 3.215
    },
+   "7258383e99071178": {
+    "loop": true,
+    "len": 0.932
+   },
+   "f1891a36f5671f1e": {
+    "loop": true,
+    "len": 2.009
+   },
+   "5878ddf5cbad7b7d": {
+    "loop": true,
+    "len": 0.751
+   },
+   "e05f2c87d571ddb1": {
+    "loop": true,
+    "len": 2.905
+   },
+   "8b01478a657410a6": {
+    "loop": true,
+    "len": 0.559
+   },
+   "25e7582d5571dac4": {
+    "loop": true,
+    "len": 1.273
+   },
+   "094058465091689e": {
+    "loop": true,
+    "len": 4.409
+   },
+   "adb089014fde4031": {
+    "loop": true,
+    "len": 0.697
+   },
+   "399cb93e1cf83579": {
+    "loop": true,
+    "len": 0.804
+   },
+   "f9c0432461886029": {
+    "loop": true,
+    "len": 1.049
+   },
+   "ef810b6abc2b8d45": {
+    "loop": true,
+    "len": 0.623
+   },
    "ef795f36d7d163c8": {
     "loop": true,
     "len": 3.343
+   },
+   "c3a45967d517dafa": {
+    "loop": true,
+    "len": 1.113
+   },
+   "944d31a4e29a20a6": {
+    "loop": true,
+    "len": 1.551
+   },
+   "5cd7d5da9c60ffd7": {
+    "loop": true,
+    "len": 0.911
+   },
+   "6eafaece6897d7e7": {
+    "loop": true,
+    "len": 1.369
+   },
+   "09efe4e6db62675e": {
+    "loop": true,
+    "len": 0.751
    },
    "56355a28a474197d": {
     "loop": true,
     "len": 2.244
    },
+   "22f2fd8e400d0cb3": {
+    "loop": true,
+    "len": 0.708
+   },
+   "9fdcbc961a34cfb5": {
+    "loop": true,
+    "len": 0.847
+   },
+   "be6cea17698efe80": {
+    "loop": true,
+    "len": 1.583
+   },
+   "da5333051f66a08e": {
+    "loop": true,
+    "len": 1.359
+   },
+   "7422678d0ede09c1": {
+    "loop": true,
+    "len": 1.604
+   },
+   "659e09e85de58d31": {
+    "loop": true,
+    "len": 0.815
+   },
+   "0aa96ccd9b2afaef": {
+    "loop": true,
+    "len": 0.655
+   },
+   "4c580ded23034de5": {
+    "loop": true,
+    "len": 0.793
+   },
+   "f0636a88396db649": {
+    "loop": true,
+    "len": 1.956
+   },
+   "d80bc0c120fa15bb": {
+    "loop": true,
+    "len": 0.815
+   },
+   "646174fa62942e37": {
+    "loop": true,
+    "len": 1.049
+   },
    "bfba787f5a093e69": {
     "loop": true,
     "len": 2.628
    },
+   "7985555dc58594f7": {
+    "loop": true,
+    "len": 0.751
+   },
    "749cc8afabf6c22a": {
     "loop": true,
     "len": 2.532
+   },
+   "7fdd0625fafe445d": {
+    "loop": true,
+    "len": 0.761
+   },
+   "88c3745445bf7712": {
+    "loop": true,
+    "len": 3.161
+   },
+   "e3b9a00733318925": {
+    "loop": true,
+    "len": 0.996
+   },
+   "ba90fe280699dc6e": {
+    "loop": true,
+    "len": 2.287
+   },
+   "e6ba32c08ca58bf9": {
+    "loop": true,
+    "len": 0.911
+   },
+   "097cb536a0377784": {
+    "loop": true,
+    "len": 1.113
+   },
+   "1f3463b6523d8f0d": {
+    "loop": true,
+    "len": 0.751
+   },
+   "ed6118f2400390c1": {
+    "loop": true,
+    "len": 0.783
    },
    "706f82297c051ab8": {
     "loop": true,
@@ -388,85 +3148,841 @@
     "loop": true,
     "len": 2.244
    },
+   "adf520b54e4e4f43": {
+    "loop": true,
+    "len": 4.815
+   },
+   "2ab0efc60418ad55": {
+    "loop": true,
+    "len": 3.929
+   },
    "79e5a6c3fd1cf343": {
     "loop": true,
     "len": 2.489
+   },
+   "aff6db4e10bd74cb": {
+    "loop": true,
+    "len": 0.74
+   },
+   "96a83b3cf213580a": {
+    "loop": true,
+    "len": 0.815
+   },
+   "12eab6db04998d89": {
+    "loop": true,
+    "len": 1.38
+   },
+   "49bd8d60b56d2380": {
+    "loop": true,
+    "len": 1.327
+   },
+   "e0e5dcb1870f2b3b": {
+    "loop": true,
+    "len": 1.647
+   },
+   "527efbcb2c5bb973": {
+    "loop": true,
+    "len": 1.487
+   },
+   "c23357fe54e8ba96": {
+    "loop": true,
+    "len": 0.751
+   },
+   "8e238c48e7af0984": {
+    "loop": true,
+    "len": 1.167
+   },
+   "72e47c4f001c25d2": {
+    "loop": true,
+    "len": 0.623
    },
    "6005e6440b1d9178": {
     "loop": true,
     "len": 2.895
    },
+   "a87280fb01295cee": {
+    "loop": true,
+    "len": 1.497
+   },
+   "f5275d314f801ee8": {
+    "loop": true,
+    "len": 3.556
+   },
+   "fc5d69d4cdfea8fd": {
+    "loop": true,
+    "len": 1.028
+   },
    "95f2939a3d6e77ac": {
     "loop": true,
     "len": 2.575
+   },
+   "18a55cda2e0d7cf4": {
+    "loop": true,
+    "len": 0.761
    },
    "2df61096d4cdff2c": {
     "loop": true,
     "len": 2.5
    },
+   "627cb91f9e6962b6": {
+    "loop": true,
+    "len": 0.857
+   },
+   "c9a95c40a6a926b0": {
+    "loop": true,
+    "len": 1.103
+   },
+   "e2d22be9ffa65e32": {
+    "loop": true,
+    "len": 0.591
+   },
+   "a6b6adf14d68fca5": {
+    "loop": true,
+    "len": 0.9
+   },
+   "e7f8af154bb44356": {
+    "loop": true,
+    "len": 1.743
+   },
+   "300cd68feaa6eea1": {
+    "loop": true,
+    "len": 1.092
+   },
+   "b6d42bf8d96af358": {
+    "loop": true,
+    "len": 1.145
+   },
    "ecb5f9253da9c087": {
     "loop": true,
     "len": 2.863
+   },
+   "d64a3972f2452f6b": {
+    "loop": true,
+    "len": 1.135
+   },
+   "440abb681be85738": {
+    "loop": true,
+    "len": 1.071
+   },
+   "69fc9cf229fa1741": {
+    "loop": true,
+    "len": 2.596
+   },
+   "844dfb5f4178e1b4": {
+    "loop": true,
+    "len": 0.697
+   },
+   "3aa4ea635312c672": {
+    "loop": true,
+    "len": 1.295
+   },
+   "d8119b93ac6f968d": {
+    "loop": true,
+    "len": 2.553
+   },
+   "856301c6fafda254": {
+    "loop": true,
+    "len": 0.708
+   },
+   "4e77056b2955668a": {
+    "loop": true,
+    "len": 0.889
+   },
+   "672a7ef9d5c119ed": {
+    "loop": true,
+    "len": 0.868
+   },
+   "fa776c90533660a1": {
+    "loop": true,
+    "len": 2.329
+   },
+   "d08fbf8a51f15851": {
+    "loop": true,
+    "len": 0.719
+   },
+   "a5416510681321d3": {
+    "loop": true,
+    "len": 5.647
+   },
+   "dfd3167ff60d17b0": {
+    "loop": true,
+    "len": 1.071
+   },
+   "f9b5a6302a0dd868": {
+    "loop": true,
+    "len": 3.471
+   },
+   "7a8da3b979257ed9": {
+    "loop": true,
+    "len": 3.567
+   },
+   "1071a7e4bb5be9e2": {
+    "loop": true,
+    "len": 1.06
+   },
+   "ce048c8b6a78b686": {
+    "loop": true,
+    "len": 2.244
+   },
+   "45c1043f498c2c04": {
+    "loop": true,
+    "len": 1.199
+   },
+   "cd5931e55d050af7": {
+    "loop": true,
+    "len": 0.964
+   },
+   "ad94ab829213c6bc": {
+    "loop": true,
+    "len": 1.817
+   },
+   "f2e11de3abc2477f": {
+    "loop": true,
+    "len": 3.545
    },
    "67b3cedba3058e77": {
     "loop": true,
     "len": 2.852
    },
+   "ed29e7879da0983d": {
+    "loop": true,
+    "len": 0.921
+   },
+   "730797dd93683c05": {
+    "loop": true,
+    "len": 0.793
+   },
+   "a2644eca5251eb7a": {
+    "loop": true,
+    "len": 0.996
+   },
+   "0b977ea5c215258c": {
+    "loop": true,
+    "len": 1.113
+   },
    "03521ebbabadf3be": {
     "loop": true,
     "len": 2.425
+   },
+   "e406fe834c827a85": {
+    "loop": true,
+    "len": 1.295
+   },
+   "c266bc8fdbdd492a": {
+    "loop": true,
+    "len": 0.74
+   },
+   "a4d2125dfa4cf494": {
+    "loop": true,
+    "len": 0.708
+   },
+   "0a84685a7658e652": {
+    "loop": true,
+    "len": 0.783
+   },
+   "27df631bcae1b575": {
+    "loop": true,
+    "len": 0.687
+   },
+   "1dd67014d051221f": {
+    "loop": true,
+    "len": 1.551
+   },
+   "bbb175bb4ede618c": {
+    "loop": true,
+    "len": 0.996
    },
    "9129b9e4f833fbaf": {
     "loop": true,
     "len": 2.564
    },
+   "a3b88b8ddcfffaaa": {
+    "loop": true,
+    "len": 0.953
+   },
+   "8c400dead7d46b5f": {
+    "loop": true,
+    "len": 0.857
+   },
+   "5ffb2f46bd8435a1": {
+    "loop": true,
+    "len": 0.761
+   },
+   "e2ac6ab0b70e6dbc": {
+    "loop": true,
+    "len": 0.783
+   },
+   "b225ec56e486e65b": {
+    "loop": true,
+    "len": 0.921
+   },
+   "db8ed27099a7b7d5": {
+    "loop": true,
+    "len": 1.519
+   },
+   "2cdf1aae123bbbe8": {
+    "loop": true,
+    "len": 1.092
+   },
+   "abff8086a7214473": {
+    "loop": true,
+    "len": 1.241
+   },
+   "e5a0e562e254ab59": {
+    "loop": true,
+    "len": 1.092
+   },
+   "aa35c42768ed1b04": {
+    "loop": true,
+    "len": 0.74
+   },
+   "a48ada23e6db426b": {
+    "loop": true,
+    "len": 1.135
+   },
+   "6af853ded028c033": {
+    "loop": true,
+    "len": 0.783
+   },
+   "66163287e4a6bbd4": {
+    "loop": true,
+    "len": 1.273
+   },
+   "5c2326822c42b3fb": {
+    "loop": true,
+    "len": 2.831
+   },
+   "a933ec838c5ee831": {
+    "loop": true,
+    "len": 0.655
+   },
+   "a835d43b0db2405a": {
+    "loop": true,
+    "len": 0.751
+   },
+   "ac691106eb19b2e4": {
+    "loop": true,
+    "len": 1.177
+   },
+   "9e0f40f7d01c611c": {
+    "loop": true,
+    "len": 3.268
+   },
+   "104e0283576752fa": {
+    "loop": true,
+    "len": 1.529
+   },
+   "13c4352fbc2f9ddd": {
+    "loop": true,
+    "len": 1.007
+   },
+   "50dea08695452f5c": {
+    "loop": true,
+    "len": 1.519
+   },
+   "51fe6327fcb8fb6f": {
+    "loop": true,
+    "len": 0.825
+   },
+   "51ff3b7a6e1d54f0": {
+    "loop": true,
+    "len": 0.772
+   },
+   "314f634522af0bfa": {
+    "loop": true,
+    "len": 0.836
+   },
+   "d9f5cb7891f815d6": {
+    "loop": true,
+    "len": 4.324
+   },
+   "a32ac1986db3ca0c": {
+    "loop": true,
+    "len": 1.188
+   },
+   "f4e125f35aca6da2": {
+    "loop": true,
+    "len": 0.793
+   },
+   "3ac99fabb3f4bdb2": {
+    "loop": true,
+    "len": 1.103
+   },
    "9fbb2a04c983d053": {
     "loop": true,
     "len": 2.895
+   },
+   "db0e037ab18c5df1": {
+    "loop": true,
+    "len": 0.559
+   },
+   "bda2edf6967d20fb": {
+    "loop": true,
+    "len": 3.524
+   },
+   "73bde1667d9298b9": {
+    "loop": true,
+    "len": 0.836
+   },
+   "07ffddd9312119b6": {
+    "loop": true,
+    "len": 1.188
+   },
+   "a2fccdbcc49fe08b": {
+    "loop": true,
+    "len": 0.761
+   },
+   "cf4ea84103eac29d": {
+    "loop": true,
+    "len": 0.857
+   },
+   "09f849ea4f79b82c": {
+    "loop": true,
+    "len": 1.433
+   },
+   "ecbcb7bd3bc2ac50": {
+    "loop": true,
+    "len": 4.783
+   },
+   "32a125ed22508c9d": {
+    "loop": true,
+    "len": 4.473
+   },
+   "8a67dec8d1036780": {
+    "loop": true,
+    "len": 1.316
+   },
+   "53e29662930dad2d": {
+    "loop": true,
+    "len": 1.423
+   },
+   "af142242c955c009": {
+    "loop": true,
+    "len": 1.188
+   },
+   "7d1f8a856a6e7562": {
+    "loop": true,
+    "len": 1.241
+   },
+   "237bcdd8a0035bfe": {
+    "loop": true,
+    "len": 0.708
+   },
+   "9a5131b7579af08c": {
+    "loop": true,
+    "len": 1.348
+   },
+   "aa775ff1b67cdc16": {
+    "loop": true,
+    "len": 4.153
    },
    "383ad19c852c84c9": {
     "loop": true,
     "len": 2.223
    },
+   "e9206b406235458c": {
+    "loop": true,
+    "len": 0.697
+   },
+   "76e696bf0104ebde": {
+    "loop": true,
+    "len": 0.943
+   },
+   "5242fa481c8f29dd": {
+    "loop": true,
+    "len": 0.729
+   },
+   "03c9ee7092af47c9": {
+    "loop": true,
+    "len": 2.447
+   },
+   "a4b349768a4542bd": {
+    "loop": true,
+    "len": 0.932
+   },
+   "e23a1004445672ee": {
+    "loop": true,
+    "len": 0.644
+   },
    "c53ec56e1ae42443": {
     "loop": true,
     "len": 2.788
+   },
+   "cd77306e74dbdb8b": {
+    "loop": true,
+    "len": 0.676
+   },
+   "ed1ba279773a7602": {
+    "loop": true,
+    "len": 1.049
+   },
+   "ecdf1d47dc2d831a": {
+    "loop": true,
+    "len": 0.953
+   },
+   "4593b124f3b0a45d": {
+    "loop": true,
+    "len": 0.857
+   },
+   "060e6f170450144d": {
+    "loop": true,
+    "len": 0.708
+   },
+   "29e21eb09484723b": {
+    "loop": true,
+    "len": 0.879
+   },
+   "29422c34a9b4604f": {
+    "loop": true,
+    "len": 1.22
+   },
+   "9c7194bd28e4871f": {
+    "loop": true,
+    "len": 2.287
+   },
+   "e9e4353d78b1393e": {
+    "loop": true,
+    "len": 1.913
+   },
+   "1289e27198b7166b": {
+    "loop": true,
+    "len": 2.937
+   },
+   "f813bf802d876034": {
+    "loop": true,
+    "len": 0.953
+   },
+   "1f9a04639121141d": {
+    "loop": true,
+    "len": 0.825
    },
    "7eae198d2a2deb83": {
     "loop": true,
     "len": 2.489
    },
+   "ec248190579bb692": {
+    "loop": true,
+    "len": 4.463
+   },
+   "f0b6c19937c2014d": {
+    "loop": true,
+    "len": 5.775
+   },
+   "91cd7fe1bff6b64f": {
+    "loop": true,
+    "len": 3.727
+   },
+   "fbdc2c084a14b5c5": {
+    "loop": true,
+    "len": 1.497
+   },
+   "b39411c58e12ff62": {
+    "loop": true,
+    "len": 0.975
+   },
    "6f2dd78b1a6777ac": {
     "loop": true,
     "len": 3.161
+   },
+   "a75c8c16af6cb0c1": {
+    "loop": true,
+    "len": 0.708
+   },
+   "9734cd15f407f7a7": {
+    "loop": true,
+    "len": 1.071
+   },
+   "05e118fda7ee690a": {
+    "loop": true,
+    "len": 0.729
+   },
+   "f91760ebe3c91858": {
+    "loop": true,
+    "len": 0.644
+   },
+   "0d751797c158d2fe": {
+    "loop": true,
+    "len": 0.687
+   },
+   "0caaad0e4b8dc23a": {
+    "loop": true,
+    "len": 1.593
    },
    "2ebc61050aafd361": {
     "loop": true,
     "len": 2.564
    },
+   "ad9f33a66c4bc6be": {
+    "loop": true,
+    "len": 1.551
+   },
+   "a77efd02c98222b2": {
+    "loop": true,
+    "len": 0.932
+   },
+   "fa5256921cf7ccf2": {
+    "loop": true,
+    "len": 1.337
+   },
+   "49ee31a2eb2857f4": {
+    "loop": true,
+    "len": 1.081
+   },
+   "5a1c6724d08515df": {
+    "loop": true,
+    "len": 0.964
+   },
+   "042852bbe3e17a56": {
+    "loop": true,
+    "len": 2.212
+   },
    "2563324d5453edcd": {
     "loop": true,
     "len": 2.617
+   },
+   "ee94680bbd943bb6": {
+    "loop": true,
+    "len": 3.556
+   },
+   "ed48445cc6249f1b": {
+    "loop": true,
+    "len": 0.676
+   },
+   "f9a64995ea6eb972": {
+    "loop": true,
+    "len": 4.665
+   },
+   "ceea23ce932d4099": {
+    "loop": true,
+    "len": 0.911
+   },
+   "a25327fe2da2e113": {
+    "loop": true,
+    "len": 4.324
+   },
+   "41c809f60ad95e8f": {
+    "loop": true,
+    "len": 0.761
+   },
+   "46026419e6811422": {
+    "loop": true,
+    "len": 0.729
+   },
+   "82d6c96bf465d0ce": {
+    "loop": true,
+    "len": 1.007
+   },
+   "3a6a52181e9ecd2d": {
+    "loop": true,
+    "len": 2.991
+   },
+   "426a13a7d93c2979": {
+    "loop": true,
+    "len": 1.593
+   },
+   "37968426d86ea00b": {
+    "loop": true,
+    "len": 2.863
    },
    "14bd34d6b544e7d3": {
     "loop": true,
     "len": 2.265
    },
+   "6ec098b55dacf149": {
+    "loop": true,
+    "len": 2.489
+   },
+   "6111c397c1954a18": {
+    "loop": true,
+    "len": 3.268
+   },
+   "5eede3b0b00ec80c": {
+    "loop": true,
+    "len": 3.695
+   },
    "fb06a792f6c7f5dc": {
     "loop": true,
     "len": 2.244
+   },
+   "fe5fed063f03f8e2": {
+    "loop": true,
+    "len": 1.124
+   },
+   "ed7a048221cca939": {
+    "loop": true,
+    "len": 0.921
+   },
+   "4d4491c81722b46f": {
+    "loop": true,
+    "len": 0.985
+   },
+   "883755a0a311b97e": {
+    "loop": true,
+    "len": 2.628
+   },
+   "b1b559a561cf1441": {
+    "loop": true,
+    "len": 4.74
+   },
+   "285e585eeb371a52": {
+    "loop": true,
+    "len": 0.996
+   },
+   "8a9e07b03bcea1da": {
+    "loop": true,
+    "len": 1.092
    },
    "0156650fce069abe": {
     "loop": true,
     "len": 2.66
    },
+   "415d1c868456c24a": {
+    "loop": true,
+    "len": 0.9
+   },
+   "4adf12f048da845f": {
+    "loop": true,
+    "len": 0.815
+   },
+   "4554974bf84daf51": {
+    "loop": true,
+    "len": 1.401
+   },
+   "d7c12c893eff566b": {
+    "loop": true,
+    "len": 0.761
+   },
+   "a31955d5046142e5": {
+    "loop": true,
+    "len": 0.836
+   },
+   "9afaa8b3cdecc956": {
+    "loop": true,
+    "len": 1.263
+   },
+   "8156c30555d0f4a9": {
+    "loop": true,
+    "len": 2.063
+   },
+   "2c572d80dd049379": {
+    "loop": true,
+    "len": 0.783
+   },
+   "88e97943d5345e1e": {
+    "loop": true,
+    "len": 0.719
+   },
    "37a5d6bd352fe7ed": {
     "loop": true,
     "len": 2.831
    },
+   "1aabbba8d0a9be12": {
+    "loop": true,
+    "len": 1.7
+   },
+   "38ba791730e5e1d1": {
+    "loop": true,
+    "len": 0.708
+   },
+   "317ad5f90e60f169": {
+    "loop": true,
+    "len": 1.007
+   },
+   "4f914723594632d9": {
+    "loop": true,
+    "len": 1.732
+   },
+   "68ea9eb534f7bada": {
+    "loop": true,
+    "len": 0.761
+   },
+   "71a3877bc4d692af": {
+    "loop": true,
+    "len": 0.804
+   },
+   "81991180afd328f7": {
+    "loop": true,
+    "len": 0.953
+   },
+   "a09f60d8f16d7b78": {
+    "loop": true,
+    "len": 0.719
+   },
+   "ae93812e28dfdbca": {
+    "loop": true,
+    "len": 1.22
+   },
+   "b1deee8392477d91": {
+    "loop": true,
+    "len": 2.564
+   },
+   "20e12e898906b026": {
+    "loop": true,
+    "len": 1.284
+   },
+   "79a457ad1abf1086": {
+    "loop": true,
+    "len": 1.337
+   },
+   "efa97d00bc2ab6b6": {
+    "loop": true,
+    "len": 1.007
+   },
+   "a315635436a73969": {
+    "loop": true,
+    "len": 0.729
+   },
+   "0ffcf9e88495435e": {
+    "loop": true,
+    "len": 0.772
+   },
    "ff2ee0fb64aa3aa4": {
     "loop": true,
     "len": 2.212
+   },
+   "4984d125e5c0fbcb": {
+    "loop": true,
+    "len": 0.761
+   },
+   "f17b20ad5faf2eec": {
+    "loop": true,
+    "len": 0.751
+   },
+   "5e0a99dfbd55a6a8": {
+    "loop": true,
+    "len": 0.537
+   },
+   "9a740f01683095a6": {
+    "loop": true,
+    "len": 3.652
+   },
+   "41bfe0286a1b5412": {
+    "loop": true,
+    "len": 0.943
+   },
+   "3067be17c161f50d": {
+    "loop": true,
+    "len": 0.761
+   },
+   "c99c3d9ef6f7a28a": {
+    "loop": true,
+    "len": 2.404
+   },
+   "f03149c7610801ca": {
+    "loop": true,
+    "len": 3.151
+   },
+   "74556bd89a242176": {
+    "loop": true,
+    "len": 2.404
+   },
+   "c0a056524524b254": {
+    "loop": true,
+    "len": 1.988
+   },
+   "017e760fc8a06fdb": {
+    "loop": true,
+    "len": 0.729
    },
    "4f9c109fc14b0926": {
     "loop": true,
@@ -476,35 +3992,227 @@
     "loop": true,
     "len": 2.937
    },
+   "0bb34de188ed2154": {
+    "loop": true,
+    "len": 1.145
+   },
+   "0b59fa0d82d86bbe": {
+    "loop": true,
+    "len": 1.081
+   },
+   "1bb6fc9051f2c5a5": {
+    "loop": true,
+    "len": 0.836
+   },
+   "1fb978f0cc07499b": {
+    "loop": true,
+    "len": 1.092
+   },
+   "f79af455ce8d642c": {
+    "loop": true,
+    "len": 1.252
+   },
+   "b312f266097a35ee": {
+    "loop": true,
+    "len": 0.729
+   },
    "816a231e55b3899b": {
     "loop": true,
     "len": 2.02
    },
+   "9f37e6e927096b84": {
+    "loop": true,
+    "len": 1.22
+   },
+   "6290f4b6e1412354": {
+    "loop": true,
+    "len": 0.943
+   },
    "2874513a4707d3c9": {
     "loop": true,
     "len": 2.916
+   },
+   "499375a390c433fc": {
+    "loop": true,
+    "len": 1.039
+   },
+   "6b34ebe831d2ea92": {
+    "loop": true,
+    "len": 2.276
+   },
+   "5815df5ab4a361a6": {
+    "loop": true,
+    "len": 0.868
+   },
+   "7b9124654fbfed79": {
+    "loop": true,
+    "len": 5.561
+   },
+   "66ea835f728673c3": {
+    "loop": true,
+    "len": 1.103
+   },
+   "f75dcf76f7370aa6": {
+    "loop": true,
+    "len": 3.343
+   },
+   "05b2b46a7ceca96d": {
+    "loop": true,
+    "len": 0.879
+   },
+   "a18acfb17829652a": {
+    "loop": true,
+    "len": 1.764
+   },
+   "89ce4ac7147f494b": {
+    "loop": true,
+    "len": 4.015
+   },
+   "d92e22c64c1ebaaf": {
+    "loop": true,
+    "len": 1.785
+   },
+   "95a0a0b3c5a3ae3d": {
+    "loop": true,
+    "len": 0.687
+   },
+   "031e4b9b5c1118e4": {
+    "loop": true,
+    "len": 1.081
+   },
+   "62c489fedf0678d3": {
+    "loop": true,
+    "len": 0.836
+   },
+   "74356680958194c2": {
+    "loop": true,
+    "len": 2.137
+   },
+   "3e2a43bb87adede5": {
+    "loop": true,
+    "len": 1.124
+   },
+   "46795cfc2d068100": {
+    "loop": true,
+    "len": 0.815
+   },
+   "e2be76f77d32f2e3": {
+    "loop": true,
+    "len": 0.772
+   },
+   "650abc48606a92b4": {
+    "loop": true,
+    "len": 0.601
+   },
+   "6178c91e8d3440d4": {
+    "loop": true,
+    "len": 0.729
    }
   },
   "whitecul": {
+   "80dc245890a8539a": {
+    "loop": true,
+    "len": 4.335
+   },
+   "3266e152ffd576b6": {
+    "loop": true,
+    "len": 3.951
+   },
+   "088fc332cb42e5f5": {
+    "loop": true,
+    "len": 3.588
+   },
+   "14a55038d1d7f735": {
+    "loop": true,
+    "len": 3.492
+   },
+   "126fa87c68a0d5f3": {
+    "loop": true,
+    "len": 3.407
+   },
+   "8eecb1debbe61cfb": {
+    "loop": true,
+    "len": 0.911
+   },
    "cb81b35975333efc": {
     "loop": true,
     "len": 2.575
+   },
+   "3e71659608a58bf4": {
+    "loop": true,
+    "len": 1.348
+   },
+   "13e484c2ee380cb9": {
+    "loop": true,
+    "len": 0.783
    },
    "fc259ceda521ed7d": {
     "loop": true,
     "len": 2.948
    },
+   "d7a398d646fbdb52": {
+    "loop": true,
+    "len": 0.729
+   },
+   "2096f7bb3255cf9c": {
+    "loop": true,
+    "len": 10.148
+   },
+   "a9d69abbaa7ba5b3": {
+    "loop": true,
+    "len": 1.188
+   },
+   "978592caffd89e1f": {
+    "loop": true,
+    "len": 5.764
+   },
    "b75fe420e5d6d91e": {
     "loop": true,
     "len": 2.841
+   },
+   "8bccc734a11e192b": {
+    "loop": true,
+    "len": 2.393
    },
    "b028a5cb8f4c622d": {
     "loop": true,
     "len": 3.577
    },
+   "d9f257fae0d313ec": {
+    "loop": true,
+    "len": 4.153
+   },
+   "687615e87acc41cc": {
+    "loop": true,
+    "len": 2.361
+   },
+   "bd4ec289e77fc486": {
+    "loop": true,
+    "len": 1.327
+   },
+   "032cad961a85836f": {
+    "loop": true,
+    "len": 1.871
+   },
+   "886569e3a443a656": {
+    "loop": true,
+    "len": 4.953
+   },
+   "ddb0f0a2ca26a312": {
+    "loop": true,
+    "len": 3.471
+   },
+   "940e101683cd27ca": {
+    "loop": true,
+    "len": 1.903
+   },
    "4f3346dba44373ac": {
     "loop": true,
     "len": 2.884
+   },
+   "80be4dc8a6dcb176": {
+    "loop": true,
+    "len": 4.399
    },
    "1abfa7e9b249f76b": {
     "loop": true,
@@ -514,21 +4222,125 @@
     "loop": true,
     "len": 3.343
    },
+   "d9bbfa69f00be268": {
+    "loop": true,
+    "len": 2.724
+   },
+   "97e36e29a21af3cc": {
+    "loop": true,
+    "len": 4.271
+   },
+   "80045d7a215aac3b": {
+    "loop": true,
+    "len": 2.041
+   },
+   "c47098fe84eee209": {
+    "loop": true,
+    "len": 2.905
+   },
+   "f0d81a96c5390ff5": {
+    "loop": true,
+    "len": 0.836
+   },
+   "be5c7c51e1167a08": {
+    "loop": true,
+    "len": 6.447
+   },
+   "74aaff11f6e47960": {
+    "loop": true,
+    "len": 1.732
+   },
+   "84ac3841a5ed209f": {
+    "loop": true,
+    "len": 1.86
+   },
    "83f75a1c516f565f": {
     "loop": true,
     "len": 1.935
+   },
+   "6656b70bc34759e8": {
+    "loop": true,
+    "len": 0.889
+   },
+   "a6f1dfba081ff3b6": {
+    "loop": true,
+    "len": 4.175
+   },
+   "306fbc033ea1e44c": {
+    "loop": true,
+    "len": 4.079
+   },
+   "f8f8ba98825c4f6b": {
+    "loop": true,
+    "len": 1.113
+   },
+   "5bade99881dbd224": {
+    "loop": true,
+    "len": 4.719
+   },
+   "fdad89e5bbc16414": {
+    "loop": true,
+    "len": 0.975
+   },
+   "aead3219305700e8": {
+    "loop": true,
+    "len": 0.633
+   },
+   "8f5759a381456c42": {
+    "loop": true,
+    "len": 1.583
    },
    "2dbaabac82887ffc": {
     "loop": true,
     "len": 3.428
    },
+   "4b8dc19933ef9619": {
+    "loop": true,
+    "len": 1.028
+   },
+   "c2123f3e9d994aeb": {
+    "loop": true,
+    "len": 0.697
+   },
+   "e030445414b8ff9a": {
+    "loop": true,
+    "len": 1.263
+   },
+   "5b1fd9dd82e3b696": {
+    "loop": true,
+    "len": 4.367
+   },
+   "2eb39a0729ffc9b9": {
+    "loop": true,
+    "len": 1.049
+   },
+   "61bb501f90e883de": {
+    "loop": true,
+    "len": 0.953
+   },
+   "f9357c879ceaa56b": {
+    "loop": true,
+    "len": 2.532
+   },
+   "25369f52e095b257": {
+    "loop": true,
+    "len": 0.879
+   },
    "6600fb24e9cef5d3": {
     "loop": true,
     "len": 3.332
    },
+   "edf20d00b58f9b63": {
+    "loop": true,
+    "len": 1.156
+   },
    "177107535f734f43": {
     "loop": true,
     "len": 3.353
+   },
+   "3039b9336274c7fc": {
+    "loop": true,
+    "len": 1.039
    },
    "b58b378dff428ceb": {
     "loop": true,
@@ -538,61 +4350,677 @@
     "loop": true,
     "len": 2.916
    },
+   "d5cb6872141a0f1f": {
+    "loop": true,
+    "len": 4.505
+   },
+   "fe4ba485d3bc27ce": {
+    "loop": true,
+    "len": 0.943
+   },
+   "8c0f4523bd47ee80": {
+    "loop": true,
+    "len": 2.02
+   },
+   "3c92b79cbde35956": {
+    "loop": true,
+    "len": 2.02
+   },
+   "0aecb1a8fda6c5fb": {
+    "loop": true,
+    "len": 1.049
+   },
    "8039bf840e997735": {
     "loop": true,
     "len": 2.895
+   },
+   "ee7069e0d03e7554": {
+    "loop": true,
+    "len": 1.327
+   },
+   "b96e2291ea334a72": {
+    "loop": true,
+    "len": 0.708
+   },
+   "14b17f077ebf5abc": {
+    "loop": true,
+    "len": 0.537
+   },
+   "787dfead2c24eea5": {
+    "loop": true,
+    "len": 0.74
+   },
+   "e15a39da9422a478": {
+    "loop": true,
+    "len": 0.665
+   },
+   "eb3f6a12822800c4": {
+    "loop": true,
+    "len": 0.761
    },
    "a6ad86ea05239e9a": {
     "loop": true,
     "len": 2.489
    },
+   "b41c0f54f245a010": {
+    "loop": true,
+    "len": 2.479
+   },
    "ade18761423fb3a7": {
     "loop": true,
     "len": 3.14
+   },
+   "421f6d1634c9afdb": {
+    "loop": true,
+    "len": 1.369
+   },
+   "59efbac808d3ed6c": {
+    "loop": true,
+    "len": 1.188
+   },
+   "b87f86cac19a2b45": {
+    "loop": true,
+    "len": 0.58
+   },
+   "d39404e8ab8f610e": {
+    "loop": true,
+    "len": 1.263
+   },
+   "052e1ab80cbf104c": {
+    "loop": true,
+    "len": 0.825
+   },
+   "e56c2ffbea3c0329": {
+    "loop": true,
+    "len": 0.719
+   },
+   "a32b8a3c5a1af14b": {
+    "loop": true,
+    "len": 1.007
    },
    "73f4094a1b2224ee": {
     "loop": true,
     "len": 2.863
    },
+   "10d721e90cb03329": {
+    "loop": true,
+    "len": 0.879
+   },
+   "15bd500a40c363a7": {
+    "loop": true,
+    "len": 0.719
+   },
    "8d2d188cddba78e7": {
     "loop": true,
     "len": 3.172
+   },
+   "f0e334ca9ed06e1e": {
+    "loop": true,
+    "len": 0.761
+   },
+   "d05a8d9b2aaa1024": {
+    "loop": true,
+    "len": 1.06
+   },
+   "3e439fc4b7306e6b": {
+    "loop": true,
+    "len": 4.132
+   },
+   "d6d999ed70ea87c9": {
+    "loop": true,
+    "len": 1.028
+   },
+   "d71f5b5fe773f7a3": {
+    "loop": true,
+    "len": 1.295
+   },
+   "5a6a945c7a62a7da": {
+    "loop": true,
+    "len": 0.911
+   },
+   "eed029f916da5e22": {
+    "loop": true,
+    "len": 6.297
+   },
+   "b01513f76f7c1b22": {
+    "loop": true,
+    "len": 0.793
+   },
+   "825f24565996cce2": {
+    "loop": true,
+    "len": 1.188
+   },
+   "a4c3cd6d27110065": {
+    "loop": true,
+    "len": 2.788
+   },
+   "964acc727056f110": {
+    "loop": true,
+    "len": 1.028
+   },
+   "12a196a6ffcc163b": {
+    "loop": true,
+    "len": 1.028
    },
    "e6b86c5710ec1f96": {
     "loop": true,
     "len": 3.023
    },
+   "80ca2334a4815de0": {
+    "loop": true,
+    "len": 1.839
+   },
+   "4e4723cd6fc73d5e": {
+    "loop": true,
+    "len": 0.868
+   },
+   "fe091daaa3bb87f7": {
+    "loop": true,
+    "len": 2.148
+   },
+   "f6ad19a0fc887cc4": {
+    "loop": true,
+    "len": 4.249
+   },
    "9031e5fc67833b57": {
     "loop": true,
     "len": 2.884
+   },
+   "485a61a1ef712290": {
+    "loop": true,
+    "len": 1.081
    },
    "857beb43d202cc4f": {
     "loop": true,
     "len": 2.276
    },
+   "095e0a714d7208ff": {
+    "loop": true,
+    "len": 1.231
+   },
+   "04024237f4e23a77": {
+    "loop": true,
+    "len": 4.644
+   },
+   "28816f5203f83c28": {
+    "loop": true,
+    "len": 0.932
+   },
+   "58263ebcb25ee018": {
+    "loop": true,
+    "len": 3.353
+   },
+   "664fdf1b308fdf4c": {
+    "loop": true,
+    "len": 2.564
+   },
+   "276fe37fa3aacca3": {
+    "loop": true,
+    "len": 0.729
+   },
    "55918717514f8427": {
     "loop": true,
     "len": 3.225
+   },
+   "8df98773044bff2d": {
+    "loop": true,
+    "len": 0.708
+   },
+   "8cfa36feef56fc79": {
+    "loop": true,
+    "len": 1.188
+   },
+   "30bc3047bbe5de70": {
+    "loop": true,
+    "len": 0.825
+   },
+   "ed162ccc0f4c42c9": {
+    "loop": true,
+    "len": 4.879
+   },
+   "b2a8c70d759fff28": {
+    "loop": true,
+    "len": 4.516
+   },
+   "3bac23650e6ae468": {
+    "loop": true,
+    "len": 1.455
+   },
+   "fe2b2a18d062cd42": {
+    "loop": true,
+    "len": 0.74
+   },
+   "28050bb0024f1aaa": {
+    "loop": true,
+    "len": 0.836
+   },
+   "6ee7cd69f1d4de5f": {
+    "loop": true,
+    "len": 0.836
+   },
+   "39713ff87df1872d": {
+    "loop": true,
+    "len": 1.06
+   },
+   "3b8f8280decb302f": {
+    "loop": true,
+    "len": 0.644
+   },
+   "a9227ac8a7f28a4d": {
+    "loop": true,
+    "len": 1.54
+   },
+   "02738e2030ed294e": {
+    "loop": true,
+    "len": 0.921
+   },
+   "b6a4b333f692bbdc": {
+    "loop": true,
+    "len": 3.119
+   },
+   "a756c35a3383590a": {
+    "loop": true,
+    "len": 1.039
+   },
+   "5fcdcd83a7b0e259": {
+    "loop": true,
+    "len": 0.708
    },
    "a320a290a5a2a058": {
     "loop": true,
     "len": 2.137
    },
+   "bfd975d777920f89": {
+    "loop": true,
+    "len": 4.665
+   },
+   "a37e5cb8e08335b3": {
+    "loop": true,
+    "len": 1.199
+   },
+   "1e8eeaa77c0bf477": {
+    "loop": true,
+    "len": 1.199
+   },
+   "3d91967300088f55": {
+    "loop": true,
+    "len": 2.095
+   },
+   "91501eae4b050089": {
+    "loop": true,
+    "len": 1.007
+   },
+   "af6edfaa4ab755d7": {
+    "loop": true,
+    "len": 3.033
+   },
    "a5b3f02930390f65": {
     "loop": true,
     "len": 3.119
+   },
+   "90296e45326fa54b": {
+    "loop": true,
+    "len": 0.783
+   },
+   "66dfe4d14106d988": {
+    "loop": true,
+    "len": 0.836
+   },
+   "6613274442698883": {
+    "loop": true,
+    "len": 0.9
+   },
+   "a852d85d5c080322": {
+    "loop": true,
+    "len": 1.145
+   },
+   "0b6a5afe60e88749": {
+    "loop": true,
+    "len": 1.444
+   },
+   "afaa604f42ed968f": {
+    "loop": true,
+    "len": 1.039
+   },
+   "e938c3ad21d6b25a": {
+    "loop": true,
+    "len": 1.028
+   },
+   "d098ee928d5b8152": {
+    "loop": true,
+    "len": 0.719
+   },
+   "d4160e29091810fe": {
+    "loop": true,
+    "len": 0.9
+   },
+   "6dbb4cec28643cbb": {
+    "loop": true,
+    "len": 0.975
+   },
+   "872f282f97c374ce": {
+    "loop": true,
+    "len": 4.281
+   },
+   "8fe6a4d944407d86": {
+    "loop": true,
+    "len": 4.975
+   },
+   "5d1047e01bfaf294": {
+    "loop": true,
+    "len": 5.017
+   },
+   "ac982429bef0bc06": {
+    "loop": true,
+    "len": 8.1
+   },
+   "b511163badb638c2": {
+    "loop": true,
+    "len": 1.444
+   },
+   "0cc637015a45f55b": {
+    "loop": true,
+    "len": 1.263
+   },
+   "eae0c94f75f1cdd9": {
+    "loop": true,
+    "len": 0.804
+   },
+   "5fd0971583cc8d5b": {
+    "loop": true,
+    "len": 1.7
+   },
+   "24ca06385b673e28": {
+    "loop": true,
+    "len": 1.124
+   },
+   "3b6c8ac6f00a2835": {
+    "loop": true,
+    "len": 0.793
    },
    "4b9261d74152c8a6": {
     "loop": true,
     "len": 2.852
    },
+   "f3b6097e215d2bb5": {
+    "loop": true,
+    "len": 1.295
+   },
+   "bfd909d62314214a": {
+    "loop": true,
+    "len": 0.793
+   },
+   "f1a62095e124b63c": {
+    "loop": true,
+    "len": 0.548
+   },
+   "f2b11448f97d63ed": {
+    "loop": true,
+    "len": 0.697
+   },
+   "c7ed9e4ee245be97": {
+    "loop": true,
+    "len": 1.231
+   },
+   "97664b2081a6f279": {
+    "loop": true,
+    "len": 0.836
+   },
+   "a6ab15965093ccc8": {
+    "loop": true,
+    "len": 5.337
+   },
+   "038c76211c4b57b6": {
+    "loop": true,
+    "len": 3.94
+   },
+   "2586302b1d605feb": {
+    "loop": true,
+    "len": 0.825
+   },
+   "79e4fd6f027bc177": {
+    "loop": true,
+    "len": 2.361
+   },
+   "56142c492a502a68": {
+    "loop": true,
+    "len": 1.039
+   },
    "2410ff9b3498e38b": {
     "loop": true,
     "len": 2.916
    },
+   "d2af692cb0cc933b": {
+    "loop": true,
+    "len": 1.337
+   },
+   "d338ad9160b6ef69": {
+    "loop": true,
+    "len": 1.124
+   },
+   "b29f0ab9a8db1e19": {
+    "loop": true,
+    "len": 2.233
+   },
+   "a9747e5d601639a5": {
+    "loop": true,
+    "len": 1.284
+   },
+   "8e83ab2d45b087a4": {
+    "loop": true,
+    "len": 0.719
+   },
+   "b0ef86f8b00086b8": {
+    "loop": true,
+    "len": 2.159
+   },
+   "721050b01fb7fcec": {
+    "loop": true,
+    "len": 2.404
+   },
+   "1043d9aa19598451": {
+    "loop": true,
+    "len": 1.092
+   },
+   "98e7019cb5033b13": {
+    "loop": true,
+    "len": 1.071
+   },
+   "6c72020a9abe83f3": {
+    "loop": true,
+    "len": 2.137
+   },
+   "dd06df1bfab9ef3a": {
+    "loop": true,
+    "len": 0.815
+   },
+   "4afb6507e1f28a75": {
+    "loop": true,
+    "len": 0.591
+   },
+   "20bc52d31ffaa362": {
+    "loop": true,
+    "len": 0.804
+   },
+   "bcbf2428e5d0c8f4": {
+    "loop": true,
+    "len": 0.815
+   },
+   "068194bf944bbd64": {
+    "loop": true,
+    "len": 3.353
+   },
+   "eb7e90c622bb8a89": {
+    "loop": true,
+    "len": 4.431
+   },
+   "435733b64c0f996d": {
+    "loop": true,
+    "len": 0.665
+   },
+   "bc4e55e65c0b5958": {
+    "loop": true,
+    "len": 0.825
+   },
+   "fc77f2d5214f2d8d": {
+    "loop": true,
+    "len": 4.473
+   },
+   "c597ca06f32edfff": {
+    "loop": true,
+    "len": 1.369
+   },
+   "38e6dee846516bf1": {
+    "loop": true,
+    "len": 0.804
+   },
+   "e3c0bb3be9aa9f96": {
+    "loop": true,
+    "len": 3.001
+   },
+   "1ecf7aa13bee2fef": {
+    "loop": true,
+    "len": 4.719
+   },
+   "e0278b13ee66b1d4": {
+    "loop": true,
+    "len": 3.769
+   },
+   "29f1c54f8f68897e": {
+    "loop": true,
+    "len": 0.815
+   },
+   "3b825e258a3a31e7": {
+    "loop": true,
+    "len": 0.815
+   },
+   "78d71ee0b66c53bb": {
+    "loop": true,
+    "len": 0.847
+   },
+   "9046cc8b12cbd4a0": {
+    "loop": true,
+    "len": 0.996
+   },
+   "62021e107e88ffa0": {
+    "loop": true,
+    "len": 0.793
+   },
+   "6e45e6661417a551": {
+    "loop": true,
+    "len": 0.729
+   },
+   "2f3376da8731dfb1": {
+    "loop": true,
+    "len": 2.425
+   },
+   "193d37c7471c132c": {
+    "loop": true,
+    "len": 2.383
+   },
+   "7ad6ca661f1ff2c8": {
+    "loop": true,
+    "len": 0.9
+   },
+   "673b03b6223ba366": {
+    "loop": true,
+    "len": 0.761
+   },
+   "c0c013f3f997e894": {
+    "loop": true,
+    "len": 1.519
+   },
+   "2361d05ca1fb13be": {
+    "loop": true,
+    "len": 1.753
+   },
+   "509e150fe69fd272": {
+    "loop": true,
+    "len": 1.871
+   },
+   "f186d3b1d2e4e7e3": {
+    "loop": true,
+    "len": 1.764
+   },
+   "81ec431eb0248028": {
+    "loop": true,
+    "len": 0.857
+   },
+   "d9856c4d6528c20c": {
+    "loop": true,
+    "len": 1.028
+   },
+   "f4744ff6a321f677": {
+    "loop": true,
+    "len": 2.073
+   },
+   "e4f0a46a5f8b9e25": {
+    "loop": true,
+    "len": 0.74
+   },
+   "aef406ca59ce394a": {
+    "loop": true,
+    "len": 2.585
+   },
+   "fbd6d2f8148f75f2": {
+    "loop": true,
+    "len": 2.361
+   },
+   "82caceb922c57538": {
+    "loop": true,
+    "len": 0.825
+   },
+   "2324c24452513aae": {
+    "loop": true,
+    "len": 0.708
+   },
+   "08fb6d5f64d19ac2": {
+    "loop": true,
+    "len": 0.601
+   },
+   "61fb1d2fab6e373f": {
+    "loop": true,
+    "len": 1.273
+   },
+   "bbd2af3f1de22e36": {
+    "loop": true,
+    "len": 1.188
+   },
    "de83f62a2bb45ceb": {
     "loop": true,
     "len": 3.001
+   },
+   "084129782411d3bd": {
+    "loop": true,
+    "len": 0.537
+   },
+   "ab0bd0ff5916430f": {
+    "loop": true,
+    "len": 4.057
+   },
+   "aaaf196457924f49": {
+    "loop": true,
+    "len": 1.316
+   },
+   "95dbb3a62209b624": {
+    "loop": true,
+    "len": 4.1
+   },
+   "34685a1fa4dfae8a": {
+    "loop": true,
+    "len": 6.223
+   },
+   "1302e8b3035c2d62": {
+    "loop": true,
+    "len": 6.628
+   },
+   "6319ff9afdf96e72": {
+    "loop": true,
+    "len": 1.412
+   },
+   "215ee8a4fc972bd8": {
+    "loop": true,
+    "len": 0.708
    },
    "9b90c24e07496b05": {
     "loop": true,
@@ -602,21 +5030,165 @@
     "loop": true,
     "len": 3.556
    },
+   "7258383e99071178": {
+    "loop": true,
+    "len": 0.953
+   },
+   "f1891a36f5671f1e": {
+    "loop": true,
+    "len": 2.233
+   },
+   "5878ddf5cbad7b7d": {
+    "loop": true,
+    "len": 0.708
+   },
+   "e05f2c87d571ddb1": {
+    "loop": true,
+    "len": 3.129
+   },
+   "8b01478a657410a6": {
+    "loop": true,
+    "len": 0.569
+   },
+   "25e7582d5571dac4": {
+    "loop": true,
+    "len": 1.391
+   },
+   "094058465091689e": {
+    "loop": true,
+    "len": 4.708
+   },
+   "adb089014fde4031": {
+    "loop": true,
+    "len": 0.676
+   },
+   "399cb93e1cf83579": {
+    "loop": true,
+    "len": 0.847
+   },
+   "f9c0432461886029": {
+    "loop": true,
+    "len": 1.177
+   },
+   "ef810b6abc2b8d45": {
+    "loop": true,
+    "len": 0.644
+   },
    "ef795f36d7d163c8": {
     "loop": true,
     "len": 3.353
+   },
+   "c3a45967d517dafa": {
+    "loop": true,
+    "len": 1.113
+   },
+   "944d31a4e29a20a6": {
+    "loop": true,
+    "len": 1.721
+   },
+   "5cd7d5da9c60ffd7": {
+    "loop": true,
+    "len": 0.943
+   },
+   "6eafaece6897d7e7": {
+    "loop": true,
+    "len": 1.444
+   },
+   "09efe4e6db62675e": {
+    "loop": true,
+    "len": 0.825
    },
    "56355a28a474197d": {
     "loop": true,
     "len": 2.521
    },
+   "22f2fd8e400d0cb3": {
+    "loop": true,
+    "len": 0.793
+   },
+   "9fdcbc961a34cfb5": {
+    "loop": true,
+    "len": 0.932
+   },
+   "be6cea17698efe80": {
+    "loop": true,
+    "len": 1.711
+   },
+   "da5333051f66a08e": {
+    "loop": true,
+    "len": 1.465
+   },
+   "7422678d0ede09c1": {
+    "loop": true,
+    "len": 1.871
+   },
+   "659e09e85de58d31": {
+    "loop": true,
+    "len": 0.815
+   },
+   "0aa96ccd9b2afaef": {
+    "loop": true,
+    "len": 0.729
+   },
+   "4c580ded23034de5": {
+    "loop": true,
+    "len": 0.889
+   },
+   "f0636a88396db649": {
+    "loop": true,
+    "len": 2.201
+   },
+   "d80bc0c120fa15bb": {
+    "loop": true,
+    "len": 0.825
+   },
+   "646174fa62942e37": {
+    "loop": true,
+    "len": 1.135
+   },
    "bfba787f5a093e69": {
     "loop": true,
     "len": 2.841
    },
+   "7985555dc58594f7": {
+    "loop": true,
+    "len": 0.857
+   },
    "749cc8afabf6c22a": {
     "loop": true,
     "len": 3.033
+   },
+   "7fdd0625fafe445d": {
+    "loop": true,
+    "len": 0.804
+   },
+   "88c3745445bf7712": {
+    "loop": true,
+    "len": 3.567
+   },
+   "e3b9a00733318925": {
+    "loop": true,
+    "len": 1.007
+   },
+   "ba90fe280699dc6e": {
+    "loop": true,
+    "len": 2.372
+   },
+   "e6ba32c08ca58bf9": {
+    "loop": true,
+    "len": 0.953
+   },
+   "097cb536a0377784": {
+    "loop": true,
+    "len": 1.188
+   },
+   "1f3463b6523d8f0d": {
+    "loop": true,
+    "len": 0.761
+   },
+   "ed6118f2400390c1": {
+    "loop": true,
+    "len": 0.804
    },
    "706f82297c051ab8": {
     "loop": true,
@@ -630,85 +5202,841 @@
     "loop": true,
     "len": 2.5
    },
+   "adf520b54e4e4f43": {
+    "loop": true,
+    "len": 5.167
+   },
+   "2ab0efc60418ad55": {
+    "loop": true,
+    "len": 4.292
+   },
    "79e5a6c3fd1cf343": {
     "loop": true,
     "len": 2.617
+   },
+   "aff6db4e10bd74cb": {
+    "loop": true,
+    "len": 0.74
+   },
+   "96a83b3cf213580a": {
+    "loop": true,
+    "len": 0.911
+   },
+   "12eab6db04998d89": {
+    "loop": true,
+    "len": 1.54
+   },
+   "49bd8d60b56d2380": {
+    "loop": true,
+    "len": 1.487
+   },
+   "e0e5dcb1870f2b3b": {
+    "loop": true,
+    "len": 1.753
+   },
+   "527efbcb2c5bb973": {
+    "loop": true,
+    "len": 1.657
+   },
+   "c23357fe54e8ba96": {
+    "loop": true,
+    "len": 0.836
+   },
+   "8e238c48e7af0984": {
+    "loop": true,
+    "len": 1.348
+   },
+   "72e47c4f001c25d2": {
+    "loop": true,
+    "len": 0.729
    },
    "6005e6440b1d9178": {
     "loop": true,
     "len": 3.044
    },
+   "a87280fb01295cee": {
+    "loop": true,
+    "len": 1.647
+   },
+   "f5275d314f801ee8": {
+    "loop": true,
+    "len": 3.716
+   },
+   "fc5d69d4cdfea8fd": {
+    "loop": true,
+    "len": 1.049
+   },
    "95f2939a3d6e77ac": {
     "loop": true,
     "len": 2.937
+   },
+   "18a55cda2e0d7cf4": {
+    "loop": true,
+    "len": 0.772
    },
    "2df61096d4cdff2c": {
     "loop": true,
     "len": 2.735
    },
+   "627cb91f9e6962b6": {
+    "loop": true,
+    "len": 0.943
+   },
+   "c9a95c40a6a926b0": {
+    "loop": true,
+    "len": 1.177
+   },
+   "e2d22be9ffa65e32": {
+    "loop": true,
+    "len": 0.569
+   },
+   "a6b6adf14d68fca5": {
+    "loop": true,
+    "len": 0.964
+   },
+   "e7f8af154bb44356": {
+    "loop": true,
+    "len": 1.924
+   },
+   "300cd68feaa6eea1": {
+    "loop": true,
+    "len": 1.167
+   },
+   "b6d42bf8d96af358": {
+    "loop": true,
+    "len": 1.263
+   },
    "ecb5f9253da9c087": {
     "loop": true,
     "len": 3.119
+   },
+   "d64a3972f2452f6b": {
+    "loop": true,
+    "len": 1.177
+   },
+   "440abb681be85738": {
+    "loop": true,
+    "len": 1.188
+   },
+   "69fc9cf229fa1741": {
+    "loop": true,
+    "len": 2.873
+   },
+   "844dfb5f4178e1b4": {
+    "loop": true,
+    "len": 0.847
+   },
+   "3aa4ea635312c672": {
+    "loop": true,
+    "len": 1.476
+   },
+   "d8119b93ac6f968d": {
+    "loop": true,
+    "len": 2.884
+   },
+   "856301c6fafda254": {
+    "loop": true,
+    "len": 0.847
+   },
+   "4e77056b2955668a": {
+    "loop": true,
+    "len": 0.975
+   },
+   "672a7ef9d5c119ed": {
+    "loop": true,
+    "len": 0.943
+   },
+   "fa776c90533660a1": {
+    "loop": true,
+    "len": 2.596
+   },
+   "d08fbf8a51f15851": {
+    "loop": true,
+    "len": 0.847
+   },
+   "a5416510681321d3": {
+    "loop": true,
+    "len": 6.137
+   },
+   "dfd3167ff60d17b0": {
+    "loop": true,
+    "len": 1.145
+   },
+   "f9b5a6302a0dd868": {
+    "loop": true,
+    "len": 4.036
+   },
+   "7a8da3b979257ed9": {
+    "loop": true,
+    "len": 3.62
+   },
+   "1071a7e4bb5be9e2": {
+    "loop": true,
+    "len": 1.156
+   },
+   "ce048c8b6a78b686": {
+    "loop": true,
+    "len": 2.372
+   },
+   "45c1043f498c2c04": {
+    "loop": true,
+    "len": 1.252
+   },
+   "cd5931e55d050af7": {
+    "loop": true,
+    "len": 1.017
+   },
+   "ad94ab829213c6bc": {
+    "loop": true,
+    "len": 2.031
+   },
+   "f2e11de3abc2477f": {
+    "loop": true,
+    "len": 4.132
    },
    "67b3cedba3058e77": {
     "loop": true,
     "len": 3.129
    },
+   "ed29e7879da0983d": {
+    "loop": true,
+    "len": 0.953
+   },
+   "730797dd93683c05": {
+    "loop": true,
+    "len": 0.857
+   },
+   "a2644eca5251eb7a": {
+    "loop": true,
+    "len": 1.049
+   },
+   "0b977ea5c215258c": {
+    "loop": true,
+    "len": 1.209
+   },
    "03521ebbabadf3be": {
     "loop": true,
     "len": 2.692
+   },
+   "e406fe834c827a85": {
+    "loop": true,
+    "len": 1.444
+   },
+   "c266bc8fdbdd492a": {
+    "loop": true,
+    "len": 0.836
+   },
+   "a4d2125dfa4cf494": {
+    "loop": true,
+    "len": 0.783
+   },
+   "0a84685a7658e652": {
+    "loop": true,
+    "len": 0.857
+   },
+   "27df631bcae1b575": {
+    "loop": true,
+    "len": 0.815
+   },
+   "1dd67014d051221f": {
+    "loop": true,
+    "len": 1.743
+   },
+   "bbb175bb4ede618c": {
+    "loop": true,
+    "len": 1.039
    },
    "9129b9e4f833fbaf": {
     "loop": true,
     "len": 2.841
    },
+   "a3b88b8ddcfffaaa": {
+    "loop": true,
+    "len": 1.017
+   },
+   "8c400dead7d46b5f": {
+    "loop": true,
+    "len": 0.889
+   },
+   "5ffb2f46bd8435a1": {
+    "loop": true,
+    "len": 0.879
+   },
+   "e2ac6ab0b70e6dbc": {
+    "loop": true,
+    "len": 0.825
+   },
+   "b225ec56e486e65b": {
+    "loop": true,
+    "len": 0.932
+   },
+   "db8ed27099a7b7d5": {
+    "loop": true,
+    "len": 1.711
+   },
+   "2cdf1aae123bbbe8": {
+    "loop": true,
+    "len": 1.295
+   },
+   "abff8086a7214473": {
+    "loop": true,
+    "len": 1.391
+   },
+   "e5a0e562e254ab59": {
+    "loop": true,
+    "len": 1.092
+   },
+   "aa35c42768ed1b04": {
+    "loop": true,
+    "len": 0.74
+   },
+   "a48ada23e6db426b": {
+    "loop": true,
+    "len": 1.284
+   },
+   "6af853ded028c033": {
+    "loop": true,
+    "len": 0.793
+   },
+   "66163287e4a6bbd4": {
+    "loop": true,
+    "len": 1.433
+   },
+   "5c2326822c42b3fb": {
+    "loop": true,
+    "len": 3.193
+   },
+   "a933ec838c5ee831": {
+    "loop": true,
+    "len": 0.804
+   },
+   "a835d43b0db2405a": {
+    "loop": true,
+    "len": 0.9
+   },
+   "ac691106eb19b2e4": {
+    "loop": true,
+    "len": 1.273
+   },
+   "9e0f40f7d01c611c": {
+    "loop": true,
+    "len": 3.556
+   },
+   "104e0283576752fa": {
+    "loop": true,
+    "len": 1.743
+   },
+   "13c4352fbc2f9ddd": {
+    "loop": true,
+    "len": 1.135
+   },
+   "50dea08695452f5c": {
+    "loop": true,
+    "len": 1.636
+   },
+   "51fe6327fcb8fb6f": {
+    "loop": true,
+    "len": 0.825
+   },
+   "51ff3b7a6e1d54f0": {
+    "loop": true,
+    "len": 0.772
+   },
+   "314f634522af0bfa": {
+    "loop": true,
+    "len": 0.783
+   },
+   "d9f5cb7891f815d6": {
+    "loop": true,
+    "len": 4.655
+   },
+   "a32ac1986db3ca0c": {
+    "loop": true,
+    "len": 1.231
+   },
+   "f4e125f35aca6da2": {
+    "loop": true,
+    "len": 0.772
+   },
+   "3ac99fabb3f4bdb2": {
+    "loop": true,
+    "len": 1.049
+   },
    "9fbb2a04c983d053": {
     "loop": true,
     "len": 3.215
+   },
+   "db0e037ab18c5df1": {
+    "loop": true,
+    "len": 0.58
+   },
+   "bda2edf6967d20fb": {
+    "loop": true,
+    "len": 4.025
+   },
+   "73bde1667d9298b9": {
+    "loop": true,
+    "len": 0.836
+   },
+   "07ffddd9312119b6": {
+    "loop": true,
+    "len": 1.199
+   },
+   "a2fccdbcc49fe08b": {
+    "loop": true,
+    "len": 0.879
+   },
+   "cf4ea84103eac29d": {
+    "loop": true,
+    "len": 1.039
+   },
+   "09f849ea4f79b82c": {
+    "loop": true,
+    "len": 1.657
+   },
+   "ecbcb7bd3bc2ac50": {
+    "loop": true,
+    "len": 5.124
+   },
+   "32a125ed22508c9d": {
+    "loop": true,
+    "len": 4.815
+   },
+   "8a67dec8d1036780": {
+    "loop": true,
+    "len": 1.508
+   },
+   "53e29662930dad2d": {
+    "loop": true,
+    "len": 1.668
+   },
+   "af142242c955c009": {
+    "loop": true,
+    "len": 1.252
+   },
+   "7d1f8a856a6e7562": {
+    "loop": true,
+    "len": 1.295
+   },
+   "237bcdd8a0035bfe": {
+    "loop": true,
+    "len": 0.857
+   },
+   "9a5131b7579af08c": {
+    "loop": true,
+    "len": 1.423
+   },
+   "aa775ff1b67cdc16": {
+    "loop": true,
+    "len": 4.463
    },
    "383ad19c852c84c9": {
     "loop": true,
     "len": 2.383
    },
+   "e9206b406235458c": {
+    "loop": true,
+    "len": 0.719
+   },
+   "76e696bf0104ebde": {
+    "loop": true,
+    "len": 1.028
+   },
+   "5242fa481c8f29dd": {
+    "loop": true,
+    "len": 0.836
+   },
+   "03c9ee7092af47c9": {
+    "loop": true,
+    "len": 2.639
+   },
+   "a4b349768a4542bd": {
+    "loop": true,
+    "len": 1.06
+   },
+   "e23a1004445672ee": {
+    "loop": true,
+    "len": 0.74
+   },
    "c53ec56e1ae42443": {
     "loop": true,
     "len": 3.161
+   },
+   "cd77306e74dbdb8b": {
+    "loop": true,
+    "len": 0.719
+   },
+   "ed1ba279773a7602": {
+    "loop": true,
+    "len": 1.167
+   },
+   "ecdf1d47dc2d831a": {
+    "loop": true,
+    "len": 1.103
+   },
+   "4593b124f3b0a45d": {
+    "loop": true,
+    "len": 0.847
+   },
+   "060e6f170450144d": {
+    "loop": true,
+    "len": 0.783
+   },
+   "29e21eb09484723b": {
+    "loop": true,
+    "len": 0.889
+   },
+   "29422c34a9b4604f": {
+    "loop": true,
+    "len": 1.327
+   },
+   "9c7194bd28e4871f": {
+    "loop": true,
+    "len": 2.543
+   },
+   "e9e4353d78b1393e": {
+    "loop": true,
+    "len": 1.977
+   },
+   "1289e27198b7166b": {
+    "loop": true,
+    "len": 3.161
+   },
+   "f813bf802d876034": {
+    "loop": true,
+    "len": 0.921
+   },
+   "1f9a04639121141d": {
+    "loop": true,
+    "len": 0.804
    },
    "7eae198d2a2deb83": {
     "loop": true,
     "len": 2.649
    },
+   "ec248190579bb692": {
+    "loop": true,
+    "len": 4.665
+   },
+   "f0b6c19937c2014d": {
+    "loop": true,
+    "len": 6.159
+   },
+   "91cd7fe1bff6b64f": {
+    "loop": true,
+    "len": 3.961
+   },
+   "fbdc2c084a14b5c5": {
+    "loop": true,
+    "len": 1.604
+   },
+   "b39411c58e12ff62": {
+    "loop": true,
+    "len": 1.071
+   },
    "6f2dd78b1a6777ac": {
     "loop": true,
     "len": 3.631
+   },
+   "a75c8c16af6cb0c1": {
+    "loop": true,
+    "len": 0.761
+   },
+   "9734cd15f407f7a7": {
+    "loop": true,
+    "len": 1.113
+   },
+   "05e118fda7ee690a": {
+    "loop": true,
+    "len": 0.847
+   },
+   "f91760ebe3c91858": {
+    "loop": true,
+    "len": 0.729
+   },
+   "0d751797c158d2fe": {
+    "loop": true,
+    "len": 0.772
+   },
+   "0caaad0e4b8dc23a": {
+    "loop": true,
+    "len": 1.721
    },
    "2ebc61050aafd361": {
     "loop": true,
     "len": 2.788
    },
+   "ad9f33a66c4bc6be": {
+    "loop": true,
+    "len": 1.7
+   },
+   "a77efd02c98222b2": {
+    "loop": true,
+    "len": 1.028
+   },
+   "fa5256921cf7ccf2": {
+    "loop": true,
+    "len": 1.54
+   },
+   "49ee31a2eb2857f4": {
+    "loop": true,
+    "len": 1.124
+   },
+   "5a1c6724d08515df": {
+    "loop": true,
+    "len": 1.007
+   },
+   "042852bbe3e17a56": {
+    "loop": true,
+    "len": 2.383
+   },
    "2563324d5453edcd": {
     "loop": true,
     "len": 2.841
+   },
+   "ee94680bbd943bb6": {
+    "loop": true,
+    "len": 3.769
+   },
+   "ed48445cc6249f1b": {
+    "loop": true,
+    "len": 0.719
+   },
+   "f9a64995ea6eb972": {
+    "loop": true,
+    "len": 4.932
+   },
+   "ceea23ce932d4099": {
+    "loop": true,
+    "len": 0.889
+   },
+   "a25327fe2da2e113": {
+    "loop": true,
+    "len": 4.655
+   },
+   "41c809f60ad95e8f": {
+    "loop": true,
+    "len": 0.815
+   },
+   "46026419e6811422": {
+    "loop": true,
+    "len": 0.719
+   },
+   "82d6c96bf465d0ce": {
+    "loop": true,
+    "len": 1.188
+   },
+   "3a6a52181e9ecd2d": {
+    "loop": true,
+    "len": 3.439
+   },
+   "426a13a7d93c2979": {
+    "loop": true,
+    "len": 1.817
+   },
+   "37968426d86ea00b": {
+    "loop": true,
+    "len": 3.129
    },
    "14bd34d6b544e7d3": {
     "loop": true,
     "len": 2.5
    },
+   "6ec098b55dacf149": {
+    "loop": true,
+    "len": 2.756
+   },
+   "6111c397c1954a18": {
+    "loop": true,
+    "len": 3.673
+   },
+   "5eede3b0b00ec80c": {
+    "loop": true,
+    "len": 3.919
+   },
    "fb06a792f6c7f5dc": {
     "loop": true,
     "len": 2.457
+   },
+   "fe5fed063f03f8e2": {
+    "loop": true,
+    "len": 1.263
+   },
+   "ed7a048221cca939": {
+    "loop": true,
+    "len": 0.985
+   },
+   "4d4491c81722b46f": {
+    "loop": true,
+    "len": 1.039
+   },
+   "883755a0a311b97e": {
+    "loop": true,
+    "len": 2.969
+   },
+   "b1b559a561cf1441": {
+    "loop": true,
+    "len": 5.135
+   },
+   "285e585eeb371a52": {
+    "loop": true,
+    "len": 1.103
+   },
+   "8a9e07b03bcea1da": {
+    "loop": true,
+    "len": 1.167
    },
    "0156650fce069abe": {
     "loop": true,
     "len": 3.023
    },
+   "415d1c868456c24a": {
+    "loop": true,
+    "len": 0.943
+   },
+   "4adf12f048da845f": {
+    "loop": true,
+    "len": 0.868
+   },
+   "4554974bf84daf51": {
+    "loop": true,
+    "len": 1.561
+   },
+   "d7c12c893eff566b": {
+    "loop": true,
+    "len": 0.751
+   },
+   "a31955d5046142e5": {
+    "loop": true,
+    "len": 0.996
+   },
+   "9afaa8b3cdecc956": {
+    "loop": true,
+    "len": 1.327
+   },
+   "8156c30555d0f4a9": {
+    "loop": true,
+    "len": 2.351
+   },
+   "2c572d80dd049379": {
+    "loop": true,
+    "len": 0.836
+   },
+   "88e97943d5345e1e": {
+    "loop": true,
+    "len": 0.655
+   },
    "37a5d6bd352fe7ed": {
     "loop": true,
     "len": 2.991
    },
+   "1aabbba8d0a9be12": {
+    "loop": true,
+    "len": 1.892
+   },
+   "38ba791730e5e1d1": {
+    "loop": true,
+    "len": 0.708
+   },
+   "317ad5f90e60f169": {
+    "loop": true,
+    "len": 1.071
+   },
+   "4f914723594632d9": {
+    "loop": true,
+    "len": 1.849
+   },
+   "68ea9eb534f7bada": {
+    "loop": true,
+    "len": 0.9
+   },
+   "71a3877bc4d692af": {
+    "loop": true,
+    "len": 0.857
+   },
+   "81991180afd328f7": {
+    "loop": true,
+    "len": 1.039
+   },
+   "a09f60d8f16d7b78": {
+    "loop": true,
+    "len": 0.708
+   },
+   "ae93812e28dfdbca": {
+    "loop": true,
+    "len": 1.391
+   },
+   "b1deee8392477d91": {
+    "loop": true,
+    "len": 2.575
+   },
+   "20e12e898906b026": {
+    "loop": true,
+    "len": 1.497
+   },
+   "79a457ad1abf1086": {
+    "loop": true,
+    "len": 1.529
+   },
+   "efa97d00bc2ab6b6": {
+    "loop": true,
+    "len": 1.135
+   },
+   "a315635436a73969": {
+    "loop": true,
+    "len": 0.804
+   },
+   "0ffcf9e88495435e": {
+    "loop": true,
+    "len": 0.857
+   },
    "ff2ee0fb64aa3aa4": {
     "loop": true,
     "len": 2.447
+   },
+   "4984d125e5c0fbcb": {
+    "loop": true,
+    "len": 0.825
+   },
+   "f17b20ad5faf2eec": {
+    "loop": true,
+    "len": 0.825
+   },
+   "5e0a99dfbd55a6a8": {
+    "loop": true,
+    "len": 0.527
+   },
+   "9a740f01683095a6": {
+    "loop": true,
+    "len": 3.951
+   },
+   "41bfe0286a1b5412": {
+    "loop": true,
+    "len": 0.943
+   },
+   "3067be17c161f50d": {
+    "loop": true,
+    "len": 0.804
+   },
+   "c99c3d9ef6f7a28a": {
+    "loop": true,
+    "len": 2.585
+   },
+   "f03149c7610801ca": {
+    "loop": true,
+    "len": 3.588
+   },
+   "74556bd89a242176": {
+    "loop": true,
+    "len": 2.575
+   },
+   "c0a056524524b254": {
+    "loop": true,
+    "len": 2.127
+   },
+   "017e760fc8a06fdb": {
+    "loop": true,
+    "len": 0.825
    },
    "4f9c109fc14b0926": {
     "loop": true,
@@ -718,35 +6046,227 @@
     "loop": true,
     "len": 3.257
    },
+   "0bb34de188ed2154": {
+    "loop": true,
+    "len": 1.177
+   },
+   "0b59fa0d82d86bbe": {
+    "loop": true,
+    "len": 1.135
+   },
+   "1bb6fc9051f2c5a5": {
+    "loop": true,
+    "len": 0.847
+   },
+   "1fb978f0cc07499b": {
+    "loop": true,
+    "len": 1.199
+   },
+   "f79af455ce8d642c": {
+    "loop": true,
+    "len": 1.327
+   },
+   "b312f266097a35ee": {
+    "loop": true,
+    "len": 0.74
+   },
    "816a231e55b3899b": {
     "loop": true,
     "len": 2.191
    },
+   "9f37e6e927096b84": {
+    "loop": true,
+    "len": 1.231
+   },
+   "6290f4b6e1412354": {
+    "loop": true,
+    "len": 1.007
+   },
    "2874513a4707d3c9": {
     "loop": true,
     "len": 3.14
+   },
+   "499375a390c433fc": {
+    "loop": true,
+    "len": 1.209
+   },
+   "6b34ebe831d2ea92": {
+    "loop": true,
+    "len": 2.649
+   },
+   "5815df5ab4a361a6": {
+    "loop": true,
+    "len": 0.857
+   },
+   "7b9124654fbfed79": {
+    "loop": true,
+    "len": 5.839
+   },
+   "66ea835f728673c3": {
+    "loop": true,
+    "len": 1.167
+   },
+   "f75dcf76f7370aa6": {
+    "loop": true,
+    "len": 3.812
+   },
+   "05b2b46a7ceca96d": {
+    "loop": true,
+    "len": 0.921
+   },
+   "a18acfb17829652a": {
+    "loop": true,
+    "len": 1.935
+   },
+   "89ce4ac7147f494b": {
+    "loop": true,
+    "len": 4.26
+   },
+   "d92e22c64c1ebaaf": {
+    "loop": true,
+    "len": 1.871
+   },
+   "95a0a0b3c5a3ae3d": {
+    "loop": true,
+    "len": 0.655
+   },
+   "031e4b9b5c1118e4": {
+    "loop": true,
+    "len": 1.199
+   },
+   "62c489fedf0678d3": {
+    "loop": true,
+    "len": 1.017
+   },
+   "74356680958194c2": {
+    "loop": true,
+    "len": 2.436
+   },
+   "3e2a43bb87adede5": {
+    "loop": true,
+    "len": 1.22
+   },
+   "46795cfc2d068100": {
+    "loop": true,
+    "len": 0.9
+   },
+   "e2be76f77d32f2e3": {
+    "loop": true,
+    "len": 0.943
+   },
+   "650abc48606a92b4": {
+    "loop": true,
+    "len": 0.569
+   },
+   "6178c91e8d3440d4": {
+    "loop": true,
+    "len": 0.729
    }
   },
   "tobari": {
+   "80dc245890a8539a": {
+    "loop": true,
+    "len": 4.292
+   },
+   "3266e152ffd576b6": {
+    "loop": true,
+    "len": 3.855
+   },
+   "088fc332cb42e5f5": {
+    "loop": true,
+    "len": 3.46
+   },
+   "14a55038d1d7f735": {
+    "loop": true,
+    "len": 3.513
+   },
+   "126fa87c68a0d5f3": {
+    "loop": true,
+    "len": 3.577
+   },
+   "8eecb1debbe61cfb": {
+    "loop": true,
+    "len": 0.868
+   },
    "cb81b35975333efc": {
     "loop": true,
     "len": 2.671
+   },
+   "3e71659608a58bf4": {
+    "loop": true,
+    "len": 1.359
+   },
+   "13e484c2ee380cb9": {
+    "loop": true,
+    "len": 0.804
    },
    "fc259ceda521ed7d": {
     "loop": true,
     "len": 3.001
    },
+   "d7a398d646fbdb52": {
+    "loop": true,
+    "len": 0.761
+   },
+   "2096f7bb3255cf9c": {
+    "loop": true,
+    "len": 10.852
+   },
+   "a9d69abbaa7ba5b3": {
+    "loop": true,
+    "len": 1.177
+   },
+   "978592caffd89e1f": {
+    "loop": true,
+    "len": 5.956
+   },
    "b75fe420e5d6d91e": {
     "loop": true,
     "len": 2.831
+   },
+   "8bccc734a11e192b": {
+    "loop": true,
+    "len": 2.393
    },
    "b028a5cb8f4c622d": {
     "loop": true,
     "len": 3.78
    },
+   "d9f257fae0d313ec": {
+    "loop": true,
+    "len": 4.463
+   },
+   "687615e87acc41cc": {
+    "loop": true,
+    "len": 2.34
+   },
+   "bd4ec289e77fc486": {
+    "loop": true,
+    "len": 1.263
+   },
+   "032cad961a85836f": {
+    "loop": true,
+    "len": 1.881
+   },
+   "886569e3a443a656": {
+    "loop": true,
+    "len": 4.985
+   },
+   "ddb0f0a2ca26a312": {
+    "loop": true,
+    "len": 3.439
+   },
+   "940e101683cd27ca": {
+    "loop": true,
+    "len": 1.892
+   },
    "4f3346dba44373ac": {
     "loop": true,
     "len": 2.777
+   },
+   "80be4dc8a6dcb176": {
+    "loop": true,
+    "len": 4.431
    },
    "1abfa7e9b249f76b": {
     "loop": true,
@@ -756,21 +6276,125 @@
     "loop": true,
     "len": 3.375
    },
+   "d9bbfa69f00be268": {
+    "loop": true,
+    "len": 2.809
+   },
+   "97e36e29a21af3cc": {
+    "loop": true,
+    "len": 4.345
+   },
+   "80045d7a215aac3b": {
+    "loop": true,
+    "len": 2.041
+   },
+   "c47098fe84eee209": {
+    "loop": true,
+    "len": 2.873
+   },
+   "f0d81a96c5390ff5": {
+    "loop": true,
+    "len": 0.793
+   },
+   "be5c7c51e1167a08": {
+    "loop": true,
+    "len": 7.119
+   },
+   "74aaff11f6e47960": {
+    "loop": true,
+    "len": 1.817
+   },
+   "84ac3841a5ed209f": {
+    "loop": true,
+    "len": 1.924
+   },
    "83f75a1c516f565f": {
     "loop": true,
     "len": 1.999
+   },
+   "6656b70bc34759e8": {
+    "loop": true,
+    "len": 0.889
+   },
+   "a6f1dfba081ff3b6": {
+    "loop": true,
+    "len": 4.068
+   },
+   "306fbc033ea1e44c": {
+    "loop": true,
+    "len": 4.175
+   },
+   "f8f8ba98825c4f6b": {
+    "loop": true,
+    "len": 1.113
+   },
+   "5bade99881dbd224": {
+    "loop": true,
+    "len": 4.74
+   },
+   "fdad89e5bbc16414": {
+    "loop": true,
+    "len": 1.049
+   },
+   "aead3219305700e8": {
+    "loop": true,
+    "len": 0.751
+   },
+   "8f5759a381456c42": {
+    "loop": true,
+    "len": 1.572
    },
    "2dbaabac82887ffc": {
     "loop": true,
     "len": 3.673
    },
+   "4b8dc19933ef9619": {
+    "loop": true,
+    "len": 0.953
+   },
+   "c2123f3e9d994aeb": {
+    "loop": true,
+    "len": 0.772
+   },
+   "e030445414b8ff9a": {
+    "loop": true,
+    "len": 1.337
+   },
+   "5b1fd9dd82e3b696": {
+    "loop": true,
+    "len": 4.463
+   },
+   "2eb39a0729ffc9b9": {
+    "loop": true,
+    "len": 1.039
+   },
+   "61bb501f90e883de": {
+    "loop": true,
+    "len": 0.975
+   },
+   "f9357c879ceaa56b": {
+    "loop": true,
+    "len": 2.5
+   },
+   "25369f52e095b257": {
+    "loop": true,
+    "len": 0.857
+   },
    "6600fb24e9cef5d3": {
     "loop": true,
     "len": 3.396
    },
+   "edf20d00b58f9b63": {
+    "loop": true,
+    "len": 1.135
+   },
    "177107535f734f43": {
     "loop": true,
     "len": 3.311
+   },
+   "3039b9336274c7fc": {
+    "loop": true,
+    "len": 1.081
    },
    "b58b378dff428ceb": {
     "loop": true,
@@ -780,61 +6404,677 @@
     "loop": true,
     "len": 2.841
    },
+   "d5cb6872141a0f1f": {
+    "loop": true,
+    "len": 4.687
+   },
+   "fe4ba485d3bc27ce": {
+    "loop": true,
+    "len": 0.996
+   },
+   "8c0f4523bd47ee80": {
+    "loop": true,
+    "len": 2.063
+   },
+   "3c92b79cbde35956": {
+    "loop": true,
+    "len": 2.041
+   },
+   "0aecb1a8fda6c5fb": {
+    "loop": true,
+    "len": 1.039
+   },
    "8039bf840e997735": {
     "loop": true,
     "len": 2.873
+   },
+   "ee7069e0d03e7554": {
+    "loop": true,
+    "len": 1.369
+   },
+   "b96e2291ea334a72": {
+    "loop": true,
+    "len": 0.708
+   },
+   "14b17f077ebf5abc": {
+    "loop": true,
+    "len": 0.58
+   },
+   "787dfead2c24eea5": {
+    "loop": true,
+    "len": 0.783
+   },
+   "e15a39da9422a478": {
+    "loop": true,
+    "len": 0.708
+   },
+   "eb3f6a12822800c4": {
+    "loop": true,
+    "len": 0.793
    },
    "a6ad86ea05239e9a": {
     "loop": true,
     "len": 2.468
    },
+   "b41c0f54f245a010": {
+    "loop": true,
+    "len": 2.543
+   },
    "ade18761423fb3a7": {
     "loop": true,
     "len": 3.108
+   },
+   "421f6d1634c9afdb": {
+    "loop": true,
+    "len": 1.455
+   },
+   "59efbac808d3ed6c": {
+    "loop": true,
+    "len": 1.135
+   },
+   "b87f86cac19a2b45": {
+    "loop": true,
+    "len": 0.644
+   },
+   "d39404e8ab8f610e": {
+    "loop": true,
+    "len": 1.348
+   },
+   "052e1ab80cbf104c": {
+    "loop": true,
+    "len": 0.783
+   },
+   "e56c2ffbea3c0329": {
+    "loop": true,
+    "len": 0.708
+   },
+   "a32b8a3c5a1af14b": {
+    "loop": true,
+    "len": 1.081
    },
    "73f4094a1b2224ee": {
     "loop": true,
     "len": 2.735
    },
+   "10d721e90cb03329": {
+    "loop": true,
+    "len": 0.857
+   },
+   "15bd500a40c363a7": {
+    "loop": true,
+    "len": 0.772
+   },
    "8d2d188cddba78e7": {
     "loop": true,
     "len": 3.332
+   },
+   "f0e334ca9ed06e1e": {
+    "loop": true,
+    "len": 0.783
+   },
+   "d05a8d9b2aaa1024": {
+    "loop": true,
+    "len": 1.092
+   },
+   "3e439fc4b7306e6b": {
+    "loop": true,
+    "len": 4.057
+   },
+   "d6d999ed70ea87c9": {
+    "loop": true,
+    "len": 1.017
+   },
+   "d71f5b5fe773f7a3": {
+    "loop": true,
+    "len": 1.273
+   },
+   "5a6a945c7a62a7da": {
+    "loop": true,
+    "len": 0.996
+   },
+   "eed029f916da5e22": {
+    "loop": true,
+    "len": 6.393
+   },
+   "b01513f76f7c1b22": {
+    "loop": true,
+    "len": 0.836
+   },
+   "825f24565996cce2": {
+    "loop": true,
+    "len": 1.231
+   },
+   "a4c3cd6d27110065": {
+    "loop": true,
+    "len": 2.863
+   },
+   "964acc727056f110": {
+    "loop": true,
+    "len": 1.06
+   },
+   "12a196a6ffcc163b": {
+    "loop": true,
+    "len": 1.028
    },
    "e6b86c5710ec1f96": {
     "loop": true,
     "len": 3.129
    },
+   "80ca2334a4815de0": {
+    "loop": true,
+    "len": 1.881
+   },
+   "4e4723cd6fc73d5e": {
+    "loop": true,
+    "len": 0.921
+   },
+   "fe091daaa3bb87f7": {
+    "loop": true,
+    "len": 2.137
+   },
+   "f6ad19a0fc887cc4": {
+    "loop": true,
+    "len": 4.335
+   },
    "9031e5fc67833b57": {
     "loop": true,
     "len": 2.841
+   },
+   "485a61a1ef712290": {
+    "loop": true,
+    "len": 1.124
    },
    "857beb43d202cc4f": {
     "loop": true,
     "len": 2.276
    },
+   "095e0a714d7208ff": {
+    "loop": true,
+    "len": 1.252
+   },
+   "04024237f4e23a77": {
+    "loop": true,
+    "len": 4.708
+   },
+   "28816f5203f83c28": {
+    "loop": true,
+    "len": 0.9
+   },
+   "58263ebcb25ee018": {
+    "loop": true,
+    "len": 3.321
+   },
+   "664fdf1b308fdf4c": {
+    "loop": true,
+    "len": 2.841
+   },
+   "276fe37fa3aacca3": {
+    "loop": true,
+    "len": 0.793
+   },
    "55918717514f8427": {
     "loop": true,
     "len": 3.215
+   },
+   "8df98773044bff2d": {
+    "loop": true,
+    "len": 0.751
+   },
+   "8cfa36feef56fc79": {
+    "loop": true,
+    "len": 1.167
+   },
+   "30bc3047bbe5de70": {
+    "loop": true,
+    "len": 0.815
+   },
+   "ed162ccc0f4c42c9": {
+    "loop": true,
+    "len": 4.879
+   },
+   "b2a8c70d759fff28": {
+    "loop": true,
+    "len": 4.537
+   },
+   "3bac23650e6ae468": {
+    "loop": true,
+    "len": 1.433
+   },
+   "fe2b2a18d062cd42": {
+    "loop": true,
+    "len": 0.783
+   },
+   "28050bb0024f1aaa": {
+    "loop": true,
+    "len": 0.836
+   },
+   "6ee7cd69f1d4de5f": {
+    "loop": true,
+    "len": 0.879
+   },
+   "39713ff87df1872d": {
+    "loop": true,
+    "len": 1.081
+   },
+   "3b8f8280decb302f": {
+    "loop": true,
+    "len": 0.761
+   },
+   "a9227ac8a7f28a4d": {
+    "loop": true,
+    "len": 1.54
+   },
+   "02738e2030ed294e": {
+    "loop": true,
+    "len": 0.932
+   },
+   "b6a4b333f692bbdc": {
+    "loop": true,
+    "len": 3.172
+   },
+   "a756c35a3383590a": {
+    "loop": true,
+    "len": 1.007
+   },
+   "5fcdcd83a7b0e259": {
+    "loop": true,
+    "len": 0.772
    },
    "a320a290a5a2a058": {
     "loop": true,
     "len": 2.105
    },
+   "bfd975d777920f89": {
+    "loop": true,
+    "len": 4.793
+   },
+   "a37e5cb8e08335b3": {
+    "loop": true,
+    "len": 1.252
+   },
+   "1e8eeaa77c0bf477": {
+    "loop": true,
+    "len": 1.199
+   },
+   "3d91967300088f55": {
+    "loop": true,
+    "len": 2.095
+   },
+   "91501eae4b050089": {
+    "loop": true,
+    "len": 0.985
+   },
+   "af6edfaa4ab755d7": {
+    "loop": true,
+    "len": 2.98
+   },
    "a5b3f02930390f65": {
     "loop": true,
     "len": 3.087
+   },
+   "90296e45326fa54b": {
+    "loop": true,
+    "len": 0.793
+   },
+   "66dfe4d14106d988": {
+    "loop": true,
+    "len": 0.879
+   },
+   "6613274442698883": {
+    "loop": true,
+    "len": 0.889
+   },
+   "a852d85d5c080322": {
+    "loop": true,
+    "len": 1.145
+   },
+   "0b6a5afe60e88749": {
+    "loop": true,
+    "len": 1.455
+   },
+   "afaa604f42ed968f": {
+    "loop": true,
+    "len": 0.953
+   },
+   "e938c3ad21d6b25a": {
+    "loop": true,
+    "len": 1.039
+   },
+   "d098ee928d5b8152": {
+    "loop": true,
+    "len": 0.751
+   },
+   "d4160e29091810fe": {
+    "loop": true,
+    "len": 0.911
+   },
+   "6dbb4cec28643cbb": {
+    "loop": true,
+    "len": 0.868
+   },
+   "872f282f97c374ce": {
+    "loop": true,
+    "len": 4.409
+   },
+   "8fe6a4d944407d86": {
+    "loop": true,
+    "len": 5.028
+   },
+   "5d1047e01bfaf294": {
+    "loop": true,
+    "len": 5.071
+   },
+   "ac982429bef0bc06": {
+    "loop": true,
+    "len": 8.228
+   },
+   "b511163badb638c2": {
+    "loop": true,
+    "len": 1.444
+   },
+   "0cc637015a45f55b": {
+    "loop": true,
+    "len": 1.263
+   },
+   "eae0c94f75f1cdd9": {
+    "loop": true,
+    "len": 0.804
+   },
+   "5fd0971583cc8d5b": {
+    "loop": true,
+    "len": 1.668
+   },
+   "24ca06385b673e28": {
+    "loop": true,
+    "len": 1.092
+   },
+   "3b6c8ac6f00a2835": {
+    "loop": true,
+    "len": 0.793
    },
    "4b9261d74152c8a6": {
     "loop": true,
     "len": 2.799
    },
+   "f3b6097e215d2bb5": {
+    "loop": true,
+    "len": 1.327
+   },
+   "bfd909d62314214a": {
+    "loop": true,
+    "len": 0.825
+   },
+   "f1a62095e124b63c": {
+    "loop": true,
+    "len": 0.591
+   },
+   "f2b11448f97d63ed": {
+    "loop": true,
+    "len": 0.761
+   },
+   "c7ed9e4ee245be97": {
+    "loop": true,
+    "len": 1.231
+   },
+   "97664b2081a6f279": {
+    "loop": true,
+    "len": 0.815
+   },
+   "a6ab15965093ccc8": {
+    "loop": true,
+    "len": 5.38
+   },
+   "038c76211c4b57b6": {
+    "loop": true,
+    "len": 3.833
+   },
+   "2586302b1d605feb": {
+    "loop": true,
+    "len": 0.804
+   },
+   "79e4fd6f027bc177": {
+    "loop": true,
+    "len": 2.393
+   },
+   "56142c492a502a68": {
+    "loop": true,
+    "len": 1.028
+   },
    "2410ff9b3498e38b": {
     "loop": true,
     "len": 2.959
    },
+   "d2af692cb0cc933b": {
+    "loop": true,
+    "len": 1.359
+   },
+   "d338ad9160b6ef69": {
+    "loop": true,
+    "len": 1.113
+   },
+   "b29f0ab9a8db1e19": {
+    "loop": true,
+    "len": 2.276
+   },
+   "a9747e5d601639a5": {
+    "loop": true,
+    "len": 1.273
+   },
+   "8e83ab2d45b087a4": {
+    "loop": true,
+    "len": 0.729
+   },
+   "b0ef86f8b00086b8": {
+    "loop": true,
+    "len": 2.169
+   },
+   "721050b01fb7fcec": {
+    "loop": true,
+    "len": 2.425
+   },
+   "1043d9aa19598451": {
+    "loop": true,
+    "len": 1.071
+   },
+   "98e7019cb5033b13": {
+    "loop": true,
+    "len": 1.209
+   },
+   "6c72020a9abe83f3": {
+    "loop": true,
+    "len": 2.191
+   },
+   "dd06df1bfab9ef3a": {
+    "loop": true,
+    "len": 0.868
+   },
+   "4afb6507e1f28a75": {
+    "loop": true,
+    "len": 0.633
+   },
+   "20bc52d31ffaa362": {
+    "loop": true,
+    "len": 0.804
+   },
+   "bcbf2428e5d0c8f4": {
+    "loop": true,
+    "len": 0.879
+   },
+   "068194bf944bbd64": {
+    "loop": true,
+    "len": 3.364
+   },
+   "eb7e90c622bb8a89": {
+    "loop": true,
+    "len": 4.409
+   },
+   "435733b64c0f996d": {
+    "loop": true,
+    "len": 0.697
+   },
+   "bc4e55e65c0b5958": {
+    "loop": true,
+    "len": 0.847
+   },
+   "fc77f2d5214f2d8d": {
+    "loop": true,
+    "len": 4.655
+   },
+   "c597ca06f32edfff": {
+    "loop": true,
+    "len": 1.391
+   },
+   "38e6dee846516bf1": {
+    "loop": true,
+    "len": 0.793
+   },
+   "e3c0bb3be9aa9f96": {
+    "loop": true,
+    "len": 2.98
+   },
+   "1ecf7aa13bee2fef": {
+    "loop": true,
+    "len": 5.039
+   },
+   "e0278b13ee66b1d4": {
+    "loop": true,
+    "len": 3.769
+   },
+   "29f1c54f8f68897e": {
+    "loop": true,
+    "len": 0.836
+   },
+   "3b825e258a3a31e7": {
+    "loop": true,
+    "len": 0.836
+   },
+   "78d71ee0b66c53bb": {
+    "loop": true,
+    "len": 0.847
+   },
+   "9046cc8b12cbd4a0": {
+    "loop": true,
+    "len": 0.964
+   },
+   "62021e107e88ffa0": {
+    "loop": true,
+    "len": 0.793
+   },
+   "6e45e6661417a551": {
+    "loop": true,
+    "len": 0.783
+   },
+   "2f3376da8731dfb1": {
+    "loop": true,
+    "len": 2.383
+   },
+   "193d37c7471c132c": {
+    "loop": true,
+    "len": 2.351
+   },
+   "7ad6ca661f1ff2c8": {
+    "loop": true,
+    "len": 0.889
+   },
+   "673b03b6223ba366": {
+    "loop": true,
+    "len": 0.857
+   },
+   "c0c013f3f997e894": {
+    "loop": true,
+    "len": 1.529
+   },
+   "2361d05ca1fb13be": {
+    "loop": true,
+    "len": 1.711
+   },
+   "509e150fe69fd272": {
+    "loop": true,
+    "len": 1.86
+   },
+   "f186d3b1d2e4e7e3": {
+    "loop": true,
+    "len": 1.817
+   },
+   "81ec431eb0248028": {
+    "loop": true,
+    "len": 0.825
+   },
+   "d9856c4d6528c20c": {
+    "loop": true,
+    "len": 0.996
+   },
+   "f4744ff6a321f677": {
+    "loop": true,
+    "len": 2.105
+   },
+   "e4f0a46a5f8b9e25": {
+    "loop": true,
+    "len": 0.772
+   },
+   "aef406ca59ce394a": {
+    "loop": true,
+    "len": 2.564
+   },
+   "fbd6d2f8148f75f2": {
+    "loop": true,
+    "len": 2.436
+   },
+   "82caceb922c57538": {
+    "loop": true,
+    "len": 0.815
+   },
+   "2324c24452513aae": {
+    "loop": true,
+    "len": 0.74
+   },
+   "08fb6d5f64d19ac2": {
+    "loop": true,
+    "len": 0.644
+   },
+   "61fb1d2fab6e373f": {
+    "loop": true,
+    "len": 1.284
+   },
+   "bbd2af3f1de22e36": {
+    "loop": true,
+    "len": 1.22
+   },
    "de83f62a2bb45ceb": {
     "loop": true,
     "len": 3.012
+   },
+   "084129782411d3bd": {
+    "loop": true,
+    "len": 0.633
+   },
+   "ab0bd0ff5916430f": {
+    "loop": true,
+    "len": 4.089
+   },
+   "aaaf196457924f49": {
+    "loop": true,
+    "len": 1.273
+   },
+   "95dbb3a62209b624": {
+    "loop": true,
+    "len": 4.292
+   },
+   "34685a1fa4dfae8a": {
+    "loop": true,
+    "len": 6.415
+   },
+   "1302e8b3035c2d62": {
+    "loop": true,
+    "len": 6.713
+   },
+   "6319ff9afdf96e72": {
+    "loop": true,
+    "len": 1.444
+   },
+   "215ee8a4fc972bd8": {
+    "loop": true,
+    "len": 0.783
    },
    "9b90c24e07496b05": {
     "loop": true,
@@ -844,21 +7084,165 @@
     "loop": true,
     "len": 3.673
    },
+   "7258383e99071178": {
+    "loop": true,
+    "len": 0.996
+   },
+   "f1891a36f5671f1e": {
+    "loop": true,
+    "len": 2.137
+   },
+   "5878ddf5cbad7b7d": {
+    "loop": true,
+    "len": 0.729
+   },
+   "e05f2c87d571ddb1": {
+    "loop": true,
+    "len": 3.108
+   },
+   "8b01478a657410a6": {
+    "loop": true,
+    "len": 0.644
+   },
+   "25e7582d5571dac4": {
+    "loop": true,
+    "len": 1.423
+   },
+   "094058465091689e": {
+    "loop": true,
+    "len": 4.879
+   },
+   "adb089014fde4031": {
+    "loop": true,
+    "len": 0.719
+   },
+   "399cb93e1cf83579": {
+    "loop": true,
+    "len": 0.815
+   },
+   "f9c0432461886029": {
+    "loop": true,
+    "len": 1.113
+   },
+   "ef810b6abc2b8d45": {
+    "loop": true,
+    "len": 0.697
+   },
    "ef795f36d7d163c8": {
     "loop": true,
     "len": 3.503
+   },
+   "c3a45967d517dafa": {
+    "loop": true,
+    "len": 1.145
+   },
+   "944d31a4e29a20a6": {
+    "loop": true,
+    "len": 1.657
+   },
+   "5cd7d5da9c60ffd7": {
+    "loop": true,
+    "len": 0.975
+   },
+   "6eafaece6897d7e7": {
+    "loop": true,
+    "len": 1.444
+   },
+   "09efe4e6db62675e": {
+    "loop": true,
+    "len": 0.836
    },
    "56355a28a474197d": {
     "loop": true,
     "len": 2.457
    },
+   "22f2fd8e400d0cb3": {
+    "loop": true,
+    "len": 0.847
+   },
+   "9fdcbc961a34cfb5": {
+    "loop": true,
+    "len": 0.975
+   },
+   "be6cea17698efe80": {
+    "loop": true,
+    "len": 1.668
+   },
+   "da5333051f66a08e": {
+    "loop": true,
+    "len": 1.497
+   },
+   "7422678d0ede09c1": {
+    "loop": true,
+    "len": 1.839
+   },
+   "659e09e85de58d31": {
+    "loop": true,
+    "len": 0.857
+   },
+   "0aa96ccd9b2afaef": {
+    "loop": true,
+    "len": 0.74
+   },
+   "4c580ded23034de5": {
+    "loop": true,
+    "len": 0.879
+   },
+   "f0636a88396db649": {
+    "loop": true,
+    "len": 2.201
+   },
+   "d80bc0c120fa15bb": {
+    "loop": true,
+    "len": 0.868
+   },
+   "646174fa62942e37": {
+    "loop": true,
+    "len": 1.156
+   },
    "bfba787f5a093e69": {
     "loop": true,
     "len": 2.745
    },
+   "7985555dc58594f7": {
+    "loop": true,
+    "len": 0.783
+   },
    "749cc8afabf6c22a": {
     "loop": true,
     "len": 3.055
+   },
+   "7fdd0625fafe445d": {
+    "loop": true,
+    "len": 0.804
+   },
+   "88c3745445bf7712": {
+    "loop": true,
+    "len": 3.588
+   },
+   "e3b9a00733318925": {
+    "loop": true,
+    "len": 1.092
+   },
+   "ba90fe280699dc6e": {
+    "loop": true,
+    "len": 2.457
+   },
+   "e6ba32c08ca58bf9": {
+    "loop": true,
+    "len": 0.985
+   },
+   "097cb536a0377784": {
+    "loop": true,
+    "len": 1.209
+   },
+   "1f3463b6523d8f0d": {
+    "loop": true,
+    "len": 0.804
+   },
+   "ed6118f2400390c1": {
+    "loop": true,
+    "len": 0.847
    },
    "706f82297c051ab8": {
     "loop": true,
@@ -872,85 +7256,841 @@
     "loop": true,
     "len": 2.436
    },
+   "adf520b54e4e4f43": {
+    "loop": true,
+    "len": 5.369
+   },
+   "2ab0efc60418ad55": {
+    "loop": true,
+    "len": 4.249
+   },
    "79e5a6c3fd1cf343": {
     "loop": true,
     "len": 2.639
+   },
+   "aff6db4e10bd74cb": {
+    "loop": true,
+    "len": 0.793
+   },
+   "96a83b3cf213580a": {
+    "loop": true,
+    "len": 0.911
+   },
+   "12eab6db04998d89": {
+    "loop": true,
+    "len": 1.519
+   },
+   "49bd8d60b56d2380": {
+    "loop": true,
+    "len": 1.465
+   },
+   "e0e5dcb1870f2b3b": {
+    "loop": true,
+    "len": 1.732
+   },
+   "527efbcb2c5bb973": {
+    "loop": true,
+    "len": 1.732
+   },
+   "c23357fe54e8ba96": {
+    "loop": true,
+    "len": 0.836
+   },
+   "8e238c48e7af0984": {
+    "loop": true,
+    "len": 1.316
+   },
+   "72e47c4f001c25d2": {
+    "loop": true,
+    "len": 0.772
    },
    "6005e6440b1d9178": {
     "loop": true,
     "len": 3.215
    },
+   "a87280fb01295cee": {
+    "loop": true,
+    "len": 1.625
+   },
+   "f5275d314f801ee8": {
+    "loop": true,
+    "len": 3.919
+   },
+   "fc5d69d4cdfea8fd": {
+    "loop": true,
+    "len": 1.071
+   },
    "95f2939a3d6e77ac": {
     "loop": true,
     "len": 2.927
+   },
+   "18a55cda2e0d7cf4": {
+    "loop": true,
+    "len": 0.836
    },
    "2df61096d4cdff2c": {
     "loop": true,
     "len": 2.756
    },
+   "627cb91f9e6962b6": {
+    "loop": true,
+    "len": 0.953
+   },
+   "c9a95c40a6a926b0": {
+    "loop": true,
+    "len": 1.199
+   },
+   "e2d22be9ffa65e32": {
+    "loop": true,
+    "len": 0.623
+   },
+   "a6b6adf14d68fca5": {
+    "loop": true,
+    "len": 0.964
+   },
+   "e7f8af154bb44356": {
+    "loop": true,
+    "len": 1.935
+   },
+   "300cd68feaa6eea1": {
+    "loop": true,
+    "len": 1.188
+   },
+   "b6d42bf8d96af358": {
+    "loop": true,
+    "len": 1.252
+   },
    "ecb5f9253da9c087": {
     "loop": true,
     "len": 3.076
+   },
+   "d64a3972f2452f6b": {
+    "loop": true,
+    "len": 1.209
+   },
+   "440abb681be85738": {
+    "loop": true,
+    "len": 1.177
+   },
+   "69fc9cf229fa1741": {
+    "loop": true,
+    "len": 2.873
+   },
+   "844dfb5f4178e1b4": {
+    "loop": true,
+    "len": 0.825
+   },
+   "3aa4ea635312c672": {
+    "loop": true,
+    "len": 1.476
+   },
+   "d8119b93ac6f968d": {
+    "loop": true,
+    "len": 2.777
+   },
+   "856301c6fafda254": {
+    "loop": true,
+    "len": 0.836
+   },
+   "4e77056b2955668a": {
+    "loop": true,
+    "len": 0.975
+   },
+   "672a7ef9d5c119ed": {
+    "loop": true,
+    "len": 0.985
+   },
+   "fa776c90533660a1": {
+    "loop": true,
+    "len": 2.596
+   },
+   "d08fbf8a51f15851": {
+    "loop": true,
+    "len": 0.804
+   },
+   "a5416510681321d3": {
+    "loop": true,
+    "len": 6.212
+   },
+   "dfd3167ff60d17b0": {
+    "loop": true,
+    "len": 1.209
+   },
+   "f9b5a6302a0dd868": {
+    "loop": true,
+    "len": 4.047
+   },
+   "7a8da3b979257ed9": {
+    "loop": true,
+    "len": 3.887
+   },
+   "1071a7e4bb5be9e2": {
+    "loop": true,
+    "len": 1.145
+   },
+   "ce048c8b6a78b686": {
+    "loop": true,
+    "len": 2.447
+   },
+   "45c1043f498c2c04": {
+    "loop": true,
+    "len": 1.284
+   },
+   "cd5931e55d050af7": {
+    "loop": true,
+    "len": 1.028
+   },
+   "ad94ab829213c6bc": {
+    "loop": true,
+    "len": 1.977
+   },
+   "f2e11de3abc2477f": {
+    "loop": true,
+    "len": 4.121
    },
    "67b3cedba3058e77": {
     "loop": true,
     "len": 3.215
    },
+   "ed29e7879da0983d": {
+    "loop": true,
+    "len": 0.985
+   },
+   "730797dd93683c05": {
+    "loop": true,
+    "len": 0.825
+   },
+   "a2644eca5251eb7a": {
+    "loop": true,
+    "len": 1.06
+   },
+   "0b977ea5c215258c": {
+    "loop": true,
+    "len": 1.177
+   },
    "03521ebbabadf3be": {
     "loop": true,
     "len": 2.66
+   },
+   "e406fe834c827a85": {
+    "loop": true,
+    "len": 1.38
+   },
+   "c266bc8fdbdd492a": {
+    "loop": true,
+    "len": 0.847
+   },
+   "a4d2125dfa4cf494": {
+    "loop": true,
+    "len": 0.772
+   },
+   "0a84685a7658e652": {
+    "loop": true,
+    "len": 0.836
+   },
+   "27df631bcae1b575": {
+    "loop": true,
+    "len": 0.804
+   },
+   "1dd67014d051221f": {
+    "loop": true,
+    "len": 1.711
+   },
+   "bbb175bb4ede618c": {
+    "loop": true,
+    "len": 1.049
    },
    "9129b9e4f833fbaf": {
     "loop": true,
     "len": 2.799
    },
+   "a3b88b8ddcfffaaa": {
+    "loop": true,
+    "len": 1.017
+   },
+   "8c400dead7d46b5f": {
+    "loop": true,
+    "len": 0.932
+   },
+   "5ffb2f46bd8435a1": {
+    "loop": true,
+    "len": 0.868
+   },
+   "e2ac6ab0b70e6dbc": {
+    "loop": true,
+    "len": 0.879
+   },
+   "b225ec56e486e65b": {
+    "loop": true,
+    "len": 0.996
+   },
+   "db8ed27099a7b7d5": {
+    "loop": true,
+    "len": 1.711
+   },
+   "2cdf1aae123bbbe8": {
+    "loop": true,
+    "len": 1.231
+   },
+   "abff8086a7214473": {
+    "loop": true,
+    "len": 1.423
+   },
+   "e5a0e562e254ab59": {
+    "loop": true,
+    "len": 1.135
+   },
+   "aa35c42768ed1b04": {
+    "loop": true,
+    "len": 0.751
+   },
+   "a48ada23e6db426b": {
+    "loop": true,
+    "len": 1.327
+   },
+   "6af853ded028c033": {
+    "loop": true,
+    "len": 0.804
+   },
+   "66163287e4a6bbd4": {
+    "loop": true,
+    "len": 1.401
+   },
+   "5c2326822c42b3fb": {
+    "loop": true,
+    "len": 3.151
+   },
+   "a933ec838c5ee831": {
+    "loop": true,
+    "len": 0.761
+   },
+   "a835d43b0db2405a": {
+    "loop": true,
+    "len": 0.804
+   },
+   "ac691106eb19b2e4": {
+    "loop": true,
+    "len": 1.327
+   },
+   "9e0f40f7d01c611c": {
+    "loop": true,
+    "len": 3.556
+   },
+   "104e0283576752fa": {
+    "loop": true,
+    "len": 1.721
+   },
+   "13c4352fbc2f9ddd": {
+    "loop": true,
+    "len": 1.135
+   },
+   "50dea08695452f5c": {
+    "loop": true,
+    "len": 1.657
+   },
+   "51fe6327fcb8fb6f": {
+    "loop": true,
+    "len": 0.847
+   },
+   "51ff3b7a6e1d54f0": {
+    "loop": true,
+    "len": 0.847
+   },
+   "314f634522af0bfa": {
+    "loop": true,
+    "len": 0.836
+   },
+   "d9f5cb7891f815d6": {
+    "loop": true,
+    "len": 4.729
+   },
+   "a32ac1986db3ca0c": {
+    "loop": true,
+    "len": 1.241
+   },
+   "f4e125f35aca6da2": {
+    "loop": true,
+    "len": 0.857
+   },
+   "3ac99fabb3f4bdb2": {
+    "loop": true,
+    "len": 1.092
+   },
    "9fbb2a04c983d053": {
     "loop": true,
     "len": 3.268
+   },
+   "db0e037ab18c5df1": {
+    "loop": true,
+    "len": 0.612
+   },
+   "bda2edf6967d20fb": {
+    "loop": true,
+    "len": 3.919
+   },
+   "73bde1667d9298b9": {
+    "loop": true,
+    "len": 0.921
+   },
+   "07ffddd9312119b6": {
+    "loop": true,
+    "len": 1.263
+   },
+   "a2fccdbcc49fe08b": {
+    "loop": true,
+    "len": 0.815
+   },
+   "cf4ea84103eac29d": {
+    "loop": true,
+    "len": 1.039
+   },
+   "09f849ea4f79b82c": {
+    "loop": true,
+    "len": 1.561
+   },
+   "ecbcb7bd3bc2ac50": {
+    "loop": true,
+    "len": 5.049
+   },
+   "32a125ed22508c9d": {
+    "loop": true,
+    "len": 4.836
+   },
+   "8a67dec8d1036780": {
+    "loop": true,
+    "len": 1.444
+   },
+   "53e29662930dad2d": {
+    "loop": true,
+    "len": 1.572
+   },
+   "af142242c955c009": {
+    "loop": true,
+    "len": 1.305
+   },
+   "7d1f8a856a6e7562": {
+    "loop": true,
+    "len": 1.359
+   },
+   "237bcdd8a0035bfe": {
+    "loop": true,
+    "len": 0.793
+   },
+   "9a5131b7579af08c": {
+    "loop": true,
+    "len": 1.519
+   },
+   "aa775ff1b67cdc16": {
+    "loop": true,
+    "len": 4.409
    },
    "383ad19c852c84c9": {
     "loop": true,
     "len": 2.361
    },
+   "e9206b406235458c": {
+    "loop": true,
+    "len": 0.74
+   },
+   "76e696bf0104ebde": {
+    "loop": true,
+    "len": 1.017
+   },
+   "5242fa481c8f29dd": {
+    "loop": true,
+    "len": 0.847
+   },
+   "03c9ee7092af47c9": {
+    "loop": true,
+    "len": 2.66
+   },
+   "a4b349768a4542bd": {
+    "loop": true,
+    "len": 1.081
+   },
+   "e23a1004445672ee": {
+    "loop": true,
+    "len": 0.783
+   },
    "c53ec56e1ae42443": {
     "loop": true,
     "len": 3.023
+   },
+   "cd77306e74dbdb8b": {
+    "loop": true,
+    "len": 0.761
+   },
+   "ed1ba279773a7602": {
+    "loop": true,
+    "len": 1.167
+   },
+   "ecdf1d47dc2d831a": {
+    "loop": true,
+    "len": 1.135
+   },
+   "4593b124f3b0a45d": {
+    "loop": true,
+    "len": 0.836
+   },
+   "060e6f170450144d": {
+    "loop": true,
+    "len": 0.761
+   },
+   "29e21eb09484723b": {
+    "loop": true,
+    "len": 0.921
+   },
+   "29422c34a9b4604f": {
+    "loop": true,
+    "len": 1.359
+   },
+   "9c7194bd28e4871f": {
+    "loop": true,
+    "len": 2.543
+   },
+   "e9e4353d78b1393e": {
+    "loop": true,
+    "len": 2.095
+   },
+   "1289e27198b7166b": {
+    "loop": true,
+    "len": 3.183
+   },
+   "f813bf802d876034": {
+    "loop": true,
+    "len": 1.017
+   },
+   "1f9a04639121141d": {
+    "loop": true,
+    "len": 0.857
    },
    "7eae198d2a2deb83": {
     "loop": true,
     "len": 2.671
    },
+   "ec248190579bb692": {
+    "loop": true,
+    "len": 4.804
+   },
+   "f0b6c19937c2014d": {
+    "loop": true,
+    "len": 6.351
+   },
+   "91cd7fe1bff6b64f": {
+    "loop": true,
+    "len": 4.153
+   },
+   "fbdc2c084a14b5c5": {
+    "loop": true,
+    "len": 1.657
+   },
+   "b39411c58e12ff62": {
+    "loop": true,
+    "len": 1.06
+   },
    "6f2dd78b1a6777ac": {
     "loop": true,
     "len": 3.481
+   },
+   "a75c8c16af6cb0c1": {
+    "loop": true,
+    "len": 0.761
+   },
+   "9734cd15f407f7a7": {
+    "loop": true,
+    "len": 1.167
+   },
+   "05e118fda7ee690a": {
+    "loop": true,
+    "len": 0.815
+   },
+   "f91760ebe3c91858": {
+    "loop": true,
+    "len": 0.697
+   },
+   "0d751797c158d2fe": {
+    "loop": true,
+    "len": 0.836
+   },
+   "0caaad0e4b8dc23a": {
+    "loop": true,
+    "len": 1.764
    },
    "2ebc61050aafd361": {
     "loop": true,
     "len": 2.873
    },
+   "ad9f33a66c4bc6be": {
+    "loop": true,
+    "len": 1.785
+   },
+   "a77efd02c98222b2": {
+    "loop": true,
+    "len": 1.017
+   },
+   "fa5256921cf7ccf2": {
+    "loop": true,
+    "len": 1.465
+   },
+   "49ee31a2eb2857f4": {
+    "loop": true,
+    "len": 1.103
+   },
+   "5a1c6724d08515df": {
+    "loop": true,
+    "len": 0.943
+   },
+   "042852bbe3e17a56": {
+    "loop": true,
+    "len": 2.372
+   },
    "2563324d5453edcd": {
     "loop": true,
     "len": 2.831
+   },
+   "ee94680bbd943bb6": {
+    "loop": true,
+    "len": 3.983
+   },
+   "ed48445cc6249f1b": {
+    "loop": true,
+    "len": 0.74
+   },
+   "f9a64995ea6eb972": {
+    "loop": true,
+    "len": 5.231
+   },
+   "ceea23ce932d4099": {
+    "loop": true,
+    "len": 0.943
+   },
+   "a25327fe2da2e113": {
+    "loop": true,
+    "len": 4.676
+   },
+   "41c809f60ad95e8f": {
+    "loop": true,
+    "len": 0.825
+   },
+   "46026419e6811422": {
+    "loop": true,
+    "len": 0.783
+   },
+   "82d6c96bf465d0ce": {
+    "loop": true,
+    "len": 1.167
+   },
+   "3a6a52181e9ecd2d": {
+    "loop": true,
+    "len": 3.417
+   },
+   "426a13a7d93c2979": {
+    "loop": true,
+    "len": 1.785
+   },
+   "37968426d86ea00b": {
+    "loop": true,
+    "len": 3.097
    },
    "14bd34d6b544e7d3": {
     "loop": true,
     "len": 2.479
    },
+   "6ec098b55dacf149": {
+    "loop": true,
+    "len": 2.713
+   },
+   "6111c397c1954a18": {
+    "loop": true,
+    "len": 3.652
+   },
+   "5eede3b0b00ec80c": {
+    "loop": true,
+    "len": 4.249
+   },
    "fb06a792f6c7f5dc": {
     "loop": true,
     "len": 2.436
+   },
+   "fe5fed063f03f8e2": {
+    "loop": true,
+    "len": 1.263
+   },
+   "ed7a048221cca939": {
+    "loop": true,
+    "len": 1.007
+   },
+   "4d4491c81722b46f": {
+    "loop": true,
+    "len": 1.081
+   },
+   "883755a0a311b97e": {
+    "loop": true,
+    "len": 2.969
+   },
+   "b1b559a561cf1441": {
+    "loop": true,
+    "len": 5.231
+   },
+   "285e585eeb371a52": {
+    "loop": true,
+    "len": 1.049
+   },
+   "8a9e07b03bcea1da": {
+    "loop": true,
+    "len": 1.199
    },
    "0156650fce069abe": {
     "loop": true,
     "len": 3.087
    },
+   "415d1c868456c24a": {
+    "loop": true,
+    "len": 0.964
+   },
+   "4adf12f048da845f": {
+    "loop": true,
+    "len": 0.825
+   },
+   "4554974bf84daf51": {
+    "loop": true,
+    "len": 1.529
+   },
+   "d7c12c893eff566b": {
+    "loop": true,
+    "len": 0.825
+   },
+   "a31955d5046142e5": {
+    "loop": true,
+    "len": 0.921
+   },
+   "9afaa8b3cdecc956": {
+    "loop": true,
+    "len": 1.348
+   },
+   "8156c30555d0f4a9": {
+    "loop": true,
+    "len": 2.329
+   },
+   "2c572d80dd049379": {
+    "loop": true,
+    "len": 0.825
+   },
+   "88e97943d5345e1e": {
+    "loop": true,
+    "len": 0.751
+   },
    "37a5d6bd352fe7ed": {
     "loop": true,
     "len": 3.108
    },
+   "1aabbba8d0a9be12": {
+    "loop": true,
+    "len": 1.924
+   },
+   "38ba791730e5e1d1": {
+    "loop": true,
+    "len": 0.783
+   },
+   "317ad5f90e60f169": {
+    "loop": true,
+    "len": 1.081
+   },
+   "4f914723594632d9": {
+    "loop": true,
+    "len": 1.828
+   },
+   "68ea9eb534f7bada": {
+    "loop": true,
+    "len": 0.857
+   },
+   "71a3877bc4d692af": {
+    "loop": true,
+    "len": 0.911
+   },
+   "81991180afd328f7": {
+    "loop": true,
+    "len": 1.017
+   },
+   "a09f60d8f16d7b78": {
+    "loop": true,
+    "len": 0.74
+   },
+   "ae93812e28dfdbca": {
+    "loop": true,
+    "len": 1.38
+   },
+   "b1deee8392477d91": {
+    "loop": true,
+    "len": 2.799
+   },
+   "20e12e898906b026": {
+    "loop": true,
+    "len": 1.465
+   },
+   "79a457ad1abf1086": {
+    "loop": true,
+    "len": 1.476
+   },
+   "efa97d00bc2ab6b6": {
+    "loop": true,
+    "len": 1.124
+   },
+   "a315635436a73969": {
+    "loop": true,
+    "len": 0.847
+   },
+   "0ffcf9e88495435e": {
+    "loop": true,
+    "len": 0.868
+   },
    "ff2ee0fb64aa3aa4": {
     "loop": true,
     "len": 2.468
+   },
+   "4984d125e5c0fbcb": {
+    "loop": true,
+    "len": 0.825
+   },
+   "f17b20ad5faf2eec": {
+    "loop": true,
+    "len": 0.836
+   },
+   "5e0a99dfbd55a6a8": {
+    "loop": true,
+    "len": 0.601
+   },
+   "9a740f01683095a6": {
+    "loop": true,
+    "len": 4.025
+   },
+   "41bfe0286a1b5412": {
+    "loop": true,
+    "len": 0.964
+   },
+   "3067be17c161f50d": {
+    "loop": true,
+    "len": 0.857
+   },
+   "c99c3d9ef6f7a28a": {
+    "loop": true,
+    "len": 2.543
+   },
+   "f03149c7610801ca": {
+    "loop": true,
+    "len": 3.567
+   },
+   "74556bd89a242176": {
+    "loop": true,
+    "len": 2.585
+   },
+   "c0a056524524b254": {
+    "loop": true,
+    "len": 2.255
+   },
+   "017e760fc8a06fdb": {
+    "loop": true,
+    "len": 0.825
    },
    "4f9c109fc14b0926": {
     "loop": true,
@@ -960,13 +8100,121 @@
     "loop": true,
     "len": 3.257
    },
+   "0bb34de188ed2154": {
+    "loop": true,
+    "len": 1.177
+   },
+   "0b59fa0d82d86bbe": {
+    "loop": true,
+    "len": 1.167
+   },
+   "1bb6fc9051f2c5a5": {
+    "loop": true,
+    "len": 0.857
+   },
+   "1fb978f0cc07499b": {
+    "loop": true,
+    "len": 1.199
+   },
+   "f79af455ce8d642c": {
+    "loop": true,
+    "len": 1.316
+   },
+   "b312f266097a35ee": {
+    "loop": true,
+    "len": 0.793
+   },
    "816a231e55b3899b": {
     "loop": true,
     "len": 2.223
    },
+   "9f37e6e927096b84": {
+    "loop": true,
+    "len": 1.263
+   },
+   "6290f4b6e1412354": {
+    "loop": true,
+    "len": 0.985
+   },
    "2874513a4707d3c9": {
     "loop": true,
     "len": 3.14
+   },
+   "499375a390c433fc": {
+    "loop": true,
+    "len": 1.145
+   },
+   "6b34ebe831d2ea92": {
+    "loop": true,
+    "len": 2.617
+   },
+   "5815df5ab4a361a6": {
+    "loop": true,
+    "len": 0.847
+   },
+   "7b9124654fbfed79": {
+    "loop": true,
+    "len": 5.924
+   },
+   "66ea835f728673c3": {
+    "loop": true,
+    "len": 1.22
+   },
+   "f75dcf76f7370aa6": {
+    "loop": true,
+    "len": 3.727
+   },
+   "05b2b46a7ceca96d": {
+    "loop": true,
+    "len": 0.964
+   },
+   "a18acfb17829652a": {
+    "loop": true,
+    "len": 1.903
+   },
+   "89ce4ac7147f494b": {
+    "loop": true,
+    "len": 4.324
+   },
+   "d92e22c64c1ebaaf": {
+    "loop": true,
+    "len": 1.945
+   },
+   "95a0a0b3c5a3ae3d": {
+    "loop": true,
+    "len": 0.729
+   },
+   "031e4b9b5c1118e4": {
+    "loop": true,
+    "len": 1.156
+   },
+   "62c489fedf0678d3": {
+    "loop": true,
+    "len": 0.943
+   },
+   "74356680958194c2": {
+    "loop": true,
+    "len": 2.34
+   },
+   "3e2a43bb87adede5": {
+    "loop": true,
+    "len": 1.199
+   },
+   "46795cfc2d068100": {
+    "loop": true,
+    "len": 0.836
+   },
+   "e2be76f77d32f2e3": {
+    "loop": true,
+    "len": 0.815
+   },
+   "650abc48606a92b4": {
+    "loop": true,
+    "len": 0.58
+   },
+   "6178c91e8d3440d4": {
+    "loop": true,
+    "len": 0.74
    }
   }
  }
