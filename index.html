@@ -222,6 +222,8 @@ nav.tabs .dot{position:absolute;top:2px;left:calc(50% + 6px);font-family:var(--f
 .vopt .vlbl b{display:block;font-size:15px}
 .vopt .vlbl small{color:var(--muted);font-size:12px}
 .vopt .play{border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.imp{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;letter-spacing:.02em;padding:0 7px;border-radius:99px;background:var(--shu);color:var(--on-accent);vertical-align:1px}
+.badge.imp{color:var(--shu);border-color:var(--shu);font-weight:700}
 @media (prefers-reduced-motion:reduce){.card,.pk-head svg,.sw,.sw::after{transition:none}}
 </style>
 
@@ -282,14 +284,36 @@ function newCard(id, sid, d, extra={}){
     words:Array.isArray(d.words)?d.words.filter(w=>w&&w.ja).map(w=>({ja:String(w.ja),ko:String(w.ko||"")})).slice(0,4):[],
     shows:0, status:"new", fav:false, wrong:0, fb:null, mine:false, rv:null, mastered:false, created:Date.now(), order:Math.random()}, extra);
 }
+const gid = g => "s-" + fnv(g.name);
+const cid = (g, sid, ja) => "c-" + (g.v2 ? fnv(sid + "|" + ja) : fnv(ja));
+function seedCard(g, sid, [ja,pron,ko,w], k){
+  return newCard(cid(g, sid, ja), sid, {ja,pron,ko,words:w.map(([j,kk])=>({ja:j,ko:kk}))}, {created:0, imp:!!g.imp, order: g.v2 ? k / 1000 : Math.random()});
+}
 function seed(){
   const s = {v:2, savedAt:0, sits:{}, cards:{}, studySel:[], pending:null, pendingSel:[]};
   EX.forEach(g => {
-    const sid = "s-" + fnv(g.name); s.sits[sid] = {id:sid, name:g.name, desc:g.desc, source:g.src || SRC, created:0};
-    g.items.forEach(([ja,pron,ko,w]) => { const id = "c-" + fnv(ja); s.cards[id] = newCard(id,sid,{ja,pron,ko,words:w.map(([j,k])=>({ja:j,ko:k}))}, {created:0}); });
-    s.studySel.push(sid);
+    const sid = gid(g); s.sits[sid] = {id:sid, name:g.name, desc:g.desc, source:g.src || SRC, created:0};
+    g.items.forEach((it, k) => { const c = seedCard(g, sid, it, k); if (s.cards[c.id]) c.id = "c-" + fnv(sid + "|" + c.ja); s.cards[c.id] = c; });
+    if (!g.v2) s.studySel.push(sid);
   });
   return s;
+}
+/* 나중에 더한 기본 묶음(v2)은 이미 쓰던 기록에도 채워 넣는다. 사용자가 지운 상황·카드는 다시 넣지 않는다 */
+function ensureSeed(){
+  let n = 0;
+  EX.forEach(g => {
+    if (!g.v2) return;
+    let sit = Object.values(S.sits).find(x => x.name === g.name);
+    const sid0 = gid(g);
+    if (!sit) { if (S.deleted[sid0]) return; sit = S.sits[sid0] = {id:sid0, name:g.name, desc:g.desc || "", source:g.src || "", created:0}; n++; }
+    const have = new Set(Object.values(S.cards).filter(c => c.sid === sit.id).map(c => c.ja.trim()));
+    g.items.forEach((it, k) => {
+      if (have.has(it[0].trim())) return;
+      const c = seedCard(g, sit.id, it, k); if (S.deleted[c.id]) return;
+      S.cards[c.id] = c; n++;
+    });
+  });
+  return n;
 }
 
 /* ---------- 이 기기 저장 + Claude 계정 자동 백업 ---------- */
@@ -309,6 +333,8 @@ if (!S || !S.sits) {
 Object.values(S.cards).forEach(c => { if (c.rv === undefined) c.rv = null; if (c.mastered === undefined) c.mastered = false; });
 
 if (!S.deleted) S.deleted = {};
+const SEEDED = ensureSeed();
+if (SEEDED) S.savedAt = Date.now();
 /* 카드·상황마다 마지막으로 바뀐 시각(upd)을 붙여서, 폰 앱과 작업실의 기록을 카드 단위로 합친다 */
 const snapJ = {};
 const bare = o => { const c = Object.assign({}, o); delete c.upd; return JSON.stringify(c); };
@@ -554,7 +580,7 @@ function cardEl(c, {mode="full", status=false, date=false, check=false, hint=""}
   el.innerHTML = `${date&&c.rv?`<div class="date" aria-label="공부한 날">${md(c.rv.last)}</div>`:""}
     ${check?`<button class="check${c.mastered?" on":""}" type="button" data-act="check" aria-pressed="${c.mastered}" aria-label="한 달 복습 완료">${CHECK}</button>`:""}
     <div class="count" aria-label="표시 횟수">${c.shows}회</div>
-    <div class="sit">${esc(sitName(c))}${c.mine?' · 내가 말한 문장':''}</div>
+    <div class="sit">${esc(sitName(c))}${c.mine?' · 내가 말한 문장':''}${c.imp?'<span class="imp">중요</span>':''}</div>
     ${date&&c.rv&&!c.mastered?`<div class="stagelbl">${STAGE[Math.min(c.rv.stage,3)]}</div>`:""}
     ${showJa?`<p class="ja" lang="ja">${full?hl(c.ja,c.words,"ja"):esc(c.ja)}</p>`:""}
     ${full?`<p class="pron">${esc(c.pron)}</p>`:""}
@@ -741,7 +767,7 @@ function reviewBack(){
 const Q = {step:"setup", how:null, what:null, scope:"all", list:[], i:0, raf:0, revealed:false, ctl:null};
 function stopQuiz(){ cancelAnimationFrame(Q.raf); if (Q.ctl) Q.ctl.abort(); try{ rec && rec.abort(); }catch(e){} }
 function renderQuiz(v){ if (Q.step === "setup") return quizSetup(v); quizCard(v); }
-function quizPool(scope){ let l = Object.values(S.cards).filter(c => !c.mastered && S.sits[c.sid]); if (scope==="fav") l = l.filter(c=>c.fav); return l; }
+function quizPool(scope){ let l = Object.values(S.cards).filter(c => !c.mastered && S.sits[c.sid]); if (scope==="fav") l = l.filter(c=>c.fav); if (scope==="imp") l = l.filter(c=>c.imp); return l; }
 function quizSetup(v){
   const total = quizPool("all").length, favs = quizPool("fav").length, done = Object.values(S.cards).filter(c=>c.mastered).length;
   const canVoice = online();
@@ -758,7 +784,7 @@ function quizSetup(v){
     <button class="opt" data-what="ja" aria-pressed="${Q.what==="ja"}"><b>일본어 문장만 보기</b><span>문장을 보고 한국어 뜻을 떠올려요.</span></button>
   </div>
   <div class="section-title">범위</div>
-  <div class="chips"><button class="chip" data-scope="all" aria-pressed="${Q.scope==="all"}">누적 카드 전체 <span class="n">${total}</span></button><button class="chip" data-scope="fav" aria-pressed="${Q.scope==="fav"}">즐겨찾기만 <span class="n">${favs}</span></button></div>
+  <div class="chips"><button class="chip" data-scope="all" aria-pressed="${Q.scope==="all"}">누적 카드 전체 <span class="n">${total}</span></button><button class="chip" data-scope="imp" aria-pressed="${Q.scope==="imp"}">중요만 <span class="n">${quizPool("imp").length}</span></button><button class="chip" data-scope="fav" aria-pressed="${Q.scope==="fav"}">즐겨찾기만 <span class="n">${favs}</span></button></div>
   ${done?`<p class="note">한 달 복습까지 끝난 ${done}장은 빠져요. 학습목록에서 빨간 체크를 풀면 다시 들어와요.</p>`:""}
   <button class="btn primary" id="go" style="width:100%;margin-top:18px" ${Q.how&&Q.what?"":"disabled"}>퀴즈 시작</button>`;
   box.addEventListener("click", e => {
@@ -766,7 +792,7 @@ function quizSetup(v){
     if (b.dataset.how) Q.how = b.dataset.how; if (b.dataset.what) Q.what = b.dataset.what; if (b.dataset.scope) Q.scope = b.dataset.scope;
     if (b.id === "go"){
       const list = quizPool(Q.scope);
-      if (!list.length) return toast(Q.scope==="fav"?"즐겨찾기한 카드가 없어요":"퀴즈에 낼 카드가 없어요");
+      if (!list.length) return toast(Q.scope==="fav"?"즐겨찾기한 카드가 없어요":Q.scope==="imp"?"중요 카드가 없어요":"퀴즈에 낼 카드가 없어요");
       Q.list = list.map(c=>c.id).sort(()=>Math.random()-.5); Q.i = 0; Q.step = "play";
     }
     render();
@@ -880,6 +906,7 @@ let listQ = "", openCats = new Set(), favOnly = false;
 const LIST_FILTERS = [["all","전체"],["again","외우는 중"],["known","외운 카드"]];
 const listFilter = () => LIST_FILTERS.some(f => f[0] === S.listFilter) ? S.listFilter : "all";
 function inFilter(c){
+  if (S.impOnly && !c.imp) return false;
   const f = listFilter();
   if (f === "again") return c.status === "again" && !c.mastered;
   if (f === "known") return c.status === "known" || c.mastered;
@@ -915,7 +942,7 @@ function renderList(v){
   v.append(dWrap);
   const lw = document.createElement("div"); lw.style.marginTop = "14px"; v.append(lw); v = lw;
   v.innerHTML = `<input class="search" id="q" type="search" placeholder="단어나 문장으로 검색 (일본어·한국어·발음)" value="${esc(listQ)}">
-  <div class="row" style="justify-content:space-between;margin-top:8px"><span class="note" id="cnt"></span><button class="btn small${favOnly?" primary":""}" id="favonly" aria-pressed="${favOnly}">★ 즐겨찾기만</button></div>
+  <div class="row" style="justify-content:space-between;margin-top:8px"><span class="note" id="cnt"></span><div class="row" style="gap:6px"><button class="btn small${S.impOnly?" primary":""}" id="imponly" aria-pressed="${!!S.impOnly}">중요만</button><button class="btn small${favOnly?" primary":""}" id="favonly" aria-pressed="${favOnly}">★ 즐겨찾기만</button></div></div>
   <div id="cats"></div>`;
   const draw = () => {
     const q = listQ.trim().toLowerCase(), cats = $("#cats"); cats.innerHTML = ""; let total = 0;
@@ -923,7 +950,7 @@ function renderList(v){
       let cs = Object.values(S.cards).filter(c => c.sid===s.id && inFilter(c));
       if (favOnly) cs = cs.filter(c=>c.fav);
       if (q) cs = cs.filter(c => [c.ja,c.ko,c.pron,...c.words.map(w=>w.ja+" "+w.ko)].join(" ").toLowerCase().includes(q));
-      if (!cs.length && (q||favOnly||listFilter()!=="all")) return;
+      if (!cs.length && (q||favOnly||S.impOnly||listFilter()!=="all")) return;
       cs.sort((a,b)=>a.ko.localeCompare(b.ko,"ko"));
       total += cs.length;
       const d = document.createElement("details"); d.className = "cat"; d.open = !!q || openCats.has(s.id);
@@ -931,7 +958,7 @@ function renderList(v){
       const mark = t => q ? esc(t).replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"), m=>`<mark>${m}</mark>`) : esc(t);
       d.innerHTML = `<summary><span>${esc(s.name)}</span><span class="n">${cs.length}문장</span></summary>` +
         cs.map(c => `<button class="li" type="button" data-id="${c.id}"><span class="lja" lang="ja">${mark(c.ja)}</span><span class="lko">${mark(c.ko)}</span>
-          <span class="meta">${c.mastered?'<span class="badge done">✓ 한 달 완료</span>':`<span class="badge ${c.status}">${{new:"새 카드",again:"다시 외우기",known:"외움"}[c.status]}</span>`}${c.rv&&!c.mastered?`<span class="badge">${STAGE[Math.min(c.rv.stage,3)]} · ${md(c.rv.due)}</span>`:''}${c.mine?'<span class="badge mine">내가 말한 문장</span>':''}${c.wrong?`<span class="badge">틀림 ${c.wrong}</span>`:''}${c.fav?'<span class="lstar">★</span>':''}</span></button>`).join("") +
+          <span class="meta">${c.imp?'<span class="badge imp">중요</span>':''}${c.mastered?'<span class="badge done">✓ 한 달 완료</span>':`<span class="badge ${c.status}">${{new:"새 카드",again:"다시 외우기",known:"외움"}[c.status]}</span>`}${c.rv&&!c.mastered?`<span class="badge">${STAGE[Math.min(c.rv.stage,3)]} · ${md(c.rv.due)}</span>`:''}${c.mine?'<span class="badge mine">내가 말한 문장</span>':''}${c.wrong?`<span class="badge">틀림 ${c.wrong}</span>`:''}${c.fav?'<span class="lstar">★</span>':''}</span></button>`).join("") +
         `<div class="cat-actions"><button class="btn small danger" data-del="${s.id}" type="button">이 상황 지우기</button></div>`;
       cats.append(d);
     });
@@ -939,6 +966,7 @@ function renderList(v){
     $("#cnt").textContent = `${listFilter()==="all"?"":fName+" · "}${total}문장 · 가나다순`;
   };
   $("#q").addEventListener("input", e => { listQ = e.target.value; draw(); });
+  $("#imponly").onclick = () => { S.impOnly = !S.impOnly; save(); render(); };
   $("#favonly").onclick = e => { favOnly = !favOnly; e.currentTarget.setAttribute("aria-pressed", favOnly); e.currentTarget.className = favOnly ? "btn small primary" : "btn small"; draw(); };
   $("#cats").addEventListener("click", e => {
     const li = e.target.closest(".li"); if (li) return openCard(S.cards[li.dataset.id], draw);
@@ -1384,10 +1412,10 @@ if ("serviceWorker" in navigator) {
   // 새 버전이 설치되면 한 번만 자동으로 다시 열어서 최신 화면을 보여 준다
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (!hadCtl) return;
-    try { if (sessionStorage.getItem("jd-reloaded") === "3230a04585") return; sessionStorage.setItem("jd-reloaded", "3230a04585"); } catch(e) {}
+    try { if (sessionStorage.getItem("jd-reloaded") === "a560af6214") return; sessionStorage.setItem("jd-reloaded", "a560af6214"); } catch(e) {}
     location.reload();
   });
-  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=3230a04585", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
+  addEventListener("load", () => navigator.serviceWorker.register("sw.js?v=a560af6214", {updateViaCache: "none"}).then(r => r.update()).catch(()=>{}));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(()=>{}); });
 }
 
